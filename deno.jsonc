@@ -1,0 +1,18 @@
+{
+  "compilerOptions": {
+    "jsx": "react-jsx",
+    "jsxImportSource": "@fartlabs/jsonx"
+  },
+  "imports": {
+    "@fartlabs/jsonx": "jsr:@fartlabs/jsonx@^0.0.9",
+    "@std/cli": "jsr:@std/cli@^0.220.1",
+    "@std/http": "jsr:@std/http@^0.220.1",
+    "@std/semver": "jsr:@std/semver@^0.220.1",
+    "@std/yaml": "jsr:@std/yaml@^0.220.1"
+  },
+  "tasks": {
+    "start": "deno run -A --unstable-kv main.ts",
+    "generate": "deno run -Ar https://deno.land/x/generate/cli/main.ts gen.ts"
+  },
+  "exclude": ["./static"]
+}

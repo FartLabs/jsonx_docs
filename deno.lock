@@ -1,0 +1,87 @@
+{
+  "version": "3",
+  "packages": {
+    "specifiers": {
+      "jsr:@fartlabs/jsonx@^0.0.9": "jsr:@fartlabs/jsonx@0.0.9",
+      "jsr:@std/assert@^0.220.1": "jsr:@std/assert@0.220.1",
+      "jsr:@std/async@^0.220.1": "jsr:@std/async@0.220.1",
+      "jsr:@std/cli@^0.220.1": "jsr:@std/cli@0.220.1",
+      "jsr:@std/collections@^0.219.1": "jsr:@std/collections@0.219.1",
+      "jsr:@std/encoding@^0.220.1": "jsr:@std/encoding@0.220.1",
+      "jsr:@std/fmt@^0.220.1": "jsr:@std/fmt@0.220.1",
+      "jsr:@std/http@^0.220.1": "jsr:@std/http@0.220.1",
+      "jsr:@std/media-types@^0.220.1": "jsr:@std/media-types@0.220.1",
+      "jsr:@std/path@^0.220.1": "jsr:@std/path@0.220.1",
+      "jsr:@std/semver@^0.220.1": "jsr:@std/semver@0.220.1",
+      "jsr:@std/streams@^0.220.1": "jsr:@std/streams@0.220.1",
+      "jsr:@std/yaml@^0.220.1": "jsr:@std/yaml@0.220.1"
+    },
+    "jsr": {
+      "@fartlabs/jsonx@0.0.9": {
+        "integrity": "ec269a8e436e3052c5ea7a60b3ac525639a1c39b847e3fe14b9396070384a72f",
+        "dependencies": [
+          "jsr:@std/collections@^0.219.1"
+        ]
+      },
+      "@std/assert@0.220.1": {
+        "integrity": "88710d54f3afdd7a5761e7805abba1f56cd14e4b212feffeb3e73a9f77482425"
+      },
+      "@std/async@0.220.1": {
+        "integrity": "61f0e9c53bf81f516aa7f54843f307eb5f05c5cf9902575a636ead162b5dfafe"
+      },
+      "@std/cli@0.220.1": {
+        "integrity": "6c38388efc899c9d98811d38a46effe01e0d91138068483f1e6ae834caad5e82",
+        "dependencies": [
+          "jsr:@std/assert@^0.220.1"
+        ]
+      },
+      "@std/collections@0.219.1": {
+        "integrity": "ed0adf354efaf90069a1e9af263b9941f6a370d16e8a98f2fc67d12ed75d825a"
+      },
+      "@std/encoding@0.220.1": {
+        "integrity": "8dc38dd72e36cd68857a5837e24eb09a64bb296b96c295239c75eec17d45d23f"
+      },
+      "@std/fmt@0.220.1": {
+        "integrity": "3b1a698477a26b1dacbbee26db1a65030a005c6d71db3b3a0e59f8a638f04d7a"
+      },
+      "@std/http@0.220.1": {
+        "integrity": "1672a8d31f3e0ccf1c55221907daba4a22f3760cf2d079afb26def2dcfd0513b",
+        "dependencies": [
+          "jsr:@std/assert@^0.220.1",
+          "jsr:@std/async@^0.220.1",
+          "jsr:@std/cli@^0.220.1",
+          "jsr:@std/encoding@^0.220.1",
+          "jsr:@std/fmt@^0.220.1",
+          "jsr:@std/media-types@^0.220.1",
+          "jsr:@std/path@^0.220.1",
+          "jsr:@std/streams@^0.220.1"
+        ]
+      },
+      "@std/media-types@0.220.1": {
+        "integrity": "9dea30f7e0c87426ad8736678137ad277f1450f858efa1ef2c3aad6d9029b682"
+      },
+      "@std/path@0.220.1": {
+        "integrity": "cc63c1b5e5192e2f718dc2f365a3514fffb26cc0380959bab0f8fb5988a52f0c"
+      },
+      "@std/semver@0.220.1": {
+        "integrity": "f3df4abc715ad723680011f19d2934cfd436b4c41c317e82bfc14ac586b3b724"
+      },
+      "@std/streams@0.220.1": {
+        "integrity": "f26c7cb98c471af89de8309a0246cccb4c9bb6f3c639bd84aee5488127dc8545"
+      },
+      "@std/yaml@0.220.1": {
+        "integrity": "55406daf8582067f9989e31d9fa13cf0c8dd3aa85d322055967ff60250b3d033"
+      }
+    }
+  },
+  "remote": {},
+  "workspace": {
+    "dependencies": [
+      "jsr:@fartlabs/jsonx@^0.0.9",
+      "jsr:@std/cli@^0.220.1",
+      "jsr:@std/http@^0.220.1",
+      "jsr:@std/semver@^0.220.1",
+      "jsr:@std/yaml@^0.220.1"
+    ]
+  }
+}
