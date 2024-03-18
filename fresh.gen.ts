@@ -7,6 +7,7 @@ import * as $_app from "./routes/_app.tsx";
 import * as $index from "./routes/index.tsx";
 import * as $meta from "./routes/meta.ts";
 import * as $playgrounds_id_ from "./routes/playgrounds/[id].ts";
+import * as $playgrounds_index from "./routes/playgrounds/index.ts";
 import * as $playground_build from "./islands/playground/build.ts";
 import * as $playground_deps from "./islands/playground/deps.ts";
 import * as $playground_editor from "./islands/playground/editor.ts";
@@ -23,6 +24,7 @@ const manifest = {
     "./routes/index.tsx": $index,
     "./routes/meta.ts": $meta,
     "./routes/playgrounds/[id].ts": $playgrounds_id_,
+    "./routes/playgrounds/index.ts": $playgrounds_index,
   },
   islands: {
     "./islands/playground/build.ts": $playground_build,
