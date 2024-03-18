@@ -1,5 +1,5 @@
-import * as esbuild from "https://esm.sh/esbuild-wasm@0.20.1";
 import type { Meta } from "#/client/meta.ts";
+import { esbuild } from "./deps.ts";
 import { transform } from "./build.ts";
 import { cmEditor, createEditor } from "./editor.ts";
 import { appendBuildOutput, appendConsoleOutput } from "./output.ts";
