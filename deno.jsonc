@@ -34,7 +34,10 @@
     "@std/semver": "jsr:@std/semver@^0.220.1",
     "@std/yaml": "jsr:@std/yaml@^0.220.1",
     "preact": "https://esm.sh/preact@10.19.2",
-    "preact/": "https://esm.sh/preact@10.19.2/"
+    "preact/": "https://esm.sh/preact@10.19.2/",
+    "esbuild-wasm": "https://esm.sh/esbuild-wasm@0.20.1",
+    "cm-view": "https://esm.sh/@codemirror/view@6.0.1",
+    "cm-commands": "https://esm.sh/@codemirror/commands@6.0.1"
   },
   "compilerOptions": {
     "jsx": "react-jsx",

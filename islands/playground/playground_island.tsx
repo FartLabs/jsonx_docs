@@ -1,18 +1,30 @@
-import { useEffect } from "preact/hooks";
-import { initializePlayground } from "./playground.ts";
+import type { Meta } from "#/client/meta.ts";
+import PlaygroundScript from "./playground_script.tsx";
 
-export default function PlaygroundIsland() {
-  useEffect(() => {
-    initializePlayground();
-  }, []);
+export interface PlaygroundProps {
+  code: string;
+  meta: Meta;
+  version?: string;
+  autoplay?: boolean;
+}
 
+export default function PlaygroundIsland(props: PlaygroundProps) {
   return (
     <>
+      <PlaygroundScript autoplay={props.autoplay} code={props.code} />
       <details id="codeDetails" open>
         <summary>
           <span>TSX</span>
           <span>
-            <select id="version" disabled></select>
+            <select
+              id="version"
+              disabled
+              value={props.version ?? props.meta.latest}
+            >
+              {props.meta.versions.map((version) => (
+                <option value={version}>{`Version: ${version}`}</option>
+              ))}
+            </select>
             <button id="play" disabled>Play</button>
             <button id="share" disabled>Share</button>
           </span>

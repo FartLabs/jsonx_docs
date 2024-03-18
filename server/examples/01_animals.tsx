@@ -1,3 +1,5 @@
+/** @jsxImportSource @fartlabs/jsonx */
+
 function Cat() {
   return { animals: ["🐈"] };
 }
