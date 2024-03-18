@@ -1,33 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>jsonx</title>
-    <link rel="stylesheet" href="./lib/playground/playground.css" />
-  </head>
-  <body>
-    <nav>
-      <a href="/"><h1>jsonx</h1></a>
+import { useEffect } from "preact/hooks";
+import { initializePlayground } from "#/lib/playground/mod.ts";
 
-      <span class="badges">
-        <a href="https://jsr.io/@fartlabs/jsonx"
-          ><span>API&nbsp;</span
-          ><img
-            class="jsr-badge"
-            src="https://jsr.io/badges/@fartlabs/jsonx/score"
-            alt="JSR badge" /></a
-        ><a href="https://github.com/FartLabs/jsonx"
-          ><span>GitHub&nbsp;</span
-          ><img
-            class="github-badge"
-            src="https://simpleicons.org/icons/github.svg"
-            alt="GitHub badge" /></a
-      ></span>
-    </nav>
+export default function PlaygroundIsland() {
+  useEffect(() => {
+    initializePlayground();
+  }, []);
 
-    <!-- TODO: Consider abstracting the following into a component. -->
-    <main>
+  return (
+    <>
       <details id="codeDetails" open>
         <summary>
           <span>TSX</span>
@@ -49,7 +29,7 @@
         <ul id="consoleOutput"></ul>
       </details>
 
-      <!-- TODO: Consider sending build logs to console element. -->
+      {/* <!-- TODO: Consider sending build logs to console element. --> */}
       <details id="buildDetails">
         <summary>
           <span>Build logs</span>
@@ -58,7 +38,7 @@
         <ul id="buildOutput"></ul>
       </details>
 
-      <!-- TODO: Consider hiding iframe entirely. -->
+      {/* <!-- TODO: Consider hiding iframe entirely. --> */}
       <details id="resultDetails">
         <summary>
           <span>Result</span>
@@ -73,16 +53,13 @@
           sandbox="allow-forms allow-modals allow-pointer-lock allow-popups allow-same-origin allow-scripts allow-top-navigation-by-user-activation allow-downloads allow-presentation"
           allow="accelerometer *; camera *; encrypted-media *; display-capture *; geolocation *; gyroscope *; microphone *; midi *; clipboard-read *; clipboard-write *; web-share *; serial *; xr-spatial-tracking *"
           scrolling="auto"
-          allowtransparency="true"
-          allowpaymentrequest="true"
-          allowfullscreen="true"
+          allowTransparency={true}
+          allowFullScreen={true}
           loading="lazy"
-          spellcheck="false"
+          spellCheck={false}
         >
         </iframe>
       </details>
-    </main>
-
-    <script type="module" src="./play.js" defer></script>
-  </body>
-</html>
+    </>
+  );
+}

@@ -1,18 +1,43 @@
 {
-  "compilerOptions": {
-    "jsx": "react-jsx",
-    "jsxImportSource": "@fartlabs/jsonx"
-  },
-  "imports": {
-    "@fartlabs/jsonx": "jsr:@fartlabs/jsonx@^0.0.9",
-    "@std/cli": "jsr:@std/cli@^0.220.1",
-    "@std/http": "jsr:@std/http@^0.220.1",
-    "@std/semver": "jsr:@std/semver@^0.220.1",
-    "@std/yaml": "jsr:@std/yaml@^0.220.1"
-  },
+  "lock": false,
   "tasks": {
-    "start": "deno run -A --unstable-kv main.ts",
+    "check": "deno fmt --check && deno lint && deno check **/*.ts && deno check **/*.tsx",
+    "cli": "echo \"import '\\$fresh/src/dev/cli.ts'\" | deno run --unstable -A -",
+    "manifest": "deno task cli manifest $(pwd)",
+    "start": "deno run -A --watch=static/,routes/ dev.ts",
+    "build": "deno run -A dev.ts build",
+    "preview": "deno run -A main.ts",
+    "update": "deno run -A -r https://fresh.deno.dev/update .",
     "generate": "deno run -Ar https://deno.land/x/generate/cli/main.ts gen.ts"
   },
-  "exclude": ["./static"]
+  "unstable": ["kv"],
+  "lint": {
+    "rules": {
+      "tags": [
+        "fresh",
+        "recommended"
+      ]
+    }
+  },
+  "exclude": [
+    "**/_fresh/*",
+    "./static"
+  ],
+  "imports": {
+    "#/": "./",
+    "$fresh/": "https://deno.land/x/fresh@1.6.5/",
+    "$std/": "https://deno.land/std@0.211.0/",
+    "@fartlabs/jsonx": "jsr:@fartlabs/jsonx@^0.0.10",
+    "@preact/signals": "https://esm.sh/*@preact/signals@1.2.1",
+    "@preact/signals-core": "https://esm.sh/*@preact/signals-core@1.5.0",
+    "@std/http": "jsr:@std/http@^0.220.1",
+    "@std/semver": "jsr:@std/semver@^0.220.1",
+    "@std/yaml": "jsr:@std/yaml@^0.220.1",
+    "preact": "https://esm.sh/preact@10.19.2",
+    "preact/": "https://esm.sh/preact@10.19.2/"
+  },
+  "compilerOptions": {
+    "jsx": "react-jsx",
+    "jsxImportSource": "preact"
+  }
 }

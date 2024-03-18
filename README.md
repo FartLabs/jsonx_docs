@@ -15,10 +15,6 @@ Run `deno task generate` to generate code.
 
 Run `deno task start` to locally serve the jsonx documentation site.
 
-### Testing
-
-Run `deno task test` to run the unit tests.
-
 ---
 
 Developed with ❤️ [**@FartLabs**](https://github.com/FartLabs)
