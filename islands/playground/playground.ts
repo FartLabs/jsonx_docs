@@ -1,5 +1,5 @@
 import * as esbuild from "https://esm.sh/esbuild-wasm@0.20.1";
-import type { Meta } from "#/lib/docs/mod.ts";
+import type { Meta } from "#/client/meta.ts";
 import { transform } from "./build.ts";
 import { cmEditor, createEditor } from "./editor.ts";
 import { appendBuildOutput, appendConsoleOutput } from "./output.ts";
@@ -131,16 +131,16 @@ export async function initializePlayground() {
   let version;
   try {
     if (id) {
-      const playground = await fetch(`./playgrounds/${id}`).then((response) =>
-        response.json()
-      );
+      const playground = await globalThis.fetch(`./playgrounds/${id}`).then((
+        response,
+      ) => response.json());
       code = playground.code;
       version = playground.version;
     }
 
     // Fetch default code if unset.
     if (!code) {
-      code = await fetch("./examples/animals.tsx").then((response) =>
+      code = await globalThis.fetch("./examples/animals.tsx").then((response) =>
         response.text()
       );
     }

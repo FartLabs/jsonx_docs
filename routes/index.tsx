@@ -1,5 +1,5 @@
 import { Head } from "$fresh/runtime.ts";
-import PlaygroundIsland from "#/islands/playground_island.tsx";
+import PlaygroundIsland from "#/islands/playground/playground_island.tsx";
 
 export default function Home() {
   return (

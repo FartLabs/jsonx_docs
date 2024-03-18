@@ -7,7 +7,13 @@ import * as $_app from "./routes/_app.tsx";
 import * as $index from "./routes/index.tsx";
 import * as $meta from "./routes/meta.ts";
 import * as $playgrounds_id_ from "./routes/playgrounds/[id].ts";
-import * as $playground_island from "./islands/playground_island.tsx";
+import * as $playground_build from "./islands/playground/build.ts";
+import * as $playground_deps from "./islands/playground/deps.ts";
+import * as $playground_editor from "./islands/playground/editor.ts";
+import * as $playground_elements from "./islands/playground/elements.ts";
+import * as $playground_output from "./islands/playground/output.ts";
+import * as $playground_playground from "./islands/playground/playground.ts";
+import * as $playground_playground_island from "./islands/playground/playground_island.tsx";
 import { type Manifest } from "$fresh/server.ts";
 
 const manifest = {
@@ -19,7 +25,13 @@ const manifest = {
     "./routes/playgrounds/[id].ts": $playgrounds_id_,
   },
   islands: {
-    "./islands/playground_island.tsx": $playground_island,
+    "./islands/playground/build.ts": $playground_build,
+    "./islands/playground/deps.ts": $playground_deps,
+    "./islands/playground/editor.ts": $playground_editor,
+    "./islands/playground/elements.ts": $playground_elements,
+    "./islands/playground/output.ts": $playground_output,
+    "./islands/playground/playground.ts": $playground_playground,
+    "./islands/playground/playground_island.tsx": $playground_playground_island,
   },
   baseUrl: import.meta.url,
 } satisfies Manifest;

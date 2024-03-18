@@ -1,5 +1,5 @@
 import { useEffect } from "preact/hooks";
-import { initializePlayground } from "#/lib/playground/mod.ts";
+import { initializePlayground } from "./playground.ts";
 
 export default function PlaygroundIsland() {
   useEffect(() => {
