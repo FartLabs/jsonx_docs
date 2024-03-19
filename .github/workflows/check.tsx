@@ -1,3 +1,5 @@
+/** @jsxImportSource @fartlabs/jsonx */
+
 import { stringify } from "@std/yaml";
 import { CheckoutStep, SetupDenoStep } from "./shared.tsx";
 

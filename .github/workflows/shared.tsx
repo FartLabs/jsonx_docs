@@ -1,3 +1,5 @@
+/** @jsxImportSource @fartlabs/jsonx */
+
 /**
  * CheckoutStep is a step that checks out the repository.
  */
