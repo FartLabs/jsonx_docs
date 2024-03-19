@@ -1,5 +1,5 @@
 import type { Meta } from "#/client/meta.ts";
-import PlaygroundScript from "./playground_script.tsx";
+import PlaygroundScripts from "./scripts.tsx";
 
 export interface PlaygroundProps {
   code: string;
@@ -8,10 +8,10 @@ export interface PlaygroundProps {
   autoplay?: boolean;
 }
 
-export default function PlaygroundIsland(props: PlaygroundProps) {
+export default function Playground(props: PlaygroundProps) {
   return (
     <>
-      <PlaygroundScript autoplay={props.autoplay} code={props.code} />
+      <PlaygroundScripts autoplay={props.autoplay ?? true} code={props.code} />
       <details id="codeDetails" open>
         <summary>
           <span>TSX</span>

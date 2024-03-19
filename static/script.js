@@ -7,10 +7,11 @@ import {
 import { defaultKeymap } from "https://esm.sh/@codemirror/commands@6.0.1";
 
 document.addEventListener("DOMContentLoaded", () => {
+  const initialData = JSON.parse(elements.initialJSONData.innerHTML);
   setup({
-    code: INITIAL_CODE,
-    autoplay: INITIAL_AUTOPLAY,
-  });
+    code: initialData.code,
+    autoplay: initialData.autoplay,
+  })
 });
 
 async function transform(options) {
@@ -262,5 +263,14 @@ export const elements = {
 
     return buildDetails;
   },
+
+  get initialJSONData() {
+    const initialJSONData = document.getElementById("initialJSONData");
+    if (!initialJSONData) {
+      throw new Error("Initial JSON data element not found.");
+    }
+
+    return initialJSONData;
+  }
 };
 

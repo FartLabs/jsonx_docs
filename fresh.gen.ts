@@ -9,8 +9,7 @@ import * as $index from "./routes/index.tsx";
 import * as $meta from "./routes/meta.ts";
 import * as $playgrounds_id_ from "./routes/playgrounds/[id].tsx";
 import * as $playgrounds_index from "./routes/playgrounds/index.ts";
-import * as $playground_playground_island from "./islands/playground/playground_island.tsx";
-import * as $playground_playground_script from "./islands/playground/playground_script.tsx";
+
 import { type Manifest } from "$fresh/server.ts";
 
 const manifest = {
@@ -23,10 +22,7 @@ const manifest = {
     "./routes/playgrounds/[id].tsx": $playgrounds_id_,
     "./routes/playgrounds/index.ts": $playgrounds_index,
   },
-  islands: {
-    "./islands/playground/playground_island.tsx": $playground_playground_island,
-    "./islands/playground/playground_script.tsx": $playground_playground_script,
-  },
+  islands: {},
   baseUrl: import.meta.url,
 } satisfies Manifest;
 

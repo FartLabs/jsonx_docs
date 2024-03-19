@@ -1,5 +1,4 @@
 import type { Handlers, PageProps } from "$fresh/server.ts";
-import { getPlaygroundByID } from "#/client/playgrounds.ts";
 import { getPlayground, setPlayground } from "#/server/playgrounds.ts";
 import { kv } from "#/server/kv.ts";
 
@@ -16,8 +15,8 @@ export const handler: Handlers = {
 };
 
 export default async function PlaygroundHandler(props: PageProps) {
-  const playground = await getPlaygroundByID(props.params.id);
-  // TODO: Render playground island component.
+  const playground = await getPlayground(kv, props.params.id);
+  // TODO: Render playground component.
   return (
     <>
       <pre><code>{JSON.stringify(playground, null, 2)}</code></pre>
