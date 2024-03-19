@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", () => {
   setup({
     code: initialData.code,
     autoplay: initialData.autoplay,
-  })
+  });
 });
 
 async function transform(options) {
@@ -41,6 +41,37 @@ function createEditor(options) {
   });
 }
 
+function sharePlayground() {
+  if (!confirm("Are you sure you want to share this playground?")) {
+    return;
+  }
+
+  const data = {
+    code: cmEditor.state.doc.toString(),
+    version: elements.version.value,
+  };
+
+  elements.share.disabled = true;
+  fetch(
+    `/api/playgrounds`,
+    {
+      method: "POST",
+      body: JSON.stringify(data),
+    },
+  )
+    .then((response) => response.json())
+    .then((data) => {
+      if (!data.id) {
+        throw new Error("Failed to create a new playground.");
+      }
+
+      location.href = `/playgrounds/${data.id}`;
+    })
+    .finally(() => {
+      elements.share.disabled = false;
+    });
+}
+
 /**
  * setup create a playground.
  */
@@ -61,10 +92,13 @@ async function setup(options) {
     "click",
     () => (buildOutput.innerHTML = ""),
   );
-  elements. clearConsoleOutput.addEventListener(
+  elements.clearConsoleOutput.addEventListener(
     "click",
     () => (consoleOutput.innerHTML = ""),
   );
+  elements.share.addEventListener("click", () => {
+    sharePlayground();
+  });
   addEventListener("message", (event) => {
     if (event.data.type === "console") {
       appendConsoleOutput(
@@ -271,6 +305,5 @@ export const elements = {
     }
 
     return initialJSONData;
-  }
+  },
 };
-
