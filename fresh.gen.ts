@@ -4,11 +4,12 @@
 
 import * as $_404 from "./routes/_404.tsx";
 import * as $_app from "./routes/_app.tsx";
-import * as $examples_id_ from "./routes/examples/[id].ts";
+import * as $api_examples_id_ from "./routes/api/examples/[id].ts";
+import * as $api_playgrounds_id_ from "./routes/api/playgrounds/[id].ts";
+import * as $api_playgrounds_index from "./routes/api/playgrounds/index.ts";
 import * as $index from "./routes/index.tsx";
 import * as $meta from "./routes/meta.ts";
 import * as $playgrounds_id_ from "./routes/playgrounds/[id].tsx";
-import * as $playgrounds_index from "./routes/playgrounds/index.ts";
 
 import { type Manifest } from "$fresh/server.ts";
 
@@ -16,11 +17,12 @@ const manifest = {
   routes: {
     "./routes/_404.tsx": $_404,
     "./routes/_app.tsx": $_app,
-    "./routes/examples/[id].ts": $examples_id_,
+    "./routes/api/examples/[id].ts": $api_examples_id_,
+    "./routes/api/playgrounds/[id].ts": $api_playgrounds_id_,
+    "./routes/api/playgrounds/index.ts": $api_playgrounds_index,
     "./routes/index.tsx": $index,
     "./routes/meta.ts": $meta,
     "./routes/playgrounds/[id].tsx": $playgrounds_id_,
-    "./routes/playgrounds/index.ts": $playgrounds_index,
   },
   islands: {},
   baseUrl: import.meta.url,

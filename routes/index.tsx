@@ -1,5 +1,5 @@
 import { Head } from "$fresh/runtime.ts";
-import Playground from "#/client/playground/playground.tsx";
+import Playground from "#/client/components/playground/playground.tsx";
 import Nav from "#/client/nav.tsx";
 import { getMeta } from "#/client/meta.ts";
 import { kv } from "#/server/kv.ts";
