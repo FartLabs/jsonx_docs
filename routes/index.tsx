@@ -1,6 +1,6 @@
 import { Head } from "$fresh/runtime.ts";
 import Playground from "#/client/components/playground/playground.tsx";
-import Nav from "#/client/nav.tsx";
+import Nav from "#/client/components/nav.tsx";
 import { getMeta } from "#/client/meta.ts";
 import { kv } from "#/server/kv.ts";
 import { getExampleByName } from "#/server/examples/mod.ts";

@@ -1,6 +1,6 @@
 import type { FreshContext } from "$fresh/server.ts";
 import { Head } from "$fresh/runtime.ts";
-import Nav from "#/client/nav.tsx";
+import Nav from "#/client/components/nav.tsx";
 import Playground from "#/client/components/playground/playground.tsx";
 import { getMeta } from "#/client/meta.ts";
 import { getPlayground } from "#/server/playgrounds.ts";
