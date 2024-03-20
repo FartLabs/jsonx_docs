@@ -2,14 +2,14 @@ import { extract } from "@std/front-matter/any";
 import { test } from "@std/front-matter/test";
 import type { RenderOptions } from "@deno/gfm";
 import { render } from "@deno/gfm";
-import { expandGlob } from "@std/fs/expand_glob";
-import { fromFileUrl, join, parse, relative } from "@std/path";
+import { walk } from "@std/fs/walk";
+import { join, parse, SEPARATOR_PATTERN } from "@std/path";
 
 /**
  * Docs represents a documentation page.
  */
 export type Docs =
-  & { name: string; title: string }
+  & { name: string[]; title: string }
   & (
     | { md: string; html: string }
     | { href: string }
@@ -19,11 +19,11 @@ export type Docs =
  * getDocsByName gets the content of a markdown file by name.
  */
 export async function getDocsByName(
-  name: string,
+  name: string[],
   renderOptions?: RenderOptions,
 ): Promise<Docs> {
   const content = await Deno.readTextFile(
-    new URL(import.meta.resolve("./" + name)),
+    `./server/docs/${name.join("/")}.md`,
   );
   return parseDocs({ name, content, renderOptions });
 }
@@ -32,7 +32,7 @@ export async function getDocsByName(
  * DocsInput represents the options for parsing documentation.
  */
 export interface DocsInput {
-  name: string;
+  name: string[];
   content: string;
   renderOptions?: RenderOptions;
 }
@@ -41,7 +41,7 @@ export interface DocsInput {
  * parseDocs parses the documentation from a markdown file.
  */
 export function parseDocs(input: DocsInput): Docs {
-  let title = input.name;
+  let title = "";
   let md = input.content;
   if (test(input.content)) {
     const extracted = extract<{ title: string; href: string }>(input.content);
@@ -82,20 +82,25 @@ export interface TableOfContents {
 /**
  * getTableOfContents gets the file-based table of contents.
  */
-export async function getTableOfContents(): Promise<TableOfContents> {
+export async function getTableOfContents(
+  root = ["server", "docs"],
+): Promise<TableOfContents> {
   const children: TableOfContentsChild[] = [];
-  for await (const file of expandGlob(new URL("**/*.md", import.meta.url))) {
-    const path = parse(
-      relative(join(fromFileUrl(import.meta.url), "../"), file.path),
-    );
+  const walkIt = walk(join(...root), { exts: [".md"] });
+  for await (const file of walkIt) {
+    if (file.isDirectory) {
+      continue;
+    }
+
+    const path = parse(file.path);
+    const name = [path.name];
     const content = await Deno.readTextFile(file.path);
-    const docs = parseDocs({ name: path.base, content });
-    const child: TableOfContentsChild = {
-      name: [path.base],
-      title: docs.title,
-    };
+    const docs = parseDocs({ name, content });
+    const child: TableOfContentsChild = { name, title: docs.title };
     if (path.dir !== "") {
-      child.name.unshift(path.dir);
+      // https://discord.com/channels/684898665143206084/684898665151594506/1217030758686785556
+      const parents = path.dir.split(SEPARATOR_PATTERN).slice(root.length);
+      child.name.unshift(...parents);
     }
 
     if ("href" in docs) {
