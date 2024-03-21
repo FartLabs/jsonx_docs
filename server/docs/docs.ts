@@ -169,8 +169,9 @@ function makeAdjacencies(
 function makeTableOfContents(
   children: FSItem[],
 ): TableOfContents {
+  console.log({ children });
   const adjacencies = makeAdjacencies(children);
-  console.log({ adjacencies });
+  // console.log({ adjacencies });
 
   // Loop through the adjacencies and build the table of contents.
   const paths = Object.keys(adjacencies)
@@ -201,7 +202,7 @@ function makeTableOfContents(
     // WIP: Suffix '00_index' should be omitted from name.
   }
 
-  console.log({ adjacencies });
+  // console.log({ adjacencies });
   const toc = { children: [] };
   return toc;
 }
