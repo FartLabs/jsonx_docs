@@ -6,54 +6,23 @@ import { walk } from "@std/fs/walk";
 import { join, parse, SEPARATOR_PATTERN } from "@std/path";
 
 /**
- * Docs represents a documentation page.
+ * renderFSItem renders the FSItem.
  */
-export type Docs =
-  & { name: string[]; title: string }
-  & (
-    | { md: string; html: string }
-    | { href: string }
-  );
+export function renderFSItem(name: string[], md: string): FSItem {
+  let title: string | undefined;
+  let href: string | undefined;
+  if (test(md)) {
+    const extracted = extract<{ title: string; href: string }>(md);
+    if (extracted.attrs.title !== undefined) {
+      title = extracted.attrs.title;
+    }
 
-/**
- * getDocsByName gets the content of a markdown file by name.
- */
-export async function getDocsByName(
-  name: string[],
-  renderOptions?: RenderOptions,
-): Promise<Docs> {
-  const content = await Deno.readTextFile(
-    `./server/docs/${name.join("/")}.md`,
-  );
-  return parseDocs({ name, content, renderOptions });
-}
-
-/**
- * DocsInput represents the options for parsing documentation.
- */
-export interface DocsInput {
-  name: string[];
-  content: string;
-  renderOptions?: RenderOptions;
-}
-
-/**
- * parseDocs parses the documentation from a markdown file.
- */
-export function parseDocs(input: DocsInput): Docs {
-  let title = "";
-  let md = input.content;
-  if (test(input.content)) {
-    const extracted = extract<{ title: string; href: string }>(input.content);
-    title = extracted.attrs.title || title;
-    md = extracted.body;
-    if (extracted.attrs.href) {
-      return { name: input.name, title, href: extracted.attrs.href };
+    if (extracted.attrs.href !== undefined) {
+      href = extracted.attrs.href;
     }
   }
 
-  const html = render(md, input.renderOptions);
-  return { name: input.name, title, md, html };
+  return { name, title, href };
 }
 
 /**
@@ -61,209 +30,159 @@ export function parseDocs(input: DocsInput): Docs {
  */
 export interface FSItem {
   name: string[];
-  title: string;
-
-  /**
-   * href is a custom documentation link.
-   */
+  title?: string;
   href?: string;
 }
 
 /**
- * TableOfContents represents the table of contents for the documentation.
+ * RenderFSItemsOptions represents the options for rendering file-based items.
  */
-export interface TableOfContents {
-  children: Node<FSItem>[];
+export interface ReadFSItemsOptions {
+  root: string[];
+  isIndex?: (suffix: string) => boolean;
 }
 
 /**
- * getTableOfContents gets the file-based table of contents.
+ * readFSItems reads the file-based items recursively.
  */
-export async function getTableOfContents(
-  root = ["server", "docs"],
-): Promise<TableOfContents> {
-  const children: FSItem[] = [];
-  const walkIt = walk(join(...root), { exts: [".md"], includeDirs: false });
+export async function readFSItems(
+  options: ReadFSItemsOptions,
+): Promise<FSItem[]> {
+  const items: FSItem[] = [];
+  const walkIt = walk(
+    join(...options.root),
+    { exts: [".md"], includeDirs: false },
+  );
   for await (const file of walkIt) {
+    const md = await Deno.readTextFile(file.path);
     const path = parse(file.path);
-    const name = [path.name];
-    const content = await Deno.readTextFile(file.path);
-    const docs = parseDocs({ name, content });
-    const child: FSItem = { name, title: docs.title };
+    // Remove index suffix from the name.
+    const name = options.isIndex?.(path.name) ? [] : [path.name];
+
+    // If the path has a directory, add it to the name.
     if (path.dir !== "") {
       // https://discord.com/channels/684898665143206084/684898665151594506/1217030758686785556
-      const parents = path.dir.split(SEPARATOR_PATTERN).slice(root.length);
-      child.name.unshift(...parents);
+      const parents = path.dir
+        .split(SEPARATOR_PATTERN)
+        .slice(options.root.length);
+      name.unshift(...parents);
     }
 
-    if ("href" in docs) {
-      child.href = docs.href;
-    }
-
-    children.push(child);
+    const item = renderFSItem(name, md);
+    items.push(item);
   }
 
-  return { children };
+  return items;
+}
+
+// function adjacenciesOf(items: FSItem[]): Map<string[], string[]> {
+//   const adjacencies = new Map<string[], string[]>();
+//   for (const item of items) {
+//     const parent = item.name.slice(0, -1);
+//     if (!adjacencies.has(parent)) {
+//       adjacencies.set(parent, []);
+//     }
+
+//     adjacencies.get(parent)!.push(item.name[item.name.length - 1]);
+//   }
+
+//   return adjacencies;
+// }
+
+const ROOT_PARENT = "-";
+const NAME_SEPARATOR = "/";
+
+function parentRelationshipsOf(items: FSItem[]): Map<string, string[][]> {
+  const relationships = new Map<string, string[][]>();
+  for (const item of items) {
+    const parentKey =
+      (item.name.length > 1 ? item.name.slice(0, -1) : [ROOT_PARENT])
+        .join(NAME_SEPARATOR);
+    if (!relationships.has(parentKey)) {
+      relationships.set(parentKey, []);
+    }
+
+    relationships.get(parentKey)!.push(item.name);
+  }
+
+  return relationships;
 }
 
 export type Node<T> =
   & T
   & { children?: Node<T>[] };
 
-function sortChildren<T>(node: Node<T>, fn: (node: Node<T>) => number): void {
-  if (node.children !== undefined) {
-    node.children.sort(fn);
-    node.children.forEach((child) => sortChildren(child, fn));
-  }
-}
-
-// function dfs_sort(entry) {
-//   // If current node has children, sort them
-//   if (entry.children !== undefined) {
-//     // Write a sort function that sorts by string order of the first element in the name field
-//     //entry.children.sort((a, b) => a.name[0].localeCompare(b.name[0]));
-//     entry.children.sort((a, b) =>
-//       a.name.join("/").localeCompare(b.name.join("/"))
-//     );
-//   }
-
-//   // For each child, if they have children, sort them
-//   for (let i = 0; i < entry.children.length; i++) {
-//     if (entry.children[i].children !== undefined) {
-//       dfs_sort(entry.children[i]);
-//     }
+// function sortChildren<T>(node: Node<T>, fn: (node: Node<T>) => number): void {
+//   if (node.children !== undefined) {
+//     node.children.sort(fn);
+//     node.children.forEach((child) => sortChildren(child, fn));
 //   }
 // }
 
-const rootKey = "-";
+function tocOf(input: FSItem[]): Node<FSItem>[] {
+  // Get the parent relationships of the input.
+  const parentRelationships = parentRelationshipsOf(input);
 
-function makeAdjacencies(
-  children: FSItem[],
-): { [key: string]: Node<FSItem>[] } {
-  // Store an adjacency list of the sections and their paths.
-  const adjacencies: { [key: string]: Node<FSItem>[] } = { [rootKey]: [] };
+  // Construct the table of contents.
+  const children: Node<FSItem>[] = [];
 
-  // Loop through children and store them in the adjacency list.
-  for (
-    const item of children.toSorted((a, b) => a.name.length - b.name.length)
-  ) {
-    const suffix = item.name[item.name.length - 1];
-    if (suffix.startsWith("00") && item.name.length !== 1) {
-      item.name.pop();
-      adjacencies[rootKey].push(item);
-      continue;
-    }
+  // function appendChildren(name: string[]) {
+  //   // Add the item to the table of contents.
+  //   const key = name.join(NAME_SEPARATOR);
+  //   const item = input.find((item) => item.name.join(NAME_SEPARATOR) === key);
+  //   let node: Node<FSItem>=
+  //   while (node.children !== undefined) {
+  //   }
 
-    let path = item.name.slice(0, -1).join("/");
-    path = path === "" ? rootKey : path;
-    if (adjacencies[path] === undefined) {
-      adjacencies[path] = [];
-    }
+  //   // if (parentRelationships.has(key)) {
+  //   // }
+  // }
 
-    adjacencies[path].push(item);
-  }
-
-  return adjacencies;
-}
-
-function makeTableOfContents(
-  children: FSItem[],
-): TableOfContents {
+  // appendChildren([ROOT_PARENT]);
   console.log({ children });
-  const adjacencies = makeAdjacencies(children);
-  // console.log({ adjacencies });
 
-  // Loop through the adjacencies and build the table of contents.
-  const paths = Object.keys(adjacencies)
-    .toSorted((b, a) => a.split("/").length - b.split("/").length);
-  for (const path of paths) {
-    // Save the root path for last.
-    if (path === rootKey) {
-      continue;
-    }
+  // const memo = new Map<string[], number[]>();
+  // while (true) {
+  //   for (const child of children) {
+  //   if (!memo.has(child.name)) {
+  //     memo.set(child.name, []);
+  //   }
 
-    // Get parent path.
-    const parentPath = path.split("/").slice(0, -1).join("/");
+  // Iterate over top level of children.
+  // For each child, check if it has a parent.
+  // children.forEach((child) => {
+  //   if (memo.has(child.name)) {
+  // If a child has a parent, add it to the parent's children array.
 
-    // Find parent.
-    const parent = adjacencies[parentPath]
-      ?.find((item) => item.name.join("/") === path);
-    if (parent === undefined) {
-      continue;
-    }
-
-    // Add children to parent.
-    parent.children = adjacencies[path];
-    delete adjacencies[path];
-  }
-
-  // Add virtual root to children.
-  for (const item of adjacencies[rootKey]) {
-    // WIP: Suffix '00_index' should be omitted from name.
-  }
-
-  // console.log({ adjacencies });
-  const toc = { children: [] };
-  return toc;
+  // If a child has no parent, add it to the top level of the table of contents.
+  // }
+  //
+  //
+  //// memo: Map<string[], number[]>
+  // children = [
+  // {name: ["00_index"], title: "Overview"},
+  // {name: ["01_getting_started"], title: "Getting Started"},
+  // {name: ["01_getting_started", "01_installation"], title: "Installation"},
+  // {name: ["01_getting_started", "02_hello_world"], title: "Hello World"},
+  // ]
+  // memo = [
+  // ([01_getting_started] => [1])
+  // ([01_getting_started, 01_installation] => [1, 0])
+  // ([01_getting_started, 02_hello_world] => [1, 0])
+  // ]
+  // Data structure gives us ability to look up the index of a child in the parent's children array by the child's name.
+  // TODO: Remove name suffix starting with prefix 00.
+  return children;
 }
 
 // deno run -A server/docs/docs.ts
 //
 if (import.meta.main) {
-  // TODO: Rename to getFSItems.
-  const toc = await getTableOfContents();
-  // console.log(toc);
-  // TODO: Rename to getTableOfContents.
-  const toc2 = makeTableOfContents(toc.children);
-  // console.log(toc2);
+  const items = await readFSItems({
+    root: ["server", "docs"],
+    isIndex: (suffix) => suffix.startsWith("00_"),
+  });
+  // const parentRelationships = parentRelationshipsOf(items);
+  const toc = tocOf(items);
+  console.log({ toc });
 }
-
-/*
-  // We now have a hashmap of "path/to/a/section" => [section_entry]
-  // Where a section_entry is an object with it's data: {name: ["path", "to", "section"], title: "Section Title", Optional[children]: [], Optional[href]: "https://example.com"}
-
-  // Now loop through our entries by depth
-  const paths = Object.keys(sections);
-  paths.sort((b, a) => a.split("/").length - b.split("/").length);
-  for (let i = 0; i < paths.length; i++) {
-    // Save the root path for last
-    if (paths[i] === "") continue;
-    // Get what our parent's "name" field would be
-    const parent_name_field = paths[i].split("/");
-    // Get where our parent's path would be stored
-    let parent_path = "";
-    if (parent_name_field.length !== 1) {
-      parent_path = parent_name_field.slice(0, -1).join("/");
-    }
-    // Search for our parent
-    for (let j = 0; j < sections[parent_path].length; j++) {
-      // If their field matches what would be our field
-      if (
-        sections[parent_path][j].name.join("/") == parent_name_field.join("/")
-      ) {
-        // Add our children to our parent
-        sections[parent_path][j].children = sections[paths[i]];
-        // Remove our children from the list of sections
-        delete sections[paths[i]];
-        break;
-      } else {
-      }
-    }
-  }
-
-  // Finally, re_add the "00_index" to children at root
-  for (let i = 0; i < sections[""].length; i++) {
-    const name_field = sections[""][i].name;
-    if (name_field[0] === "00_index" || name_field[0].slice(0, 2) == "99") {
-      continue;
-    } else {
-      name_field.push("00_index");
-    }
-  }
-
-  // Sort titles
-  const ret = { children: sections[""] };
-  dfs_sort(ret);
-  return ret;
-}
-*/
