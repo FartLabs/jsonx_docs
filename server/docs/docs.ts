@@ -75,20 +75,6 @@ export async function readFSItems(
   return items;
 }
 
-// function adjacenciesOf(items: FSItem[]): Map<string[], string[]> {
-//   const adjacencies = new Map<string[], string[]>();
-//   for (const item of items) {
-//     const parent = item.name.slice(0, -1);
-//     if (!adjacencies.has(parent)) {
-//       adjacencies.set(parent, []);
-//     }
-
-//     adjacencies.get(parent)!.push(item.name[item.name.length - 1]);
-//   }
-
-//   return adjacencies;
-// }
-
 const ROOT_PARENT = "-";
 const NAME_SEPARATOR = "/";
 
