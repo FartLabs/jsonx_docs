@@ -71,14 +71,15 @@ export function toTree(items: FSItem[]): Node<FSItem>[] {
   const root: Node<FSItem> = { name: [] };
   for (const item of items) {
     let node = root;
-    for (const part of item.name) {
+    for (let i = 0; i < item.name.length; i++) {
+      const part = item.name[i];
       let child = node.children?.find((child) => child.name[0] === part);
       if (child === undefined) {
         if (node.children === undefined) {
           node.children = [];
         }
 
-        child = { name: [part] };
+        child = { name: item.name.slice(0, i + 1) };
         node.children.push(child);
       }
 

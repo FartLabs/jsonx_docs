@@ -10,7 +10,6 @@ import { readFSItems } from "./items.ts";
 if (import.meta.main) {
   const items = await readFSItems({
     root: ["server", "docs"],
-    namespace: "-",
     isIndex: (suffix) => suffix.startsWith("00_"),
   });
   const tree = toTree(items);
