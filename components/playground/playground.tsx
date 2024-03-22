@@ -1,3 +1,4 @@
+import { Head } from "$fresh/runtime.ts";
 import type { Meta } from "#/client/meta.ts";
 import PlaygroundScripts from "./scripts.tsx";
 
@@ -11,6 +12,9 @@ export interface PlaygroundProps {
 export default function Playground(props: PlaygroundProps) {
   return (
     <>
+      <Head>
+        <link rel="stylesheet" href="/playground.css" />
+      </Head>
       <PlaygroundScripts autoplay={props.autoplay ?? true} code={props.code} />
       <details id="codeDetails" open>
         <summary>

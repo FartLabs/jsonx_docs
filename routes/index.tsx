@@ -24,19 +24,10 @@ export default async function Home(request: Request) {
   }
 
   const meta = await getMeta();
-  const path = url.pathname.split("/").filter((part) => part !== "");
   return (
     <>
-      <Head>
-        <title>jsonx | Documentation</title>
-        <link rel="stylesheet" href="/playground.css" />
-      </Head>
-
-      <Nav path={path} />
-
-      <main>
-        <Playground code={code} version={version} meta={meta} />
-      </main>
+      <h1>jsonx</h1>
+      <Playground code={code} version={version} meta={meta} />
     </>
   );
 }

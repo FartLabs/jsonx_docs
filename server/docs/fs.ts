@@ -2,7 +2,7 @@ import type { RenderOptions } from "@deno/gfm";
 import { render } from "@deno/gfm";
 import { extract } from "@std/front-matter/any";
 import { test } from "@std/front-matter/test";
-import { walk } from "@std/fs/walk";
+import { walk } from "@std/fs";
 import { fromFileUrl, normalize, parse, SEPARATOR_PATTERN } from "@std/path";
 import type { FSItem } from "./items.ts";
 import type { Node } from "./nodes.ts";

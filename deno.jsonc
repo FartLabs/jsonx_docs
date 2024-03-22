@@ -35,6 +35,7 @@
     "@std/http": "jsr:@std/http@^0.220.1",
     "@std/path": "jsr:@std/path@^0.220.1",
     "@std/semver": "jsr:@std/semver@^0.220.1",
+    "@std/ulid": "jsr:@std/ulid@^0.220.1",
     "@std/yaml": "jsr:@std/yaml@^0.220.1",
     "preact": "https://esm.sh/preact@10.19.2",
     "preact/": "https://esm.sh/preact@10.19.2/"

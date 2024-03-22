@@ -1,5 +1,6 @@
 /// <reference lib="deno.unstable" />
 
+import { ulid } from "@std/ulid";
 import type { AddPlaygroundRequest, Playground } from "#/client/playgrounds.ts";
 
 /**
@@ -20,7 +21,7 @@ export async function addPlayground(
   kv: Deno.Kv,
   request: AddPlaygroundRequest,
 ): Promise<Playground> {
-  const id = crypto.randomUUID();
+  const id = ulid();
   const playground = { ...request, id };
   const result = await kv.set(playgroundKey(id), playground);
   if (!result) {
@@ -42,6 +43,8 @@ export async function setPlayground(
     throw new Error("Failed to set playground!");
   }
 }
+
+// TODO: Add list recent playgrounds.
 
 function playgroundKey(id: string): Deno.KvKey {
   return ["playgrounds", id];

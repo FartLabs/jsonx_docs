@@ -20,18 +20,13 @@ export default async function PlaygroundHandler(
     <>
       <Head>
         <title>jsonx | Playground</title>
-        <link rel="stylesheet" href="/playground.css" />
       </Head>
 
-      <Nav />
-
-      <main>
-        <Playground
-          code={playground.code}
-          version={playground.version}
-          meta={meta}
-        />
-      </main>
+      <Playground
+        code={playground.code}
+        version={playground.version}
+        meta={meta}
+      />
     </>
   );
 }
