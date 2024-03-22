@@ -1,10 +1,10 @@
 import type { FreshContext } from "$fresh/server.ts";
 import { Head } from "$fresh/runtime.ts";
-import Nav from "#/client/components/nav.tsx";
-import Playground from "#/client/components/playground/playground.tsx";
+import Nav from "#/components/nav.tsx";
+import Playground from "#/components/playground/playground.tsx";
 import { getMeta } from "#/client/meta.ts";
-import { getPlayground } from "#/server/playgrounds.ts";
-import { kv } from "#/server/kv.ts";
+import { getPlayground } from "#/server/kv/playgrounds.ts";
+import { kv } from "#/server/kv/kv.ts";
 
 export default async function PlaygroundHandler(
   _request: Request,

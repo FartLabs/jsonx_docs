@@ -1,18 +1,6 @@
-// import type { RenderOptions } from "@deno/gfm";
-// import { render } from "@deno/gfm";
-import { toTree } from "./tree.ts";
-import { readFSItems } from "./items.ts";
+import { readFSItems } from "./fs.ts";
 
-// TODO: Render docs.
-
-// deno run -A server/docs/docs.ts
-//
-if (import.meta.main) {
-  const { items } = await readFSItems({
-    // root: ["server", "docs"],
-    root: new URL(".", import.meta.url),
-    isIndex: (suffix) => suffix.startsWith("00_"),
-  });
-  const tree = toTree(items);
-  console.dir({ tree }, { depth: null });
-}
+export const { items, contents, nodes } = await readFSItems({
+  root: new URL(".", import.meta.url),
+  isIndex: (suffix) => suffix.startsWith("00_"),
+});

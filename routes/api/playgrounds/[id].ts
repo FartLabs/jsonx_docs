@@ -1,6 +1,9 @@
 import type { Handlers } from "$fresh/server.ts";
-import { getPlayground, setPlayground } from "#/server/playgrounds.ts";
-import { kv } from "#/server/kv.ts";
+import {
+  getPlayground,
+  setPlayground,
+} from "../../../server/kv/playgrounds.ts";
+import { kv } from "#/server/kv/kv.ts";
 
 export const handler: Handlers = {
   async GET(_request, ctx) {

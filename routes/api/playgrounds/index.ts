@@ -1,7 +1,7 @@
 import type { Handlers } from "$fresh/server.ts";
 import type { AddPlaygroundRequest } from "#/client/playgrounds.ts";
-import { addPlayground } from "#/server/playgrounds.ts";
-import { kv } from "#/server/kv.ts";
+import { addPlayground } from "#/server/kv/playgrounds.ts";
+import { kv } from "#/server/kv/kv.ts";
 
 export const handler: Handlers = {
   async POST(request, _ctx) {

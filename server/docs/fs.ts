@@ -1,23 +1,37 @@
+import type { RenderOptions } from "@deno/gfm";
+import { render } from "@deno/gfm";
 import { extract } from "@std/front-matter/any";
 import { test } from "@std/front-matter/test";
 import { walk } from "@std/fs/walk";
-import { join, parse, SEPARATOR_PATTERN } from "@std/path";
-
-/**
- * FSItem is an item represented in the file system.
- */
-export interface FSItem {
-  name: string[];
-  title?: string;
-  href?: string;
-}
+import { fromFileUrl, normalize, parse, SEPARATOR_PATTERN } from "@std/path";
+import type { FSItem } from "./items.ts";
+import type { Node } from "./nodes.ts";
+import { sortChildren } from "./nodes.ts";
 
 /**
  * RenderFSItemsOptions represents the options for rendering file-based items.
  */
 export interface ReadFSItemsOptions {
-  root: string[];
+  root: string | URL;
   isIndex?: (suffix: string) => boolean;
+  renderOptions?: RenderOptions;
+}
+
+/**
+ * Content represents the content of an item.
+ */
+export interface Content {
+  md: string;
+  html: string;
+}
+
+/**
+ * ReadFSItemsResult represents the result of reading file-based items.
+ */
+export interface ReadFSItemsResult {
+  items: FSItem[];
+  nodes: Node<FSItem>[];
+  contents: Map<string, Content>;
 }
 
 /**
@@ -25,159 +39,115 @@ export interface ReadFSItemsOptions {
  */
 export async function readFSItems(
   options: ReadFSItemsOptions,
-): Promise<FSItem[]> {
+): Promise<ReadFSItemsResult> {
+  // Normalize the root.
+  const root = normalize(
+    options.root instanceof URL
+      ? fromFileUrl(options.root.toString())
+      : options.root,
+  ).split(SEPARATOR_PATTERN);
+  if (root[root.length - 1] === "") {
+    root.pop();
+  }
+
+  // Read the file-based items.
   const items: FSItem[] = [];
+  const contents = new Map<string, Content>();
   const walkIt = walk(
-    join(...options.root),
+    options.root,
     { exts: [".md"], includeDirs: false },
   );
   for await (const file of walkIt) {
-    const md = await Deno.readTextFile(file.path);
+    let md = await Deno.readTextFile(file.path);
+    const html = render(md, options.renderOptions);
     const path = parse(file.path);
+
     // Remove index suffix from the name.
     const name = options.isIndex?.(path.name) ? [] : [path.name];
 
     // If the path has a directory, add it to the name.
     if (path.dir !== "") {
       // https://discord.com/channels/684898665143206084/684898665151594506/1217030758686785556
-      const parents = path.dir
+      const parent = path.dir
         .split(SEPARATOR_PATTERN)
-        .slice(options.root.length);
-      name.unshift(...parents);
+        .slice(root.length);
+      name.unshift(...parent);
     }
 
-    const item = renderFSItem(name, md);
-    items.push(item);
-  }
-
-  return items;
-}
-
-/**
- * renderFSItem renders the FSItem.
- */
-export function renderFSItem(name: string[], md: string): FSItem {
-  let title: string | undefined;
-  let href: string | undefined;
-  if (test(md)) {
-    const extracted = extract<{ title: string; href: string }>(md);
-    if (extracted.attrs.title !== undefined) {
-      title = extracted.attrs.title;
-    }
-
-    if (extracted.attrs.href !== undefined) {
-      href = extracted.attrs.href;
-    }
-  }
-
-  return { name, title, href };
-}
-
-const ROOT_PARENT = "-";
-const NAME_SEPARATOR = "/";
-
-function directoriesOf(items: FSItem[]): Map<string, string[][]> {
-  const relationships = new Map<string, string[][]>();
-  for (const item of items) {
-    const parentKey =
-      (item.name.length > 1 ? item.name.slice(0, -1) : [ROOT_PARENT])
-        .join(NAME_SEPARATOR);
-    if (!relationships.has(parentKey)) {
-      relationships.set(parentKey, []);
-    }
-
-    relationships.get(parentKey)!.push(item.name);
-  }
-
-  return relationships;
-}
-
-/**
- * Node is a node in a tree.
- */
-export type Node<T> =
-  & T
-  & { children?: Node<T>[] };
-
-// function sortChildren<T>(node: Node<T>, fn: (node: Node<T>) => number): void {
-//   if (node.children !== undefined) {
-//     node.children.sort(fn);
-//     node.children.forEach((child) => sortChildren(child, fn));
-//   }
-// }
-
-/**
- * addItem recursively adds an item to the result.
- */
-function addItem(
-  result: Node<FSItem>[],
-  items: FSItem[],
-  index: number,
-  depth = 0,
-): void {
-  const item = items[index];
-  const current = item.name.at(depth);
-  if (current === undefined) {
-    return;
-  }
-
-  let parent = result.find((node) => node.name.at(depth) === current);
-  if (parent === undefined) {
-    parent = { ...item, children: [] };
-    result.push(parent);
-  }
-
-  if (parent !== undefined) {
-    parent.children ??= [];
-  }
-}
-
-function tocOf(input: FSItem[]): Node<FSItem>[] {
-  // Restructure the input in terms of directories.
-  const directories = directoriesOf(input);
-
-  // Add the item to the table of contents.
-
-  // Construct the table of contents.
-  const result: Node<FSItem>[] = [];
-  const visited = new Set<string>();
-  const queue = [ROOT_PARENT];
-  while (queue.length > 0) {
-    const parent = queue.shift()!;
-    if (visited.has(parent)) {
-      continue;
-    }
-
-    const children = directories.get(parent);
-    if (!children) {
-      throw new Error(`no children for ${parent}`);
-    }
-
-    for (const child of children) {
-      const item = input.find((item) =>
-        item.name.join(NAME_SEPARATOR) === child.join(NAME_SEPARATOR)
-      );
-      if (!item) {
-        throw new Error(`no item for ${child}`);
+    // Render the FSItem.
+    let title: string | undefined;
+    let href: string | undefined;
+    if (test(md)) {
+      const extracted = extract<{ title: string; href: string }>(md);
+      if (extracted.attrs.title !== undefined) {
+        title = extracted.attrs.title;
       }
 
-      // Write item to result recursively.
-      addItem(item);
+      if (extracted.attrs.href !== undefined) {
+        href = extracted.attrs.href;
+      }
+
+      md = extracted.body;
     }
 
-    visited.add(parent);
+    const item = { name, title, href };
+    items.push(item);
+
+    // Store the item contents.
+    contents.set(file.path, { md, html });
   }
 
-  return result;
+  // Return items relative to the root.
+  return { items, contents, nodes: toNodes(items) };
 }
 
-// deno run -A server/docs/fs.ts
-//
-if (import.meta.main) {
-  const items = await readFSItems({
-    root: ["server", "docs"],
-    isIndex: (suffix) => suffix.startsWith("00_"),
-  });
-  const toc = tocOf(items);
-  console.log({ toc });
+/**
+ * NAME_SEPARATOR is the separator for an FSItem name.
+ */
+export const NAME_SEPARATOR = "/";
+
+/**
+ * toNodes converts an array of FSItems to list of tree nodes.
+ */
+export function toNodes(items: FSItem[]): Node<FSItem>[] {
+  const root: Node<FSItem> = { name: [] };
+  let visitedRoot = false;
+  for (const item of items) {
+    let node = root;
+    if (item.name.length === 0) {
+      visitedRoot = true;
+    }
+
+    for (let i = 0; i < item.name.length; i++) {
+      const part = item.name.slice(0, i + 1).join(NAME_SEPARATOR);
+      let child = node.children?.find((child) =>
+        child.name.join(NAME_SEPARATOR) === part
+      );
+      if (child === undefined) {
+        if (node.children === undefined) {
+          node.children = [];
+        }
+
+        child = { name: item.name.slice(0, i + 1) };
+        node.children.push(child);
+      }
+
+      node = child;
+    }
+    node.title = item.title;
+    node.href = item.href;
+  }
+
+  sortChildren(
+    root,
+    (a, b) =>
+      a.name.join(NAME_SEPARATOR).localeCompare(b.name.join(NAME_SEPARATOR)),
+  );
+
+  const children = root.children ?? [];
+  if (visitedRoot) {
+    children.unshift({ name: [], title: root.title, href: root.href });
+  }
+
+  return children;
 }
