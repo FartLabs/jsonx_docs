@@ -1,53 +1,3 @@
-const from = [
-  { name: [], title: "Overview", href: undefined },
-  {
-    name: ["01_getting_started"],
-    title: "Getting Started",
-    href: undefined,
-  },
-  {
-    name: ["01_getting_started", "01_install"],
-    title: "Install",
-    href: undefined,
-  },
-  {
-    name: ["01_getting_started", "02_use"],
-    title: "Use",
-    href: undefined,
-  },
-  {
-    name: ["99_view_on_github"],
-    title: "View on GitHub",
-    href: "https://github.com/FartLabs/jsonx",
-  },
-].sort(() => Math.random() - 0.5);
-
-const to = [
-  { name: [], title: "Overview", href: undefined },
-  {
-    name: ["01_getting_started"],
-    title: "Getting Started",
-    href: undefined,
-    children: [
-      {
-        name: ["01_getting_started", "01_install"],
-        title: "Install",
-        href: undefined,
-      },
-      {
-        name: ["01_getting_started", "02_use"],
-        title: "Use",
-        href: undefined,
-      },
-    ],
-  },
-  {
-    name: ["99_view_on_github"],
-    title: "View on GitHub",
-    href: "https://github.com/FartLabs/jsonx",
-  },
-];
-
 /**
  * FSItem is an item represented in the file system.
  */
@@ -65,15 +15,27 @@ export type Node<T> =
   & { children?: Node<T>[] };
 
 /**
+ * NAME_SEPARATOR is the separator for an FSItem name.
+ */
+export const NAME_SEPARATOR = "/";
+
+/**
  * toTree converts an array of FSItems to a tree.
  */
 export function toTree(items: FSItem[]): Node<FSItem>[] {
   const root: Node<FSItem> = { name: [] };
+  let visitedRoot = false;
   for (const item of items) {
     let node = root;
+    if (item.name.length === 0) {
+      visitedRoot = true;
+    }
+
     for (let i = 0; i < item.name.length; i++) {
-      const part = item.name[i];
-      let child = node.children?.find((child) => child.name[0] === part);
+      const part = item.name.slice(0, i + 1).join(NAME_SEPARATOR);
+      let child = node.children?.find((child) =>
+        child.name.join(NAME_SEPARATOR) === part
+      );
       if (child === undefined) {
         if (node.children === undefined) {
           node.children = [];
@@ -91,9 +53,16 @@ export function toTree(items: FSItem[]): Node<FSItem>[] {
 
   sortChildren(
     root,
-    (a, b) => a.name.join("/").localeCompare(b.name.join("/")),
+    (a, b) =>
+      a.name.join(NAME_SEPARATOR).localeCompare(b.name.join(NAME_SEPARATOR)),
   );
-  return root.children ?? [];
+
+  const children = root.children ?? [];
+  if (visitedRoot) {
+    children.unshift({ name: [], title: root.title, href: root.href });
+  }
+
+  return children;
 }
 
 function sortChildren<T>(

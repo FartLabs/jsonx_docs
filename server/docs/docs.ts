@@ -8,8 +8,9 @@ import { readFSItems } from "./items.ts";
 // deno run -A server/docs/docs.ts
 //
 if (import.meta.main) {
-  const items = await readFSItems({
-    root: ["server", "docs"],
+  const { items } = await readFSItems({
+    // root: ["server", "docs"],
+    root: new URL(".", import.meta.url),
     isIndex: (suffix) => suffix.startsWith("00_"),
   });
   const tree = toTree(items);
