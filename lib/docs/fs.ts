@@ -1,7 +1,7 @@
 import type { RenderOptions } from "@deno/gfm";
 import { render } from "@deno/gfm";
+import { test } from "@std/front-matter";
 import { extract } from "@std/front-matter/any";
-import { test } from "@std/front-matter/test";
 import { walk } from "@std/fs";
 import { fromFileUrl, normalize, parse, SEPARATOR_PATTERN } from "@std/path";
 import type { FSItem } from "./items.ts";
@@ -59,7 +59,6 @@ export async function readFSItems(
   );
   for await (const file of walkIt) {
     let md = await Deno.readTextFile(file.path);
-    const html = render(md, options.renderOptions);
     const path = parse(file.path);
 
     // Remove index suffix from the name.
@@ -94,7 +93,8 @@ export async function readFSItems(
     items.push(item);
 
     // Store the item contents.
-    contents.set(file.path, { md, html });
+    const html = render(md, options.renderOptions);
+    contents.set(name.join(NAME_SEPARATOR), { md, html });
   }
 
   // Return items relative to the root.

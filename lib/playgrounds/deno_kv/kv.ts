@@ -1,7 +1,10 @@
 /// <reference lib="deno.unstable" />
 
 import { ulid } from "@std/ulid";
-import type { AddPlaygroundRequest, Playground } from "#/client/playgrounds.ts";
+import type {
+  AddPlaygroundRequest,
+  Playground,
+} from "#/lib/playgrounds/mod.ts";
 
 /**
  * getPlayground gets a playground by ID.

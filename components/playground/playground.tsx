@@ -1,5 +1,5 @@
 import { Head } from "$fresh/runtime.ts";
-import type { Meta } from "#/client/meta.ts";
+import type { Meta } from "#/lib/meta/mod.ts";
 import PlaygroundScripts from "./scripts.tsx";
 
 export interface PlaygroundProps {

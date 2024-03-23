@@ -1,5 +1,4 @@
-import type { Node } from "#/server/docs/nodes.ts";
-import type { FSItem } from "#/server/docs/items.ts";
+import type { FSItem, Node } from "#/lib/docs/mod_client.ts";
 
 /**
  * ToCProps are the properties for the ToC component.

@@ -1,5 +1,5 @@
 import ToC from "#/components/toc.tsx";
-import { nodes } from "#/server/docs/docs.ts";
+import { nodes } from "#/lib/resources/docs.ts";
 
 /**
  * NavProps are the properties for the Nav component.

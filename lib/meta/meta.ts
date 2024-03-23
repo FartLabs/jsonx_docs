@@ -24,9 +24,11 @@ function playgroundMeta({ latest, versions }: {
   // https://github.com/FartLabs/jsonx/issues/13
   const minCompatible = parse("0.0.8");
   return {
-    latest: latest,
+    latest,
     versions: Object.keys(versions)
-      .filter((versionTag) => greaterThan(parse(versionTag), minCompatible))
-      .sort((a, b) => compare(parse(b), parse(a))),
+      .map((versionTag) => parse(versionTag))
+      .filter((v) => greaterThan(v, minCompatible))
+      .sort((a, b) => compare(b, a))
+      .map((v) => v.toString()),
   };
 }

@@ -11,3 +11,8 @@ export interface Playground {
  * AddPlaygroundRequest is the request to add a playground.
  */
 export type AddPlaygroundRequest = Omit<Playground, "id">;
+
+// TODO: Write HTML comment parser for rendering comments in playground.
+
+// function parsePlaygroundExpression(expression: string): string {
+// }

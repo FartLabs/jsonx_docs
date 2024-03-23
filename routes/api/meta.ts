@@ -1,5 +1,5 @@
 import type { Handlers } from "$fresh/server.ts";
-import { getMeta } from "#/client/meta.ts";
+import { getMeta } from "#/lib/meta/mod.ts";
 
 export const handler: Handlers = {
   async GET(_request, _ctx) {

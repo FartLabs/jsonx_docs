@@ -1,9 +1,9 @@
 import type { Handlers } from "$fresh/server.ts";
-import { getExampleByName } from "#/server/examples/mod.ts";
+import { readExample } from "#/lib/examples/mod.ts";
 
 export const handler: Handlers = {
   async GET(_request, ctx) {
-    const example = await getExampleByName(ctx.params.id);
+    const example = await readExample(`./examples/${ctx.params.name}`);
     return new Response(example);
   },
 };
