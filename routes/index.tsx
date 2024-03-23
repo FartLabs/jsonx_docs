@@ -1,6 +1,4 @@
-import { Head } from "$fresh/runtime.ts";
 import Playground from "#/components/playground/playground.tsx";
-import Nav from "#/components/nav.tsx";
 import { getMeta } from "#/client/meta.ts";
 import { kv } from "#/server/kv/kv.ts";
 import { getExampleByName } from "#/server/examples/mod.ts";
@@ -26,7 +24,7 @@ export default async function Home(request: Request) {
   const meta = await getMeta();
   return (
     <>
-      <h1>jsonx</h1>
+      <h1>Meet jsonx.</h1>
       <Playground code={code} version={version} meta={meta} />
     </>
   );

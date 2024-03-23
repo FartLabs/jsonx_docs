@@ -1,8 +1,7 @@
 import type { PageProps } from "$fresh/server.ts";
-import Nav from "#/components/nav.tsx";
+import Nav, { toPath } from "#/components/nav.tsx";
 
 export default function App({ Component, route }: PageProps) {
-  const path = route.split("/").filter(Boolean);
   return (
     <html>
       <head>
@@ -12,7 +11,7 @@ export default function App({ Component, route }: PageProps) {
         <link rel="stylesheet" href="/global.css" />
       </head>
       <body>
-        <Nav path={path} />
+        <Nav path={toPath(route)} />
 
         <main>
           <Component />
