@@ -23,6 +23,8 @@ export interface ReadFSItemsOptions {
 export interface Content {
   md: string;
   html: string;
+  // TODO: Add recursive list of heading nodes (ID and title). Render the
+  // heading nodes as a sidenav component.
 }
 
 /**
@@ -77,7 +79,9 @@ export async function readFSItems(
     let title: string | undefined;
     let href: string | undefined;
     if (test(md)) {
-      const extracted = extract<{ title: string; href: string }>(md);
+      const extracted = extract<
+        { title: string; href: string; playground: string }
+      >(md);
       if (extracted.attrs.title !== undefined) {
         title = extracted.attrs.title;
       }

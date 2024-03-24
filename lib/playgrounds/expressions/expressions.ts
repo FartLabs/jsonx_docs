@@ -6,26 +6,10 @@
  * playgrounds directly into markdown files.
  */
 
+import type { PlaygroundData } from "#/lib/playgrounds/mod.ts";
 import { getPlayground } from "#/lib/playgrounds/deno_kv/mod.ts";
-import { kv } from "#/lib/resources/kv.ts";
 import { readExample } from "#/lib/examples/mod.ts";
-
-/**
- * PLAYGROUND_EXPRESSION_REGEX is the regular expression for parsing playground
- * expressions.
- */
-export const PLAYGROUND_EXPRESSION_REGEX =
-  /<!--\s*playground\s+(id|example):[a-zA-Z0-9-_.]+\s*-->/g;
-
-/**
- * fromRegExpMatchArray converts a regular expression match array to a
- * PlaygroundExpression.
- */
-export function fromRegExpMatchArray(
-  match: RegExpMatchArray,
-): PlaygroundExpression {
-  return parsePlaygroundExpression(match[0]);
-}
+import { kv } from "#/lib/resources/kv.ts";
 
 /**
  * PlaygroundExpression is a playground expression.
@@ -45,7 +29,7 @@ export type PlaygroundExpression =
 export function parsePlaygroundExpression(
   expression: string,
 ): PlaygroundExpression {
-  const idMatch = expression.match(/id:([a-zA-Z0-9-_.]+)/);
+  const idMatch = expression.match(/id:([a- zA-Z0-9-_.]+)/);
   if (idMatch) {
     return { id: idMatch[1] };
   }
@@ -59,14 +43,12 @@ export function parsePlaygroundExpression(
 }
 
 /**
- * getDataByRegExpMatchArray converts a regular expression match array to
- * playground data.
+ * fromExpression converts a playground expression to playground data.
  */
-export async function getDataByRegExpMatchArray(
-  match: RegExpMatchArray,
-): Promise<{ code: string; version?: string }> {
-  const expr = fromRegExpMatchArray(match);
-  console.log({ expr });
+export async function fromExpression(
+  expression: string,
+): Promise<PlaygroundData> {
+  const expr = parsePlaygroundExpression(expression);
   if ("id" in expr) {
     const playground = await getPlayground(kv, expr.id);
     if (!playground) {

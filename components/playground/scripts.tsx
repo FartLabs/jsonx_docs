@@ -5,19 +5,15 @@ export interface PlaygroundScriptsProps {
 
 export default function PlaygroundScripts(props: PlaygroundScriptsProps) {
   return (
-    <div
-      dangerouslySetInnerHTML={{
-        __html: `${
-          initializeData(props)
-        }<script type="module" src="/script.js" defer></script>`,
-      }}
-    >
-    </div>
+    <>
+      <script id="initialJSONData" type="application/json">
+        {JSON.stringify(props)}
+      </script>
+      <script
+        type="module"
+        src="/script.js"
+        defer
+      />
+    </>
   );
-}
-
-function initializeData(props: PlaygroundScriptsProps) {
-  return `<script id="initialJSONData" type="application/json">${
-    JSON.stringify(props)
-  }</script>`;
 }
