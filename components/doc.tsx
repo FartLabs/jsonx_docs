@@ -21,10 +21,12 @@ export interface DocProps {
 export default function Doc(props: DocProps) {
   return (
     // TODO: Add sidenav for the documentation page.
-    <div
-      className="markdown-body"
-      dangerouslySetInnerHTML={{ __html: props.html }}
-    >
-    </div>
+    <>
+      <div
+        className="markdown-body"
+        dangerouslySetInnerHTML={{ __html: props.html }}
+      >
+      </div>
+    </>
   );
 }
