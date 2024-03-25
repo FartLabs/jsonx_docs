@@ -1,13 +1,13 @@
 import { readFSItems } from "#/lib/docs/mod_server.ts";
+import { Renderer } from "@deno/gfm";
 
 export const { items, contents, nodes } = await readFSItems({
   root: "./docs",
   isIndex: (suffix) => suffix.startsWith("00_"),
   renderOptions: {
-    // Preserve HTML comments as-is.
-    disableHtmlSanitization: true,
+    // TODO: Reference
+    // https://github.com/denoland/fresh/blob/main/www/utils/markdown.ts
     //
-    // TODO: Define the base URL for the site with environment variables.
-    //
+    renderer: new Renderer(),
   },
 });

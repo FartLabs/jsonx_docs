@@ -8,15 +8,46 @@
 
 body {
   background-color: #bbb;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr 3fr;
+  grid-template-areas: "nav" "main";
 }
 
 nav {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  grid-area: nav;
   padding: 1em 1em 0 1em;
 }
 
+nav ul {
+  padding: 0;
+  margin-left: 1em;
+}
+
 main {
+  grid-area: main;
   padding: 0 0.7em;
+}
+
+pre,
+code {
+  font-family: monospace;
+  background-color: #f8f8f8;
+  border: 1px solid #ddd;
+  border-radius: 3px;
+  padding: 0.1em 0.2em;
+}
+
+pre code {
+  display: block;
+  padding: 1em;
+  overflow-x: auto;
+}
+
+@media (min-width: 768px) {
+  body {
+    grid-template-columns: 1fr 3fr;
+    grid-template-rows: 1fr;
+    grid-template-areas: "nav main";
+  }
 }
