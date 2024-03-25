@@ -29,14 +29,14 @@ export type PlaygroundExpression =
 export function parsePlaygroundExpression(
   expression: string,
 ): PlaygroundExpression {
-  const idMatch = expression.match(/id:([a-zA-Z0-9-_.]+)/);
-  if (idMatch) {
-    return { id: idMatch[1] };
+  const idPrefix = "id:";
+  if (expression.startsWith(idPrefix)) {
+    return { id: expression.slice(idPrefix.length) };
   }
 
-  const exampleMatch = expression.match(/example:([a-zA-Z0-9-_.]+)/);
-  if (exampleMatch) {
-    return { example: exampleMatch[1] };
+  const examplePrefix = "example:";
+  if (expression.startsWith(examplePrefix)) {
+    return { example: expression.slice(examplePrefix.length) };
   }
 
   throw new Error(`Invalid playground expression: ${expression}`);

@@ -92,6 +92,10 @@ export async function readFSItems(
         href = extracted.attrs.href;
       }
 
+      if (extracted.attrs.playground !== undefined) {
+        playground = extracted.attrs.playground;
+      }
+
       md = extracted.body;
     }
 

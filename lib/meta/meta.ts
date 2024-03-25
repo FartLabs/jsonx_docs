@@ -26,9 +26,9 @@ function playgroundMeta({ latest, versions }: {
   return {
     latest,
     versions: Object.keys(versions)
-      .map((versionTag) => parse(versionTag))
-      .filter((v) => greaterThan(v, minCompatible))
-      .sort((a, b) => compare(b, a))
-      .map((v) => v.toString()),
+      .map((versionTag) => ({ versionTag, semver: parse(versionTag) }))
+      .filter(({ semver }) => greaterThan(semver, minCompatible))
+      .sort((a, b) => compare(b.semver, a.semver))
+      .map((v) => v.versionTag),
   };
 }

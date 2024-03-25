@@ -3,9 +3,9 @@ import { Meta } from "#/lib/meta/mod.ts";
 import Playground from "#/components/playground/playground.tsx";
 
 /**
- * DocProps are the properties for the Doc component.
+ * DocContentProps are the properties for the DocContent component.
  */
-export interface DocProps {
+export interface DocContentProps {
   /**
    * html is the html content of the documentation page.
    */
@@ -21,9 +21,9 @@ export interface DocProps {
 }
 
 /**
- * Doc is a jsonx documentation page component.
+ * DocContent is the content of a jsonx documentation page.
  */
-export default function Doc(props: DocProps) {
+export default function DocContent(props: DocContentProps) {
   return (
     <>
       <div
