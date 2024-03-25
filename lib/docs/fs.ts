@@ -23,6 +23,7 @@ export interface ReadFSItemsOptions {
 export interface Content {
   md: string;
   html: string;
+  playground?: string;
   // TODO: Add recursive list of heading nodes (ID and title). Render the
   // heading nodes as a sidenav component.
 }
@@ -78,6 +79,7 @@ export async function readFSItems(
     // Render the FSItem.
     let title: string | undefined;
     let href: string | undefined;
+    let playground: string | undefined;
     if (test(md)) {
       const extracted = extract<
         { title: string; href: string; playground: string }
@@ -98,7 +100,10 @@ export async function readFSItems(
 
     // Store the item contents.
     const html = render(md, options.renderOptions);
-    contents.set(name.join(NAME_SEPARATOR), { md, html });
+    contents.set(
+      name.join(NAME_SEPARATOR),
+      { md, html, playground },
+    );
   }
 
   // Return items relative to the root.

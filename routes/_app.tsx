@@ -1,5 +1,6 @@
 import type { PageProps } from "$fresh/server.ts";
-import Nav, { toPath } from "#/components/nav.tsx";
+import { toPath } from "#/lib/to_path.ts";
+import Nav from "#/components/nav.tsx";
 
 export default function App({ Component, route }: PageProps) {
   return (

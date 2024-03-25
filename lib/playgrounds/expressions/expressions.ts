@@ -29,7 +29,7 @@ export type PlaygroundExpression =
 export function parsePlaygroundExpression(
   expression: string,
 ): PlaygroundExpression {
-  const idMatch = expression.match(/id:([a- zA-Z0-9-_.]+)/);
+  const idMatch = expression.match(/id:([a-zA-Z0-9-_.]+)/);
   if (idMatch) {
     return { id: idMatch[1] };
   }
