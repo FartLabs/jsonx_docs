@@ -1,9 +1,13 @@
-import type { FreshContext } from "$fresh/server.ts";
+import type { FreshContext, RouteConfig } from "$fresh/server.ts";
 import { Head } from "$fresh/runtime.ts";
 import Playground from "#/components/playground/playground.tsx";
 import { getMeta } from "#/lib/meta/meta.ts";
 import { getPlayground } from "#/lib/playgrounds/deno_kv/mod.ts";
 import { kv } from "#/lib/resources/kv.ts";
+
+export const config: RouteConfig = {
+  routeOverride: "/(p|playgrounds)/:id",
+};
 
 export default async function PlaygroundHandler(
   _request: Request,
