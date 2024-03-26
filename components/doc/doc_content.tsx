@@ -26,18 +26,24 @@ export interface DocContentProps {
 export default function DocContent(props: DocContentProps) {
   return (
     <>
-      <div
-        className="markdown-body"
-        dangerouslySetInnerHTML={{ __html: props.html }}
-      >
-      </div>
-      {props.playground && (
-        <Playground
-          code={props.playground.data.code}
-          version={props.playground.data.version}
-          meta={props.playground.meta}
-        />
-      )}
+      <aside>
+        <h2>On this page</h2>
+        {/* <ToC /> */}
+      </aside>
+      <main>
+        <div
+          className="markdown-body"
+          dangerouslySetInnerHTML={{ __html: props.html }}
+        >
+        </div>
+        {props.playground && (
+          <Playground
+            code={props.playground.data.code}
+            version={props.playground.data.version}
+            meta={props.playground.meta}
+          />
+        )}
+      </main>
     </>
   );
 }

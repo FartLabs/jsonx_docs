@@ -17,14 +17,7 @@ export default function App({ Component, url }: PageProps) {
       <body>
         <Nav path={toPath(url.pathname)} />
 
-        <main>
-          <Component />
-        </main>
-
-        <aside>
-          <h2>On this page</h2>
-          {/* <ToC /> */}
-        </aside>
+        <Component />
 
         <Foot />
       </body>

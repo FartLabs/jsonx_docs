@@ -2,7 +2,7 @@
  * Foot is the site footer.
  */
 export default function Foot(
-  props: { year: number } = { year: new Date().getFullYear() },
+  props: { year?: number } = { year: new Date().getFullYear() },
 ) {
   return (
     <footer>

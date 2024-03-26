@@ -25,11 +25,18 @@ export default async function PlaygroundHandler(
         <title>jsonx | Playground</title>
       </Head>
 
-      <Playground
-        code={playground.code}
-        version={playground.version}
-        meta={meta}
-      />
+      <aside>
+        <h2>On this page</h2>
+        {/* <ToC /> */}
+      </aside>
+
+      <main>
+        <Playground
+          code={playground.code}
+          version={playground.version}
+          meta={meta}
+        />
+      </main>
     </>
   );
 }

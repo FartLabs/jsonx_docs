@@ -18,7 +18,26 @@ export default function Nav(props: NavProps) {
         <h1>jsonx</h1>
       </a>
 
-      <ToC nodes={nodes} path={props.path} />
+      <ToC
+        nodes={nodes}
+        filter={(node) =>
+          startsWith(props.path, node.name) &&
+          node.name.length <= props.path.length + 1}
+      />
     </nav>
   );
+}
+
+function startsWith(path: string[], prefix: string[]): boolean {
+  if (path.length < prefix.length) {
+    return false;
+  }
+
+  for (let i = 0; i < prefix.length; i++) {
+    if (path[i] !== prefix[i]) {
+      return false;
+    }
+  }
+
+  return true;
 }
