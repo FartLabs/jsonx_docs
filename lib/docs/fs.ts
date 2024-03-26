@@ -1,5 +1,3 @@
-import type { RenderOptions } from "@deno/gfm";
-import { render } from "@deno/gfm";
 import { test } from "@std/front-matter";
 import { extract } from "@std/front-matter/any";
 import { walk } from "@std/fs";
@@ -7,6 +5,7 @@ import { fromFileUrl, normalize, parse, SEPARATOR_PATTERN } from "@std/path";
 import type { FSItem } from "./items.ts";
 import type { Node } from "./nodes.ts";
 import { sortChildren } from "./nodes.ts";
+import { renderer } from "./md.ts";
 
 /**
  * RenderFSItemsOptions represents the options for rendering file-based items.
@@ -14,7 +13,6 @@ import { sortChildren } from "./nodes.ts";
 export interface ReadFSItemsOptions {
   root: string | URL;
   isIndex?: (suffix: string) => boolean;
-  renderOptions?: RenderOptions;
 }
 
 /**
@@ -65,6 +63,7 @@ export async function readFSItems(
     const path = parse(file.path);
 
     // Remove index suffix from the name.
+    // TODO: First extract possible name override from front matter.
     const name = options.isIndex?.(path.name) ? [] : [path.name];
 
     // If the path has a directory, add it to the name.
@@ -103,7 +102,7 @@ export async function readFSItems(
     items.push(item);
 
     // Store the item contents.
-    const html = render(md, options.renderOptions);
+    const html = renderer.render(md);
     contents.set(
       name.join(NAME_SEPARATOR),
       { md, html, playground },

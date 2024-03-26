@@ -29,6 +29,7 @@ nav ul {
 main {
   grid-area: main;
   padding: 0 0.7em;
+  min-height: 95vh;
 }
 
 aside {
