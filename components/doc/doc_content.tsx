@@ -9,9 +9,14 @@ import Hljs from "#/components/hljs.tsx";
  */
 export interface DocContentProps {
   /**
-   * html is the html content of the documentation page.
+   * body is the html content of the documentation page.
    */
-  html: string;
+  body: string;
+
+  /**
+   * toc is the table of contents of the documentation page.
+   */
+  toc?: string;
 
   /**
    * playground is the playground data for the documentation page.
@@ -32,15 +37,15 @@ export default function DocContent(props: DocContentProps) {
         <Hljs id="github" />
       </Head>
 
-      <aside>
+      <aside class="aside">
         <h2>On this page</h2>
-        {/* <ToC /> */}
+        <div dangerouslySetInnerHTML={{ __html: props.toc ?? "" }}></div>
       </aside>
 
-      <main>
+      <main class="main">
         <div
           className="markdown-body"
-          dangerouslySetInnerHTML={{ __html: props.html }}
+          dangerouslySetInnerHTML={{ __html: props.body }}
         >
         </div>
         {props.playground && (

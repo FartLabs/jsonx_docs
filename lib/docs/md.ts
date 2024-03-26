@@ -1,5 +1,24 @@
 import MarkdownIt from "markdown-it";
+import anchorPlugin from "markdown-it-anchor";
+import tocDoneRightPlugin from "markdown-it-toc-done-right";
 import hljs from "highlight.js";
+
+/**
+ * renderMd renders markdown content.
+ */
+export function renderMd(md: string): RenderMdResult {
+  const rendered = renderer.render(`[[toc]]\n<!-- toc -->\n${md}`);
+  const [toc, body] = rendered.split("<!-- toc -->");
+  return { body, toc };
+}
+
+/**
+ * RenderMdResult represents the result of rendering markdown content.
+ */
+export interface RenderMdResult {
+  body: string;
+  toc: string;
+}
 
 /**
  * renderer is the markdown renderer used for rendering markdown content.
@@ -7,7 +26,7 @@ import hljs from "highlight.js";
  * @see
  * https://github.com/markdown-it/markdown-it/blob/0fe7ccb4b7f30236fb05f623be6924961d296d3d/README.md?plain=1#L154
  */
-export const renderer: MarkdownIt = new MarkdownIt({
+const renderer: MarkdownIt = new MarkdownIt({
   html: true,
   linkify: true,
   typographer: true,
@@ -21,3 +40,11 @@ export const renderer: MarkdownIt = new MarkdownIt({
     return `<pre><code class="hljs">${html}</code></pre>`;
   },
 });
+
+renderer.use(anchorPlugin, {
+  permalink: true,
+  permalinkBefore: true,
+  permalinkSymbol: "§",
+});
+
+renderer.use(tocDoneRightPlugin);

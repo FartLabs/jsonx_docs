@@ -13,7 +13,7 @@ export interface NavProps {
  */
 export default function Nav(props: NavProps) {
   return (
-    <nav>
+    <nav class="nav">
       <a href="/">
         <h1>jsonx</h1>
       </a>

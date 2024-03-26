@@ -39,6 +39,8 @@
     "@std/yaml": "jsr:@std/yaml@^0.220.1",
     "highlight.js": "https://esm.sh/highlight.js@11.9.0",
     "markdown-it": "https://esm.sh/markdown-it@14.1.0",
+    "markdown-it-anchor": "https://esm.sh/markdown-it-anchor@8.6.7",
+    "markdown-it-toc-done-right": "https://esm.sh/markdown-it-toc-done-right@4.2.0",
     "preact": "https://esm.sh/preact@10.19.2",
     "preact/": "https://esm.sh/preact@10.19.2/"
   },

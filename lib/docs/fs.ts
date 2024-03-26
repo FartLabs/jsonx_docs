@@ -5,7 +5,7 @@ import { fromFileUrl, normalize, parse, SEPARATOR_PATTERN } from "@std/path";
 import type { FSItem } from "./items.ts";
 import type { Node } from "./nodes.ts";
 import { sortChildren } from "./nodes.ts";
-import { renderer } from "./md.ts";
+import { renderMd } from "./md.ts";
 
 /**
  * RenderFSItemsOptions represents the options for rendering file-based items.
@@ -19,11 +19,25 @@ export interface ReadFSItemsOptions {
  * Content represents the content of an item.
  */
 export interface Content {
+  /**
+   * md is the markdown representation of the content.
+   */
   md: string;
-  html: string;
+
+  /**
+   * html is the HTML representation of the content.
+   */
+  body: string;
+
+  /**
+   * toc is the HTML table of contents of the content.
+   */
+  toc?: string;
+
+  /**
+   * playground is a playground expression.
+   */
   playground?: string;
-  // TODO: Add recursive list of heading nodes (ID and title). Render the
-  // heading nodes as a sidenav component.
 }
 
 /**
@@ -106,10 +120,10 @@ export async function readFSItems(
     items.push(item);
 
     // Store the item contents.
-    const html = renderer.render(md);
+    const { body, toc } = renderMd(md);
     contents.set(
       name.join(NAME_SEPARATOR),
-      { md, html, playground },
+      { md, body, toc, playground },
     );
   }
 

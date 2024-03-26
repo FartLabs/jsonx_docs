@@ -11,37 +11,36 @@ body {
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: repeat(auto, 4);
-  /* grid-auto-flow: row; */
-  grid-template-areas: "nav" "aside" "main" "footer";
+  grid-template-areas: "nav" "aside" "main" "foot";
   gap: 0px 0px;
 }
 
-nav {
+.nav {
   grid-area: nav;
   margin: 0 1em;
 }
 
-nav ul {
+.nav ul {
   padding: 0;
   margin-left: 1em;
 }
 
-main {
+.main {
   grid-area: main;
   padding: 0 0.7em;
   min-height: 95vh;
 }
 
-aside {
+.aside {
   grid-area: aside;
   padding: 1em;
 }
 
-footer {
-  grid-area: footer;
+.foot {
+  grid-area: foot;
 }
 
-footer p {
+.foot p {
   text-align: center;
   padding: 1em;
 }
@@ -67,6 +66,6 @@ pre code {
     grid-template-rows: 1fr auto;
     grid-template-areas:
       "nav main aside"
-      "footer footer footer";
+      "foot foot foot";
   }
 }
