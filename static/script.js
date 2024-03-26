@@ -42,7 +42,11 @@ function createEditor(options) {
 }
 
 function sharePlayground() {
-  if (!confirm("Are you sure you want to share this playground?")) {
+  if (
+    !confirm(
+      "Are you sure you want to share this playground?\nPlaygrounds cannot be searched or deleted at a later time.",
+    )
+  ) {
     return;
   }
 

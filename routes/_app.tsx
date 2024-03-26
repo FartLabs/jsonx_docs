@@ -1,6 +1,7 @@
 import type { PageProps } from "$fresh/server.ts";
 import { toPath } from "#/lib/to_path.ts";
 import Nav from "#/components/nav.tsx";
+import Foot from "#/components/foot.tsx";
 // import Hljs from "#/components/hljs.tsx";
 
 export default function App({ Component, url }: PageProps) {
@@ -19,6 +20,13 @@ export default function App({ Component, url }: PageProps) {
         <main>
           <Component />
         </main>
+
+        <aside>
+          <h2>On this page</h2>
+          {/* <ToC /> */}
+        </aside>
+
+        <Foot />
       </body>
     </html>
   );

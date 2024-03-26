@@ -38,6 +38,7 @@
     "@std/semver": "jsr:@std/semver@^0.220.1",
     "@std/ulid": "jsr:@std/ulid@^0.220.1",
     "@std/yaml": "jsr:@std/yaml@^0.220.1",
+    // "markdown-it": "https://esm.sh/markdown-it@14.1.0",
     "preact": "https://esm.sh/preact@10.19.2",
     "preact/": "https://esm.sh/preact@10.19.2/"
   },
