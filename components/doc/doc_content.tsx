@@ -1,6 +1,8 @@
 import type { PlaygroundData } from "#/lib/playgrounds/mod.ts";
 import { Meta } from "#/lib/meta/mod.ts";
 import Playground from "#/components/playground/playground.tsx";
+import { Head } from "$fresh/runtime.ts";
+import Hljs from "#/components/hljs.tsx";
 
 /**
  * DocContentProps are the properties for the DocContent component.
@@ -26,10 +28,15 @@ export interface DocContentProps {
 export default function DocContent(props: DocContentProps) {
   return (
     <>
+      <Head>
+        <Hljs id="github" />
+      </Head>
+
       <aside>
         <h2>On this page</h2>
         {/* <ToC /> */}
       </aside>
+
       <main>
         <div
           className="markdown-body"

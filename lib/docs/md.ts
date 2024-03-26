@@ -11,11 +11,11 @@ export const renderer: MarkdownIt = new MarkdownIt({
   html: true,
   linkify: true,
   typographer: true,
-  highlight(content, lang) {
-    const html = lang && hljs.getLanguage(lang)
+  highlight(content: string, language?: string) {
+    const html = language && hljs.getLanguage(language)
       ? hljs.highlight(
         content,
-        { language: lang, ignoreIllegals: true },
+        { language, ignoreIllegals: true },
       ).value
       : renderer.utils.escapeHtml(content);
     return `<pre><code class="hljs">${html}</code></pre>`;

@@ -34,6 +34,8 @@ async function transform(options) {
 let cmEditor;
 
 function createEditor(options) {
+  // https://codemirror.net/examples/styling/
+  // https://github.com/codemirror/dev/blob/ccb92f9b09ceec46caceae4fb908a83642271b4d/demo/demo.ts
   cmEditor = new EditorView({
     doc: options.code,
     parent: options.target,
@@ -80,11 +82,9 @@ function sharePlayground() {
  * setup create a playground.
  */
 async function setup(options) {
-  // Initialize esbuild.
-  await esbuild.initialize({
+  const esbuildInitPromise = esbuild.initialize({
     wasmURL: "https://esm.sh/esbuild-wasm@0.20.1/esbuild.wasm",
   });
-
   await createEditor({
     target: elements.editor,
     code: options.code,
@@ -113,6 +113,9 @@ async function setup(options) {
       );
     }
   });
+
+  // Initialize esbuild.
+  await esbuildInitPromise;
 
   // Enable button interactions.
   play.disabled = false;
