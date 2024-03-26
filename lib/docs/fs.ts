@@ -66,6 +66,10 @@ export async function readFSItems(
     // TODO: First extract possible name override from front matter.
     const name = options.isIndex?.(path.name) ? [] : [path.name];
 
+    // TODO: Text-manip toc to be used as sidenav.
+    // https://github.com/cmaas/markdown-it-table-of-contents?tab=readme-ov-file#full-example-with-unusual-headline-order
+    //
+
     // If the path has a directory, add it to the name.
     if (path.dir !== "") {
       // https://discord.com/channels/684898665143206084/684898665151594506/1217030758686785556
