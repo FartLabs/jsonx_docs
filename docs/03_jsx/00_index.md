@@ -6,24 +6,30 @@ title: JSX
 
 > [!NOTE]
 >
-> Coming soon.
+> JSX definition coming soon.
 
 [Learn why jsonx uses JS](/03_jsx/01_theory.md).
 
-### Why does jsonx use JSX?
+## Why does jsonx use JSX?
 
 > [!NOTE]
 >
 > Coming soon.
+
+## JSX vs TSX
+
+> [!NOTE]
+>
+> Difference between JSX and TSX coming soon.
 
 ## Syntax
 
 > [!NOTE]
 >
-> Coming soon.
+> JSX syntax tutorial coming soon.
 
 ## Project setup
 
 > [!NOTE]
 >
-> Coming soon.
+> JSX project setup using 1 or more JSX runtimes coming soon.
