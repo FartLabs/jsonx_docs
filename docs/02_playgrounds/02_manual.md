@@ -1,8 +1,8 @@
 ---
-title: Playgrounds handbook
+title: Playgrounds manual
 ---
 
-# Playgrounds Handbook
+# Playgrounds Manual
 
 Playgrounds are useful for trying out jsonx code snippets, sharing code, and
 learning jsonx.
