@@ -9,4 +9,4 @@ playgrounds. Playgrounds enable visitors to quickly edit and run jsonx code in
 the browser.
 
 - [Create a new playground↩](/playgrounds)
-- [Playgrounds manual↩](/02_playgrounds/02_manual)
+- [Playgrounds manual↩](/playgrounds/manual)

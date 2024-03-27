@@ -10,4 +10,4 @@ title: Examples
 
 Learn how to use jsonx in practical situations.
 
-- [Hello world↩](/04_examples/01_hello)
+- [Hello world↩](/examples/hello)

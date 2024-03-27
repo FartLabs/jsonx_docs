@@ -8,7 +8,7 @@ title: JSX
 >
 > JSX definition coming soon.
 
-[Learn why jsonx uses JS](/03_jsx/01_theory.md).
+[Learn why jsonx uses JS](/jsx/theory.md).
 
 ## Why does jsonx use JSX?
 
