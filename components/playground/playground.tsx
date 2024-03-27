@@ -45,28 +45,19 @@ export default function Playground(props: PlaygroundProps) {
         <ul id="consoleOutput"></ul>
       </details>
 
-      {/* <!-- TODO: Consider hiding iframe entirely. --> */}
-      <details id="resultDetails">
-        <summary>
-          <span>Result</span>
-          <span>
-            <button id="refresh" disabled>Refresh</button>
-          </span>
-        </summary>
-        <iframe
-          id="result"
-          name="jsonx"
-          title="jsonx playground"
-          sandbox="allow-forms allow-modals allow-pointer-lock allow-popups allow-same-origin allow-scripts allow-top-navigation-by-user-activation allow-downloads allow-presentation"
-          allow="accelerometer *; camera *; encrypted-media *; display-capture *; geolocation *; gyroscope *; microphone *; midi *; clipboard-read *; clipboard-write *; web-share *; serial *; xr-spatial-tracking *"
-          scrolling="auto"
-          allowTransparency={true}
-          allowFullScreen={true}
-          loading="lazy"
-          spellCheck={false}
-        >
-        </iframe>
-      </details>
+      <iframe
+        id="result"
+        name="jsonx"
+        title="jsonx playground"
+        sandbox="allow-forms allow-modals allow-pointer-lock allow-popups allow-same-origin allow-scripts allow-top-navigation-by-user-activation allow-downloads allow-presentation"
+        allow="accelerometer *; camera *; encrypted-media *; display-capture *; geolocation *; gyroscope *; microphone *; midi *; clipboard-read *; clipboard-write *; web-share *; serial *; xr-spatial-tracking *"
+        scrolling="auto"
+        allowTransparency={true}
+        allowFullScreen={true}
+        loading="lazy"
+        spellCheck={false}
+      >
+      </iframe>
     </>
   );
 }

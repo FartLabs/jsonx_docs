@@ -35,20 +35,14 @@ details[open] summary span:first-child::before {
   margin-right: 0.5em;
 }
 
-#editor,
-iframe {
+#editor {
   width: 100%;
-  height: 34vh;
+  color: black;
   background-color: #fff;
   padding: 0.5em;
   resize: vertical;
   margin-bottom: -5px;
   border-radius: 0 0 0.5em 0.5em;
-}
-
-#editor {
-  height: initial;
-  color: black;
 }
 
 #consoleOutput {
@@ -66,4 +60,8 @@ iframe {
   color: #bbb;
   display: block;
   padding: 0.5em;
+}
+
+#result {
+  display: none;
 }
