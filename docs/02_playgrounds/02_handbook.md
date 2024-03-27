@@ -12,7 +12,8 @@ learning jsonx.
 
 ## Use
 
-To use a playground, let's take a look at the parts that make up one playground.
+To use a playground, let's take a look at the parts that make up one playground:
+code editor, version dropdown, play button, console, and share button.
 
 > [!NOTE]
 >
