@@ -9,7 +9,12 @@ export default async function DocumentationPage(request: Request) {
   const content = contentOf(request);
   const playground = await playgroundOf(content.playground);
   return (
-    <DocContent body={content.body} toc={content.toc} playground={playground} />
+    <DocContent
+      title={content.title}
+      body={content.body}
+      toc={content.toc}
+      playground={playground}
+    />
   );
 }
 

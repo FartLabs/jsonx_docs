@@ -30,6 +30,11 @@ export interface Content {
   body: string;
 
   /**
+   * title is the title of the content.
+   */
+  title?: string;
+
+  /**
    * toc is the HTML table of contents of the content.
    */
   toc?: string;
@@ -121,7 +126,7 @@ export async function readFSItems(
     const { body, toc } = renderMd(md);
     contents.set(
       name.join(NAME_SEPARATOR),
-      { md, body, toc, playground },
+      { md, body, title, toc, playground },
     );
 
     // Store the item in the items array.

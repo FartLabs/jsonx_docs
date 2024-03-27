@@ -9,6 +9,11 @@ import Hljs from "#/components/hljs.tsx";
  */
 export interface DocContentProps {
   /**
+   * title is the title of the documentation page.
+   */
+  title?: string;
+
+  /**
    * body is the html content of the documentation page.
    */
   body: string;
@@ -31,12 +36,16 @@ export interface DocContentProps {
  * DocContent is the content of a jsonx documentation page.
  */
 export default function DocContent(props: DocContentProps) {
+  const title = `jsonx | ${props.title ?? "Documentation"}`;
   return (
     <>
       <Head>
+        <title>{title}</title>
+        <meta property="og:title" content={title} />
+        <link rel="stylesheet" href="/md.css" />
+
         <Hljs id="github" />
         <script src="/copy.js" defer></script>
-        <link rel="stylesheet" href="/md.css" />
       </Head>
 
       <aside class="aside">
