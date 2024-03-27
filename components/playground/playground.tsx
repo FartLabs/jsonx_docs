@@ -45,15 +45,6 @@ export default function Playground(props: PlaygroundProps) {
         <ul id="consoleOutput"></ul>
       </details>
 
-      {/* <!-- TODO: Consider sending build logs to console element. --> */}
-      <details id="buildDetails">
-        <summary>
-          <span>Build logs</span>
-          <button id="clearBuildOutput">Clear</button>
-        </summary>
-        <ul id="buildOutput"></ul>
-      </details>
-
       {/* <!-- TODO: Consider hiding iframe entirely. --> */}
       <details id="resultDetails">
         <summary>

@@ -96,10 +96,6 @@ async function setup(options) {
 
   // Set up event listeners.
   elements.play.addEventListener("click", () => handlePlay());
-  elements.clearBuildOutput.addEventListener(
-    "click",
-    () => (buildOutput.innerHTML = ""),
-  );
   elements.clearConsoleOutput.addEventListener(
     "click",
     () => (consoleOutput.innerHTML = ""),
@@ -136,7 +132,7 @@ async function handlePlay() {
   try {
     const code = cmEditor?.state?.doc?.toString();
     if (!code) {
-      appendBuildOutput("error", "No code to build.");
+      logBuildOutput("error", "No code to build.");
       return;
     }
 
@@ -145,14 +141,14 @@ async function handlePlay() {
       version: elements.version.value,
     });
     transformation.warnings.forEach((warning) => {
-      appendBuildOutput("warning", warning.text);
+      logBuildOutput("warning", warning.text);
     });
 
     const html =
       `<script type="module">${CONSOLE_INTERCEPT}\n${transformation.code}</script>`;
     result.srcdoc = html;
   } catch (error) {
-    appendBuildOutput("error", error.message);
+    logBuildOutput("error", error.message);
   }
 }
 
@@ -188,13 +184,8 @@ function renderPrefix(type) {
   }">[${type.toUpperCase()}]</strong> `;
 }
 
-function appendBuildOutput(type, message) {
-  const li = document.createElement("li");
-  li.innerHTML = `${renderPrefix(type)}${message}`;
-  elements.buildOutput.append(li);
-  if (!elements.buildDetails.open) {
-    elements.buildDetails.open = true;
-  }
+function logBuildOutput(type, message) {
+  alert(`[${type.toUpperCase()}] ${message}`);
 }
 
 function appendConsoleOutput(type, message) {
@@ -253,24 +244,6 @@ export const elements = {
     }
 
     return share;
-  },
-
-  get buildOutput() {
-    const buildOutput = document.getElementById("buildOutput");
-    if (!buildOutput) {
-      throw new Error("Build output element not found.");
-    }
-
-    return buildOutput;
-  },
-
-  get clearBuildOutput() {
-    const clearBuildOutput = document.getElementById("clearBuildOutput");
-    if (!clearBuildOutput) {
-      throw new Error("Clear build output button element not found.");
-    }
-
-    return clearBuildOutput;
   },
 
   get consoleOutput() {

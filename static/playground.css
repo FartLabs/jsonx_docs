@@ -51,7 +51,6 @@ iframe {
   color: black;
 }
 
-#buildOutput,
 #consoleOutput {
   margin: 0;
   padding: 0.5em;
@@ -62,7 +61,6 @@ iframe {
   font-family: monospace;
 }
 
-#buildOutput:empty::before,
 #consoleOutput:empty::before {
   content: "No output";
   color: #bbb;
