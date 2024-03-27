@@ -58,6 +58,29 @@ pre code {
   display: block;
   padding: 1em;
   overflow-x: auto;
+  white-space: pre-wrap;
+  word-break: break-all;
+}
+
+pre {
+  position: relative;
+}
+
+pre:before {
+  content: attr(data-lang);
+  font-size: 1.2em;
+  display: block;
+  text-transform: uppercase;
+  text-decoration: underline;
+  text-underline-offset: 0.3em;
+  padding: 0.6em 1em;
+}
+
+pre button {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  height: 2em;
 }
 
 @media (min-width: 768px) {

@@ -37,7 +37,7 @@ const renderer: MarkdownIt = new MarkdownIt({
         { language, ignoreIllegals: true },
       ).value
       : renderer.utils.escapeHtml(content);
-    return `<pre><code class="hljs">${html}</code></pre>`;
+    return `<pre data-lang="${language}"><code class="hljs">${html}</code></pre>`;
   },
 });
 

@@ -35,6 +35,7 @@ export default function DocContent(props: DocContentProps) {
     <>
       <Head>
         <Hljs id="github" />
+        <script src="/copy.js" defer></script>
       </Head>
 
       <aside class="aside">
