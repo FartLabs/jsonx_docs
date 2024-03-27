@@ -6,6 +6,10 @@
     Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
 }
 
+::selection {
+  background-color: #f0a8ff;
+}
+
 body {
   background-color: #bbb;
   display: grid;
@@ -13,11 +17,16 @@ body {
   grid-template-rows: repeat(auto, 4);
   grid-template-areas: "nav" "aside" "main" "foot";
   gap: 0px 0px;
+  font-size: 1.2em;
 }
 
 .nav {
   grid-area: nav;
   margin: 0 1em;
+}
+
+.nav h1 {
+  font-size: 1.5em;
 }
 
 .nav ul {
@@ -45,42 +54,8 @@ body {
   padding: 1em;
 }
 
-pre,
-code {
-  font-family: monospace;
-  background-color: #f8f8f8;
-  border: 1px solid #ddd;
-  border-radius: 3px;
-  padding: 0.1em 0.2em;
-}
-
-pre code {
-  display: block;
-  padding: 1em;
-  overflow-x: auto;
-  white-space: pre-wrap;
-  word-break: break-all;
-}
-
-pre {
-  position: relative;
-}
-
-pre:before {
-  content: attr(data-lang);
-  font-size: 1.2em;
-  display: block;
-  text-transform: uppercase;
-  text-decoration: underline;
-  text-underline-offset: 0.3em;
-  padding: 0.6em 1em;
-}
-
-pre button {
-  position: absolute;
-  top: 5px;
-  right: 5px;
-  height: 2em;
+.table-of-contents ol {
+  margin-left: 1em;
 }
 
 @media (min-width: 768px) {

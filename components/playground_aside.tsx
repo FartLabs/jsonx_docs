@@ -1,20 +1,20 @@
-import type { Playground } from "#/lib/playgrounds/mod.ts";
-
 /**
  * PlaygroundAside represents the aside content of a playground page.
  */
-export default function PlaygroundAside(props: { playground: Playground }) {
+export default function PlaygroundAside(
+  props: { id?: string; version: string },
+) {
   return (
     <>
       <h2>On this page</h2>
       <p>
-        <a href={`/p/${props.playground.id}`}>p/{props.playground.id}</a>
+        {props.id
+          ? <a href={`/p/${props.id}`}>p/{props.id}</a>
+          : <em>Unsaved</em>}
       </p>
       <p>
         Using jsonx version{" "}
-        <a href={makeVersionURL(props.playground.version)}>
-          {props.playground.version}
-        </a>
+        <a href={makeVersionURL(props.version)}>{props.version}</a>
       </p>
     </>
   );

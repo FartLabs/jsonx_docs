@@ -29,17 +29,48 @@ export type PlaygroundExpression =
 export function parsePlaygroundExpression(
   expression: string,
 ): PlaygroundExpression {
-  const idPrefix = "id:";
-  if (expression.startsWith(idPrefix)) {
-    return { id: expression.slice(idPrefix.length) };
+  const id = parsePlaygroundIDExpression(expression);
+  if (id) {
+    return { id };
   }
 
-  const examplePrefix = "example:";
-  if (expression.startsWith(examplePrefix)) {
-    return { example: expression.slice(examplePrefix.length) };
+  const example = parsePlaygroundExampleExpression(expression);
+  if (example) {
+    return { example };
   }
 
   throw new Error(`Invalid playground expression: ${expression}`);
+}
+
+/**
+ * parsePlaygroundIDExpression parses the playground ID from a playground
+ * expression.
+ */
+export function parsePlaygroundIDExpression(
+  expression: string,
+): string | null {
+  return parseExpressionSuffix(expression, "id:");
+}
+
+/**
+ * parsePlaygroundExampleExpression parses the example name from a playground
+ * expression.
+ */
+export function parsePlaygroundExampleExpression(
+  expression: string,
+): string | null {
+  return parseExpressionSuffix(expression, "example:");
+}
+
+function parseExpressionSuffix(
+  expression: string,
+  prefix: string,
+): string | null {
+  if (expression.startsWith(prefix)) {
+    return expression.slice(prefix.length);
+  }
+
+  return null;
 }
 
 /**
