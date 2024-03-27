@@ -4,14 +4,25 @@ body {
   margin: 0 -5px 0 0;
 }
 
-details {
+#playground-container {
+  border-radius: 0.5em;
+  padding: 5px;
+  background-color: #333;
+}
+
+#consoleDetails {
+  margin-top: 8px;
+}
+
+#codeDetails,
+#consoleDetails {
   color: #bbb;
   outline: 2px solid #333;
   border-radius: 0.5em;
-  margin: 1em 0;
 }
 
-details summary {
+#codeDetails summary,
+#consoleDetails summary {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -20,17 +31,20 @@ details summary {
   background-color: #333;
 }
 
-details[open] summary {
+#codeDetails[open] summary,
+#consoleDetails[open] summary {
   border-bottom: 2px solid #333;
   border-radius: 0.5em 0.5em 0 0;
 }
 
-details:not([open]) summary span:first-child::before {
+#codeDetails:not([open]) summary span:first-child::before,
+#consoleDetails:not([open]) summary span:first-child::before {
   content: "▶";
   margin-right: 0.5em;
 }
 
-details[open] summary span:first-child::before {
+#codeDetails[open] summary span:first-child::before,
+#consoleDetails[open] summary span:first-child::before {
   content: "▼";
   margin-right: 0.5em;
 }

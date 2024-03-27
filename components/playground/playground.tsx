@@ -14,36 +14,42 @@ export default function Playground(props: PlaygroundProps) {
     <>
       <Head>
         <link rel="stylesheet" href="/playground.css" />
+        <PlaygroundScripts
+          autoplay={props.autoplay ?? true}
+          code={props.code}
+        />
       </Head>
-      <PlaygroundScripts autoplay={props.autoplay ?? true} code={props.code} />
-      <details id="codeDetails" open>
-        <summary>
-          <span>TSX</span>
-          <span>
-            <select
-              id="version"
-              disabled
-              value={props.version ?? props.meta.latest}
-            >
-              {props.meta.versions.map((version) => (
-                <option value={version}>{`Version: ${version}`}</option>
-              ))}
-            </select>
-            <button id="play" disabled>Play</button>
-            <button id="share" disabled>Share</button>
-          </span>
-        </summary>
 
-        <div id="editor"></div>
-      </details>
+      <section id="playground-container">
+        <details id="codeDetails" open>
+          <summary>
+            <span>TSX</span>
+            <span>
+              <select
+                id="version"
+                disabled
+                value={props.version ?? props.meta.latest}
+              >
+                {props.meta.versions.map((version) => (
+                  <option value={version}>{`Version: ${version}`}</option>
+                ))}
+              </select>
+              <button id="play" disabled>Play</button>
+              <button id="share" disabled>Share</button>
+            </span>
+          </summary>
 
-      <details id="consoleDetails" open>
-        <summary>
-          <span>Console</span>
-          <button id="clearConsoleOutput">Clear</button>
-        </summary>
-        <ul id="consoleOutput"></ul>
-      </details>
+          <div id="editor"></div>
+        </details>
+
+        <details id="consoleDetails" open>
+          <summary>
+            <span>Console</span>
+            <button id="clearConsoleOutput">Clear</button>
+          </summary>
+          <ul id="consoleOutput"></ul>
+        </details>
+      </section>
 
       <iframe
         id="result"
