@@ -12,7 +12,7 @@ import { renderMd } from "./md.ts";
  */
 export interface ReadFSItemsOptions {
   root: string | URL;
-  isIndex?: (suffix: string) => boolean;
+  isIndex?: (suffix: string, override?: string) => boolean;
 }
 
 /**
@@ -55,6 +55,29 @@ export interface ReadFSItemsResult {
 export async function readFSItems(
   options: ReadFSItemsOptions,
 ): Promise<ReadFSItemsResult> {
+  function nameOf(path: string, override?: string): string[] {
+    // Parse the path.
+    const parsed = parse(path);
+
+    // Remove index suffix from the name.
+    const current = override ?? parsed.name;
+    const name: string[] = [];
+    if (!options.isIndex?.(parsed.name, override)) {
+      name.push(current);
+    }
+
+    // If the path has a directory, add it to the name.
+    if (parsed.dir !== "") {
+      // https://discord.com/channels/684898665143206084/684898665151594506/1217030758686785556
+      const parent = parsed.dir
+        .split(SEPARATOR_PATTERN)
+        .slice(root.length);
+      name.unshift(...parent);
+    }
+
+    return name;
+  }
+
   // Normalize the root.
   const root = normalize(
     options.root instanceof URL
@@ -74,50 +97,25 @@ export async function readFSItems(
   );
   for await (const file of walkIt) {
     let md = await Deno.readTextFile(file.path);
-    const path = parse(file.path);
-
-    // Remove index suffix from the name.
-    // TODO: First extract possible name override from front matter.
-    const name = options.isIndex?.(path.name) ? [] : [path.name];
-
-    // TODO: Text-manip toc to be used as sidenav.
-    // https://github.com/cmaas/markdown-it-table-of-contents?tab=readme-ov-file#full-example-with-unusual-headline-order
-    //
-
-    // If the path has a directory, add it to the name.
-    if (path.dir !== "") {
-      // https://discord.com/channels/684898665143206084/684898665151594506/1217030758686785556
-      const parent = path.dir
-        .split(SEPARATOR_PATTERN)
-        .slice(root.length);
-      name.unshift(...parent);
-    }
 
     // Render the FSItem.
+    let nameOverride: string | undefined;
     let title: string | undefined;
     let href: string | undefined;
     let playground: string | undefined;
     if (test(md)) {
       const extracted = extract<
-        { title: string; href: string; playground: string }
+        { name: string; title: string; href: string; playground: string }
       >(md);
-      if (extracted.attrs.title !== undefined) {
-        title = extracted.attrs.title;
-      }
-
-      if (extracted.attrs.href !== undefined) {
-        href = extracted.attrs.href;
-      }
-
-      if (extracted.attrs.playground !== undefined) {
-        playground = extracted.attrs.playground;
-      }
-
+      nameOverride = extracted.attrs.name ?? nameOverride;
+      title = extracted.attrs.title ?? title;
+      href = extracted.attrs.href ?? href;
+      playground = extracted.attrs.playground ?? playground;
       md = extracted.body;
     }
 
-    const item = { name, title, href };
-    items.push(item);
+    // Get the name of the item.
+    const name = nameOf(file.path, nameOverride);
 
     // Store the item contents.
     const { body, toc } = renderMd(md);
@@ -125,6 +123,10 @@ export async function readFSItems(
       name.join(NAME_SEPARATOR),
       { md, body, toc, playground },
     );
+
+    // Store the item in the items array.
+    const item = { name, title, href };
+    items.push(item);
   }
 
   // Return items relative to the root.
