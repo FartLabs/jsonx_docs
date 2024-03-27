@@ -47,7 +47,6 @@ export async function setPlayground(
   }
 }
 
-// TODO: Add list recent playgrounds.
 // TODO: Add playground title in playground storage via
 // https://developer.mozilla.org/en-US/docs/Web/API/Window/prompt
 

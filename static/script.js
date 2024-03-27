@@ -39,7 +39,11 @@ function createEditor(options) {
   cmEditor = new EditorView({
     doc: options.code,
     parent: options.target,
-    extensions: [keymap.of(defaultKeymap), lineNumbers()],
+    extensions: [
+      keymap.of(defaultKeymap),
+      lineNumbers(),
+      EditorView.lineWrapping,
+    ],
   });
 }
 
