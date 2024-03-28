@@ -73,11 +73,14 @@
 
 .markdown-body pre,
 .markdown-body code {
-  font-family: monospace;
   background-color: #f8f8f8;
   border: 1px solid #ddd;
   border-radius: 3px;
   padding: 0.1em 0.2em;
+}
+
+.markdown-body pre * {
+  font-family: monospace;
 }
 
 .markdown-body pre code {
@@ -94,7 +97,6 @@
 
 .markdown-body pre:before {
   content: attr(data-lang);
-  font-size: 1.2em;
   display: block;
   text-transform: uppercase;
   text-decoration: underline;
