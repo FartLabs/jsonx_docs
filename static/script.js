@@ -1,10 +1,8 @@
 import * as esbuild from "https://esm.sh/esbuild-wasm@0.20.1";
-import {
-  EditorView,
-  keymap,
-  lineNumbers,
-} from "https://esm.sh/@codemirror/view@6.0.1";
-import { defaultKeymap } from "https://esm.sh/@codemirror/commands@6.0.1";
+import ace from "https://esm.sh/ace-builds@1.32.8";
+
+// Initialize the editor.
+let aceEditor;
 
 document.addEventListener("DOMContentLoaded", () => {
   const initialData = JSON.parse(elements.initialJSONData.innerHTML);
@@ -31,20 +29,14 @@ async function transform(options) {
   return transformation;
 }
 
-let cmEditor;
-
 function createEditor(options) {
-  // https://codemirror.net/examples/styling/
-  // https://github.com/codemirror/dev/blob/ccb92f9b09ceec46caceae4fb908a83642271b4d/demo/demo.ts
-  cmEditor = new EditorView({
-    doc: options.code,
-    parent: options.target,
-    extensions: [
-      keymap.of(defaultKeymap),
-      lineNumbers(),
-      EditorView.lineWrapping,
-    ],
-  });
+  // Reference:
+  // https://github.com/denoland/subhosting_ide_starter/blob/d054229e3b15eeb1bd06aa1a9fbe818fab27a6be/static/app.js#L62
+  //
+  aceEditor = ace.edit(options.target);
+  aceEditor.setTheme("ace/theme/twilight");
+  aceEditor.session.setMode("ace/mode/javascript");
+  aceEditor.setValue(options.code, -11);
 }
 
 function sharePlayground() {
@@ -56,8 +48,11 @@ function sharePlayground() {
     return;
   }
 
+  const code = getCode();
+  console.log({ code });
+  throw new Error("Not implemented yet.");
   const data = {
-    code: cmEditor.state.doc.toString(),
+    code: elements.editor.innerHTML,
     version: elements.version.value,
   };
 
@@ -130,14 +125,14 @@ async function setup(options) {
 
 async function handlePlay() {
   try {
-    const code = cmEditor?.state?.doc?.toString();
+    const code = getCode();
     if (!code) {
       logBuildOutput("error", "No code to build.");
       return;
     }
 
     const transformation = await transform({
-      code: cmEditor.state.doc.toString(),
+      code,
       version: elements.version.value,
     });
     transformation.warnings.forEach((warning) => {
@@ -150,6 +145,10 @@ async function handlePlay() {
   } catch (error) {
     logBuildOutput("error", error.message);
   }
+}
+
+function getCode() {
+  return aceEditor.getValue();
 }
 
 const CONSOLE_INTERCEPT = `const _console = { ...console };
