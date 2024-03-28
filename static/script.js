@@ -1,5 +1,4 @@
 import * as esbuild from "https://esm.sh/esbuild-wasm@0.20.1";
-import ace from "https://esm.sh/ace-builds@1.32.8";
 
 // Initialize the editor.
 let aceEditor;
@@ -34,8 +33,8 @@ function createEditor(options) {
   // https://github.com/denoland/subhosting_ide_starter/blob/d054229e3b15eeb1bd06aa1a9fbe818fab27a6be/static/app.js#L62
   //
   aceEditor = ace.edit(options.target);
-  aceEditor.setTheme("ace/theme/twilight");
-  aceEditor.session.setMode("ace/mode/javascript");
+  aceEditor.setTheme("ace/theme/chrome");
+  // editor.session.setMode("ace/mode/typescript");
   aceEditor.setValue(options.code, -11);
 }
 
