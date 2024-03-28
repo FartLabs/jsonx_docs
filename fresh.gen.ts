@@ -10,7 +10,7 @@ import * as $api_meta from "./routes/api/meta.ts";
 import * as $api_playgrounds_id_ from "./routes/api/playgrounds/[id].ts";
 import * as $api_playgrounds_index from "./routes/api/playgrounds/index.ts";
 import * as $index from "./routes/index.ts";
-import * as $playgrounds_id_ from "./routes/playgrounds/[id].tsx";
+import * as $p_id_ from "./routes/p/[[id]].tsx";
 
 import { type Manifest } from "$fresh/server.ts";
 
@@ -24,7 +24,7 @@ const manifest = {
     "./routes/api/playgrounds/[id].ts": $api_playgrounds_id_,
     "./routes/api/playgrounds/index.ts": $api_playgrounds_index,
     "./routes/index.ts": $index,
-    "./routes/playgrounds/[id].tsx": $playgrounds_id_,
+    "./routes/p/[[id]].tsx": $p_id_,
   },
   islands: {},
   baseUrl: import.meta.url,

@@ -6,6 +6,7 @@ import type { FSItem } from "./items.ts";
 import type { Node } from "./nodes.ts";
 import { sortChildren } from "./nodes.ts";
 import { renderMd } from "./md.ts";
+import { walkChildren } from "#/lib/docs/nodes.ts";
 
 /**
  * RenderFSItemsOptions represents the options for rendering file-based items.
@@ -13,6 +14,7 @@ import { renderMd } from "./md.ts";
 export interface ReadFSItemsOptions {
   root: string | URL;
   isIndex?: (suffix: string, override?: string) => boolean;
+  mapName?: (name: string[]) => string[];
 }
 
 /**
@@ -94,8 +96,9 @@ export async function readFSItems(
   }
 
   // Read the file-based items.
-  const items: FSItem[] = [];
-  const contents = new Map<string, Content>();
+  let id = 0;
+  const contentsByID = new Map<number, Content>();
+  const items: (FSItem & { id: number })[] = [];
   const walkIt = walk(
     options.root,
     { exts: [".md"], includeDirs: false },
@@ -124,14 +127,40 @@ export async function readFSItems(
 
     // Store the item contents.
     const { body, toc } = renderMd(md);
-    contents.set(
-      name.join(NAME_SEPARATOR),
+    contentsByID.set(
+      id,
       { md, body, title, toc, playground },
     );
 
     // Store the item in the items array.
-    const item = { name, title, href };
+    const item = { id, name, title, href };
     items.push(item);
+    id++;
+  }
+
+  // Construct recursive nodes from items.
+  const nodes = toNodes(items);
+
+  // Map the item names and nodes in place.
+  if (options.mapName) {
+    for (const item of items) {
+      item.name = options.mapName(item.name);
+    }
+
+    walkChildren(nodes, (node) => {
+      node.name = options.mapName!(node.name);
+    });
+  }
+
+  // Copy contents to the contents map with the mapped name.
+  const contents = new Map<string, Content>();
+  for (const [id, content] of contentsByID) {
+    const item = items.find((item) => item.id === id);
+    if (!item) {
+      throw new Error(`Item not found for content ID: ${id}`);
+    }
+
+    contents.set(item.name.join(NAME_SEPARATOR), content);
   }
 
   // Return items relative to the root.
