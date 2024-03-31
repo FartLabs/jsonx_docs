@@ -20,6 +20,10 @@ body {
   font-size: 1.2em;
 }
 
+a:hover {
+  color: #f0a8ff;
+}
+
 .nav {
   grid-area: nav;
   margin: 0 1em;
@@ -27,6 +31,10 @@ body {
 
 .nav h1 {
   font-size: 1.5em;
+}
+
+.nav h1 a {
+  text-decoration: none;
 }
 
 .nav ul {
@@ -65,6 +73,29 @@ body {
 
 .table-of-contents ol {
   margin-left: 1em;
+}
+
+@media (prefers-color-scheme: dark) {
+  body {
+    background-color: #111;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  p,
+  a,
+  ul,
+  ol {
+    color: #eee;
+  }
+
+  a:visited {
+    color: #c671ff;
+  }
 }
 
 @media (min-width: 768px) {
