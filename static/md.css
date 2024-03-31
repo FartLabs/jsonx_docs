@@ -74,8 +74,10 @@
 
 .markdown-body pre,
 .markdown-body code {
-  background-color: #f8f8f8;
-  border: 1px solid #ddd;
+  font-family: monospace;
+  color: #ddd;
+  background-color: #44475a;
+  border: 1px solid #282a36;
   border-radius: 3px;
   padding: 0.1em 0.2em;
 }
@@ -90,6 +92,7 @@
   overflow-x: auto;
   white-space: pre-wrap;
   word-break: break-all;
+  border: none;
 }
 
 .markdown-body pre {
@@ -103,6 +106,7 @@
   text-decoration: underline;
   text-underline-offset: 0.3em;
   padding: 0.2em 0.9em;
+  color: #bbb;
 }
 
 .markdown-body pre button {
@@ -110,6 +114,16 @@
   top: 5px;
   right: 5px;
   height: 2em;
+  color: #bbb;
+  background-color: #303241;
+}
+
+.markdown-body kbd {
+  border-radius: 3px;
+  padding: 1px 2px 0;
+  border: 1px solid black;
+  background-color: #f7f7f7;
+  font-family: monospace;
 }
 
 .markdown-body img:not(:has([width]), :has([height])) {
@@ -121,20 +135,5 @@
   .markdown-body blockquote {
     background-color: rgba(255, 255, 255, 0.1);
     border-left: 0.25em solid #44475a;
-  }
-
-  .markdown-body pre,
-  .markdown-body code {
-    background-color: #44475a;
-    border: 1px solid #282a36;
-  }
-
-  .markdown-body pre:before {
-    color: #f8f8f2;
-  }
-
-  .markdown-body pre button {
-    color: #f8f8f2;
-    background-color: #303241;
   }
 }

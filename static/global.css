@@ -7,7 +7,7 @@
 }
 
 ::selection {
-  background-color: #f0a8ff;
+  background-color: rgba(240, 168, 255, 0.5);
 }
 
 body {
@@ -20,8 +20,12 @@ body {
   font-size: 1.2em;
 }
 
+a:visited {
+  color: #833bff;
+}
+
 a:hover {
-  color: #f0a8ff;
+  color: #e045ff;
 }
 
 .nav {
@@ -99,6 +103,10 @@ a:hover {
 
   a:visited {
     color: #c671ff;
+  }
+
+  a:hover {
+    color: #f0a8ff;
   }
 }
 
