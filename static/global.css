@@ -90,7 +90,11 @@ a:hover {
   a,
   ul,
   ol {
-    color: #eee;
+    color: #ddd;
+  }
+
+  hr {
+    border-color: #333;
   }
 
   a:visited {

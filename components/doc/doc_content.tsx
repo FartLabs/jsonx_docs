@@ -44,7 +44,7 @@ export default function DocContent(props: DocContentProps) {
         <meta property="og:title" content={title} />
         <link rel="stylesheet" href="/md.css" />
 
-        <Hljs id="github" />
+        <Hljs id="monokai" />
         <script src="/copy.js" defer></script>
       </Head>
 

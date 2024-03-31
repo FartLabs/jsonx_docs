@@ -1,6 +1,7 @@
 .markdown-body {
   margin: 0 auto;
   line-height: 1.5;
+  margin-bottom: 2em;
 }
 
 @media (min-width: 768px) {
@@ -114,4 +115,26 @@
 .markdown-body img:not(:has([width]), :has([height])) {
   max-width: 100%;
   height: auto;
+}
+
+@media (prefers-color-scheme: dark) {
+  .markdown-body blockquote {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-left: 0.25em solid #44475a;
+  }
+
+  .markdown-body pre,
+  .markdown-body code {
+    background-color: #44475a;
+    border: 1px solid #282a36;
+  }
+
+  .markdown-body pre:before {
+    color: #f8f8f2;
+  }
+
+  .markdown-body pre button {
+    color: #f8f8f2;
+    background-color: #303241;
+  }
 }
