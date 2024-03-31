@@ -14,6 +14,10 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
+globalThis.onbeforeunload = () => {
+  return "";
+};
+
 async function transform(options) {
   const transformation = await esbuild.transform(options.code, {
     loader: "tsx",
