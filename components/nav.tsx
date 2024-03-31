@@ -14,9 +14,9 @@ export interface NavProps {
 export default function Nav(props: NavProps) {
   return (
     <nav class="nav">
-      <a href="/">
-        <h1>jsonx</h1>
-      </a>
+      <h1>
+        <a href="/">jsonx</a>
+      </h1>
 
       <ToC
         nodes={nodes}

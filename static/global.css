@@ -7,7 +7,7 @@
 }
 
 ::selection {
-  background-color: #f0a8ff;
+  background-color: rgba(240, 168, 255, 0.5);
 }
 
 body {
@@ -20,6 +20,14 @@ body {
   font-size: 1.2em;
 }
 
+a:visited {
+  color: #833bff;
+}
+
+a:hover {
+  color: #e045ff;
+}
+
 .nav {
   grid-area: nav;
   margin: 0 1em;
@@ -27,6 +35,10 @@ body {
 
 .nav h1 {
   font-size: 1.5em;
+}
+
+.nav h1 a {
+  text-decoration: none;
 }
 
 .nav ul {
@@ -65,6 +77,37 @@ body {
 
 .table-of-contents ol {
   margin-left: 1em;
+}
+
+@media (prefers-color-scheme: dark) {
+  body {
+    background-color: #111;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  p,
+  a,
+  ul,
+  ol {
+    color: #ddd;
+  }
+
+  hr {
+    border-color: #333;
+  }
+
+  a:visited {
+    color: #c671ff;
+  }
+
+  a:hover {
+    color: #f0a8ff;
+  }
 }
 
 @media (min-width: 768px) {

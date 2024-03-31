@@ -44,7 +44,8 @@ export default function DocContent(props: DocContentProps) {
         <meta property="og:title" content={title} />
         <link rel="stylesheet" href="/md.css" />
 
-        <Hljs id="github" />
+        {/* Choose an ID: https://highlightjs.org/examples */}
+        <Hljs id="github-dark-dimmed" />
         <script src="/copy.js" defer></script>
       </Head>
 
