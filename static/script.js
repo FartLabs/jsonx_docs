@@ -39,12 +39,10 @@ function createEditor(options) {
       value: options.code,
       language: "typescript",
       theme: "vs-dark",
+      fontSize: 18,
+      // TODO: Figure out how to update fontFamily.
     },
   );
-  monacoEditor.updateOptions({
-    fontSize: 16,
-    fontFamily: "Fira Code",
-  });
 
   function handleResize() {
     // Make the editor as small as possible.
@@ -52,8 +50,7 @@ function createEditor(options) {
 
     // Wait for last layout shift to complete.
     requestAnimationFrame(() => {
-      const parent = elements.editor.parentElement;
-      const rect = parent.getBoundingClientRect();
+      const rect = elements.editor.parentElement.getBoundingClientRect();
       monacoEditor.layout({ width: rect.width, height: rect.height });
     });
   }
