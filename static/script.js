@@ -79,7 +79,7 @@ function sharePlayground() {
         throw new Error("Failed to create a new playground.");
       }
 
-      location.href = `/playgrounds/${data.id}`;
+      location.href = `/p/${data.id}`;
     })
     .finally(() => {
       elements.share.disabled = false;
