@@ -10,13 +10,13 @@ Get started with jsonx by following the steps below.
 
 Install as usual via NPM:
 
-```shell
+```sh
 npx jsr add @fartlabs/jsonx
 ```
 
 Or if you're using Deno:
 
-```shell
+```sh
 deno add @fartlabs/jsonx
 ```
 
@@ -26,7 +26,7 @@ Add the following values to your `deno.json(c)` file.
 {
   "compilerOptions": {
     "jsx": "react-jsx",
-    "jsxFactory": "@fartlabs/jsonx"
+    "jsxImportSource": "@fartlabs/jsonx"
   }
 }
 ```
@@ -59,13 +59,13 @@ Deno.writeTextFileSync(
 
 Compile your jsonx by running the `.[j|t]sx` file.
 
-```shell
+```sh
 deno run --allow-write example.tsx
 ```
 
 Preview the `data.json` file.
 
-```shell
+```sh
 cat data.json
 ```
 
