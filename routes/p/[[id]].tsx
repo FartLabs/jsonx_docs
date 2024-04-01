@@ -36,10 +36,16 @@ export default async function PlaygroundHandler(
     }
   }
 
+  const pageTitle = "jsonx | Playground";
   return (
     <>
       <Head>
-        <title>jsonx | Playground</title>
+        <title>{pageTitle}</title>
+        <meta property="og:title" content={pageTitle} />
+        <meta
+          property="og:description"
+          content="Edit and run jsonx code in your browser."
+        />
         <meta name="robots" content="noindex, nofollow" />
       </Head>
 
