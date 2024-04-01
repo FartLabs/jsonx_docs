@@ -1,10 +1,5 @@
 import * as esbuild from "https://esm.sh/esbuild-wasm@0.20.1";
-import {
-  EditorView,
-  keymap,
-  lineNumbers,
-} from "https://esm.sh/@codemirror/view@6.0.1";
-import { defaultKeymap } from "https://esm.sh/@codemirror/commands@6.0.1";
+import * as monaco from 'https://cdn.jsdelivr.net/npm/monaco-editor@0.47.0/+esm';
 
 document.addEventListener("DOMContentLoaded", () => {
   const initialData = JSON.parse(elements.initialJSONData.innerHTML);
@@ -35,20 +30,15 @@ async function transform(options) {
   return transformation;
 }
 
-let cmEditor;
+let monacoEditor;
 
 function createEditor(options) {
   // https://codemirror.net/examples/styling/
   // https://github.com/codemirror/dev/blob/ccb92f9b09ceec46caceae4fb908a83642271b4d/demo/demo.ts
-  cmEditor = new EditorView({
-    doc: options.code,
-    parent: options.target,
-    extensions: [
-      keymap.of(defaultKeymap),
-      lineNumbers(),
-      EditorView.lineWrapping,
-    ],
-  });
+ 
+  monacoEditor = monaco.editor.create(options.target);
+  monacoEditor.getModel().setValue(options.code);
+  console.log(monacoEditor);
 }
 
 function sharePlayground() {
@@ -61,7 +51,7 @@ function sharePlayground() {
   }
 
   const data = {
-    code: cmEditor.state.doc.toString(),
+    code: getEditorCode(),
     version: elements.version.value,
   };
 
@@ -134,16 +124,13 @@ async function setup(options) {
 
 async function handlePlay() {
   try {
-    const code = cmEditor?.state?.doc?.toString();
+    const code = getEditorCode();
     if (!code) {
       logBuildOutput("error", "No code to build.");
       return;
     }
 
-    const transformation = await transform({
-      code: cmEditor.state.doc.toString(),
-      version: elements.version.value,
-    });
+    const transformation = await transform({code,version: elements.version.value});
     transformation.warnings.forEach((warning) => {
       logBuildOutput("warning", warning.text);
     });
@@ -200,6 +187,11 @@ function appendConsoleOutput(type, message) {
     elements.consoleDetails.open = true;
   }
 }
+
+function getEditorCode() {
+  return monacoEditor.getModel().getValue();
+}
+
 
 /**
  * elements of the playground.
@@ -277,14 +269,6 @@ export const elements = {
     return consoleDetails;
   },
 
-  get buildDetails() {
-    const buildDetails = document.getElementById("buildDetails");
-    if (!buildDetails) {
-      throw new Error("Build details element not found.");
-    }
-
-    return buildDetails;
-  },
 
   get initialJSONData() {
     const initialJSONData = document.getElementById("initialJSONData");
