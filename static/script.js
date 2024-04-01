@@ -1,5 +1,5 @@
 import * as esbuild from "https://esm.sh/esbuild-wasm@0.20.1";
-import * as monaco from 'https://cdn.jsdelivr.net/npm/monaco-editor@0.47.0/+esm';
+import * as monaco from "https://cdn.jsdelivr.net/npm/monaco-editor@0.47.0/+esm";
 
 document.addEventListener("DOMContentLoaded", () => {
   const initialData = JSON.parse(elements.initialJSONData.innerHTML);
@@ -33,12 +33,35 @@ async function transform(options) {
 let monacoEditor;
 
 function createEditor(options) {
-  // https://codemirror.net/examples/styling/
-  // https://github.com/codemirror/dev/blob/ccb92f9b09ceec46caceae4fb908a83642271b4d/demo/demo.ts
- 
-  monacoEditor = monaco.editor.create(options.target);
-  monacoEditor.getModel().setValue(options.code);
-  console.log(monacoEditor);
+  monacoEditor = monaco.editor.create(
+    options.target,
+    {
+      value: options.code,
+      language: "typescript",
+      theme: "vs-dark",
+    },
+  );
+  monacoEditor.updateOptions({
+    fontSize: 16,
+    fontFamily: "Fira Code",
+  });
+
+  function handleResize() {
+    // Make the editor as small as possible.
+    monacoEditor.layout({ width: 0, height: 0 });
+
+    // Wait for last layout shift to complete.
+    requestAnimationFrame(() => {
+      const parent = elements.editor.parentElement;
+      const rect = parent.getBoundingClientRect();
+      monacoEditor.layout({ width: rect.width, height: rect.height });
+    });
+  }
+
+  // Set up event listeners.
+  globalThis.addEventListener("resize", handleResize);
+  const resizeObserver = new ResizeObserver(handleResize);
+  resizeObserver.observe(elements.editor);
 }
 
 function sharePlayground() {
@@ -130,7 +153,10 @@ async function handlePlay() {
       return;
     }
 
-    const transformation = await transform({code,version: elements.version.value});
+    const transformation = await transform({
+      code,
+      version: elements.version.value,
+    });
     transformation.warnings.forEach((warning) => {
       logBuildOutput("warning", warning.text);
     });
@@ -191,7 +217,6 @@ function appendConsoleOutput(type, message) {
 function getEditorCode() {
   return monacoEditor.getModel().getValue();
 }
-
 
 /**
  * elements of the playground.
@@ -268,7 +293,6 @@ export const elements = {
 
     return consoleDetails;
   },
-
 
   get initialJSONData() {
     const initialJSONData = document.getElementById("initialJSONData");
