@@ -36,10 +36,13 @@ function createEditor(options) {
   monacoEditor = monaco.editor.create(
     options.target,
     {
-      value: options.code,
-      language: "typescript",
       theme: "vs-dark",
       fontSize: 18,
+      model: monaco.editor.createModel(
+        options.code,
+        "typescript",
+        monaco.Uri.parse("inmemory://model/main.tsx"),
+      ),
       // TODO: Figure out how to update fontFamily.
     },
   );
