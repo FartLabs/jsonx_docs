@@ -9,10 +9,6 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
-globalThis.onbeforeunload = () => {
-  return "";
-};
-
 async function transform(options) {
   const transformation = await esbuild.transform(options.code, {
     loader: "tsx",
@@ -43,7 +39,8 @@ function createEditor(options) {
         "typescript",
         monaco.Uri.parse("inmemory://model/main.tsx"),
       ),
-      // TODO: Figure out how to update fontFamily.
+      // TODO: Figure out how to change fontFamily.
+      // TODO: Figure out how to paste content into the editor.
     },
   );
 
@@ -62,6 +59,16 @@ function createEditor(options) {
   globalThis.addEventListener("resize", handleResize);
   const resizeObserver = new ResizeObserver(handleResize);
   resizeObserver.observe(elements.editor);
+  let isChanged = false;
+  monacoEditor.getModel().onDidChangeContent(() => {
+    if (!isChanged) {
+      globalThis.onbeforeunload = () => {
+        return "";
+      };
+
+      isChanged = true;
+    }
+  });
 }
 
 function sharePlayground() {
