@@ -9,17 +9,20 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
+function makeTSConfig(version) {
+  return {
+    jsx: "react-jsx",
+    jsxFactory: "h",
+    jsxFragmentFactory: "Fragment",
+    jsxImportSource: `https://esm.sh/jsr/@fartlabs/jsonx@${version}`,
+  };
+}
+
 async function transform(options) {
   const transformation = await esbuild.transform(options.code, {
     loader: "tsx",
     tsconfigRaw: {
-      compilerOptions: {
-        jsx: "react-jsx",
-        jsxFactory: "h",
-        jsxFragmentFactory: "Fragment",
-        jsxImportSource:
-          `https://esm.sh/jsr/@fartlabs/jsonx@${options.version}`,
-      },
+      compilerOptions: makeTSConfig(options.version),
     },
   });
 
@@ -28,18 +31,43 @@ async function transform(options) {
 
 let monacoEditor;
 
+function setMonacoTSConfig(version) {
+  monaco.languages.typescript.javascriptDefaults.setCompilerOptions(
+    makeTSConfig(version),
+  );
+}
+
 function createEditor(options) {
+  monaco.editor.defineTheme("jsonx", {
+    base: "vs-dark",
+    inherit: true,
+    // TODO: Figure out how to change fontFamily.
+    rules: [
+      { token: "", foreground: "#ffffff" },
+    ],
+    colors: {
+      "editor.foreground": "#ffffff",
+    },
+  });
+
+  // TODO: Figure out how to set up TypeScript intellisense.
+  setMonacoTSConfig(options.version);
+
+  // TODO: Figure out how to resolve this error.
+  //
+  // codicon.ttf:1
+  // Failed to load resource: the server responded with a status of 500 (Internal Server Error)
+
   monacoEditor = monaco.editor.create(
     options.target,
     {
-      theme: "vs-dark",
+      theme: "jsonx",
       fontSize: 18,
       model: monaco.editor.createModel(
         options.code,
         "typescript",
         monaco.Uri.parse("inmemory://model/main.tsx"),
       ),
-      // TODO: Figure out how to change fontFamily.
       // TODO: Figure out how to paste content into the editor.
     },
   );
@@ -68,6 +96,9 @@ function createEditor(options) {
 
       isChanged = true;
     }
+  });
+  elements.version.addEventListener("change", () => {
+    setMonacoTSConfig(getVersion());
   });
 }
 
@@ -223,6 +254,10 @@ function appendConsoleOutput(type, message) {
 
 function getEditorCode() {
   return monacoEditor.getModel().getValue();
+}
+
+function getVersion() {
+  return elements.version.value;
 }
 
 /**
