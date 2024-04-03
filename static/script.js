@@ -31,28 +31,7 @@ async function transform(options) {
 
 let monacoEditor;
 
-function setMonacoTSConfig(version) {
-  monaco.languages.typescript.javascriptDefaults.setCompilerOptions(
-    makeTSConfig(version),
-  );
-}
-
 function createEditor(options) {
-  monaco.editor.defineTheme("jsonx", {
-    base: "vs-dark",
-    inherit: true,
-    // TODO: Figure out how to change fontFamily.
-    rules: [
-      { token: "", foreground: "#ffffff" },
-    ],
-    colors: {
-      "editor.foreground": "#ffffff",
-    },
-  });
-
-  // TODO: Figure out how to set up TypeScript intellisense.
-  setMonacoTSConfig(options.version);
-
   // TODO: Figure out how to resolve this error.
   //
   // codicon.ttf:1
@@ -61,7 +40,7 @@ function createEditor(options) {
   monacoEditor = monaco.editor.create(
     options.target,
     {
-      theme: "jsonx",
+      theme: "vs-dark",
       fontSize: 18,
       model: monaco.editor.createModel(
         options.code,
@@ -69,6 +48,7 @@ function createEditor(options) {
         monaco.Uri.parse("inmemory://model/main.tsx"),
       ),
       // TODO: Figure out how to paste content into the editor.
+      // TODO: Figure out how to change fontFamily.
     },
   );
 
