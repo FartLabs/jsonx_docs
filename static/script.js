@@ -48,11 +48,6 @@ function createEditor(options) {
         "typescript",
         monaco.Uri.parse("inmemory://model/main.tsx"),
       ),
-      // TODO: Figure out how to paste content into the editor.
-      // TODO: Figure out how to change fontFamily.
-
-      // NOTE: Your global font family styles are overriding the font family set here
-      // NOTE: Pasting content into the editor is working fine on my end
     },
   );
 
