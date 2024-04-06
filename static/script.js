@@ -42,6 +42,7 @@ function createEditor(options) {
     {
       theme: "vs-dark",
       fontSize: 18,
+      fontFamily: "Fira Code",
       model: monaco.editor.createModel(
         options.code,
         "typescript",
@@ -49,6 +50,9 @@ function createEditor(options) {
       ),
       // TODO: Figure out how to paste content into the editor.
       // TODO: Figure out how to change fontFamily.
+
+      // NOTE: Your global font family styles are overriding the font family set here
+      // NOTE: Pasting content into the editor is working fine on my end
     },
   );
 
