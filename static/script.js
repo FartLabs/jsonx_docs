@@ -76,9 +76,6 @@ function createEditor(options) {
       isChanged = true;
     }
   });
-  elements.version.addEventListener("change", () => {
-    setMonacoTSConfig(getVersion());
-  });
 }
 
 function sharePlayground() {
