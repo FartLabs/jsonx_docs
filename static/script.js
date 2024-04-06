@@ -76,9 +76,6 @@ function createEditor(options) {
       isChanged = true;
     }
   });
-  elements.version.addEventListener("change", () => {
-    setMonacoTSConfig(getVersion());
-  });
 }
 
 function sharePlayground() {
@@ -92,7 +89,7 @@ function sharePlayground() {
 
   const data = {
     code: getEditorCode(),
-    version: elements.version.value,
+    version: getVersion(),
   };
 
   elements.share.disabled = true;
@@ -172,7 +169,7 @@ async function handlePlay() {
 
     const transformation = await transform({
       code,
-      version: elements.version.value,
+      version: getVersion(),
     });
     transformation.warnings.forEach((warning) => {
       logBuildOutput("warning", warning.text);
