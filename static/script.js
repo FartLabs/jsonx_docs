@@ -1,10 +1,5 @@
 import * as esbuild from "https://esm.sh/esbuild-wasm@0.20.1";
-import {
-  EditorView,
-  keymap,
-  lineNumbers,
-} from "https://esm.sh/@codemirror/view@6.0.1";
-import { defaultKeymap } from "https://esm.sh/@codemirror/commands@6.0.1";
+import * as monaco from "https://cdn.jsdelivr.net/npm/monaco-editor@0.47.0/+esm";
 
 document.addEventListener("DOMContentLoaded", () => {
   const initialData = JSON.parse(elements.initialJSONData.innerHTML);
@@ -14,40 +9,72 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
-globalThis.onbeforeunload = () => {
-  return "";
-};
+function makeTSConfig(version) {
+  return {
+    jsx: "react-jsx",
+    jsxFactory: "h",
+    jsxFragmentFactory: "Fragment",
+    jsxImportSource: `https://esm.sh/jsr/@fartlabs/jsonx@${version}`,
+  };
+}
 
 async function transform(options) {
   const transformation = await esbuild.transform(options.code, {
     loader: "tsx",
     tsconfigRaw: {
-      compilerOptions: {
-        jsx: "react-jsx",
-        jsxFactory: "h",
-        jsxFragmentFactory: "Fragment",
-        jsxImportSource:
-          `https://esm.sh/jsr/@fartlabs/jsonx@${options.version}`,
-      },
+      compilerOptions: makeTSConfig(options.version),
     },
   });
 
   return transformation;
 }
 
-let cmEditor;
+let monacoEditor;
 
 function createEditor(options) {
-  // https://codemirror.net/examples/styling/
-  // https://github.com/codemirror/dev/blob/ccb92f9b09ceec46caceae4fb908a83642271b4d/demo/demo.ts
-  cmEditor = new EditorView({
-    doc: options.code,
-    parent: options.target,
-    extensions: [
-      keymap.of(defaultKeymap),
-      lineNumbers(),
-      EditorView.lineWrapping,
-    ],
+  // TODO: Figure out how to resolve this error.
+  //
+  // codicon.ttf:1
+  // Failed to load resource: the server responded with a status of 500 (Internal Server Error)
+
+  monacoEditor = monaco.editor.create(
+    options.target,
+    {
+      theme: "vs-dark",
+      fontSize: 18,
+      fontFamily: "Fira Code",
+      model: monaco.editor.createModel(
+        options.code,
+        "typescript",
+        monaco.Uri.parse("inmemory://model/main.tsx"),
+      ),
+    },
+  );
+
+  function handleResize() {
+    // Make the editor as small as possible.
+    monacoEditor.layout({ width: 0, height: 0 });
+
+    // Wait for last layout shift to complete.
+    requestAnimationFrame(() => {
+      const rect = elements.editor.parentElement.getBoundingClientRect();
+      monacoEditor.layout({ width: rect.width, height: rect.height });
+    });
+  }
+
+  // Set up event listeners.
+  globalThis.addEventListener("resize", handleResize);
+  const resizeObserver = new ResizeObserver(handleResize);
+  resizeObserver.observe(elements.editor);
+  let isChanged = false;
+  monacoEditor.getModel().onDidChangeContent(() => {
+    if (!isChanged) {
+      globalThis.onbeforeunload = () => {
+        return "";
+      };
+
+      isChanged = true;
+    }
   });
 }
 
@@ -61,8 +88,8 @@ function sharePlayground() {
   }
 
   const data = {
-    code: cmEditor.state.doc.toString(),
-    version: elements.version.value,
+    code: getEditorCode(),
+    version: getVersion(),
   };
 
   elements.share.disabled = true;
@@ -134,15 +161,15 @@ async function setup(options) {
 
 async function handlePlay() {
   try {
-    const code = cmEditor?.state?.doc?.toString();
+    const code = getEditorCode();
     if (!code) {
       logBuildOutput("error", "No code to build.");
       return;
     }
 
     const transformation = await transform({
-      code: cmEditor.state.doc.toString(),
-      version: elements.version.value,
+      code,
+      version: getVersion(),
     });
     transformation.warnings.forEach((warning) => {
       logBuildOutput("warning", warning.text);
@@ -199,6 +226,14 @@ function appendConsoleOutput(type, message) {
   if (!elements.consoleDetails.open) {
     elements.consoleDetails.open = true;
   }
+}
+
+function getEditorCode() {
+  return monacoEditor.getModel().getValue();
+}
+
+function getVersion() {
+  return elements.version.value;
 }
 
 /**
@@ -275,15 +310,6 @@ export const elements = {
     }
 
     return consoleDetails;
-  },
-
-  get buildDetails() {
-    const buildDetails = document.getElementById("buildDetails");
-    if (!buildDetails) {
-      throw new Error("Build details element not found.");
-    }
-
-    return buildDetails;
   },
 
   get initialJSONData() {
