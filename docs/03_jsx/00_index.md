@@ -27,7 +27,7 @@ console.log(html);
 
 ```js
 function Greeting(props) {
-  return h("DIV", null, h("H1", null, "Hello, ", props.name, "!"));
+  return h(DIV, null, h(H1, null, "Hello, ", props.name, "!"));
 }
 
 const html = h(Greeting, { name: "World" });
