@@ -11,24 +11,15 @@
     "generate": "deno run -Ar https://deno.land/x/generate/cli/main.ts gen.ts"
   },
   "unstable": ["kv"],
-  "lint": {
-    "rules": {
-      "tags": [
-        "fresh",
-        "recommended"
-      ]
-    }
-  },
-  "exclude": [
-    "**/_fresh/*"
-  ],
+  "lint": { "rules": { "tags": ["fresh", "recommended"] } },
+  "exclude": ["**/_fresh/*"],
   "imports": {
     "#/": "./",
-    "$fresh/": "https://deno.land/x/fresh@1.6.5/",
+    "$fresh/": "https://deno.land/x/fresh@1.6.8/",
     "$std/": "https://deno.land/std@0.211.0/",
     "@fartlabs/jsonx": "jsr:@fartlabs/jsonx@^0.0.10",
-    "@preact/signals": "https://esm.sh/*@preact/signals@1.2.1",
-    "@preact/signals-core": "https://esm.sh/*@preact/signals-core@1.5.0",
+    "@preact/signals": "https://esm.sh/*@preact/signals@1.2.2",
+    "@preact/signals-core": "https://esm.sh/*@preact/signals-core@1.5.1",
     "@std/front-matter": "jsr:@std/front-matter@^0.220.1",
     "@std/front-matter/any": "jsr:@std/front-matter@^0.220.1/any",
     "@std/fs": "jsr:@std/fs@^0.220.1",
@@ -41,11 +32,8 @@
     "markdown-it": "https://esm.sh/markdown-it@14.1.0",
     "markdown-it-anchor": "https://esm.sh/markdown-it-anchor@8.6.7",
     "markdown-it-toc-done-right": "https://esm.sh/markdown-it-toc-done-right@4.2.0",
-    "preact": "https://esm.sh/preact@10.19.2",
-    "preact/": "https://esm.sh/preact@10.19.2/"
+    "preact": "https://esm.sh/preact@10.19.6",
+    "preact/": "https://esm.sh/preact@10.19.6/"
   },
-  "compilerOptions": {
-    "jsx": "react-jsx",
-    "jsxImportSource": "preact"
-  }
+  "compilerOptions": { "jsx": "react-jsx", "jsxImportSource": "preact" }
 }
