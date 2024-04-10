@@ -39,13 +39,16 @@ console.log(html);
 
 ## What does JSX stand for?
 
-JSX stands for JavaScript XML.
+JSX stands for "JavaScript XML".
 
 ## What is JSX known for?
 
 JSX is most commonly known for being a paradigm for writing web applications and
 is used by multiple popular libraries such as React and Preact to define and
 compose user interfaces at scale.
+
+React is downloaded over 100 million times per week and is the tool of choice
+behind many popular platforms such as Facebook and Instagram.
 
 ## What is JSX good for?
 
