@@ -31,11 +31,18 @@ async function transform(options) {
 
 let monacoEditor;
 
-function createEditor(options) {
+async function createEditor(options) {
   // TODO: Figure out how to resolve this error.
   //
   // codicon.ttf:1
   // Failed to load resource: the server responded with a status of 500 (Internal Server Error)
+
+  // Ask for permission to read the clipboard.
+  const permissionStatus = await navigator.permissions
+    .query({ name: "clipboard-read" });
+  if (permissionStatus.state === "prompt") {
+    // await navigator.clipboard.readText();
+  }
 
   monacoEditor = monaco.editor.create(
     options.target,
