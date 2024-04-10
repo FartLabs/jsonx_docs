@@ -92,7 +92,8 @@ a:hover {
   p,
   a,
   ul,
-  ol {
+  ol,
+  details {
     color: #ddd;
   }
 
