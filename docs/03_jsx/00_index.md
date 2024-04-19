@@ -8,6 +8,10 @@ JSX is an XML-like syntax extension to ECMAScript that allows programmers to
 write HTML-like code in JavaScript. JSX code is transformed into standard
 JavaScript through transpilation.
 
+## Transpilation
+
+Here is some JSX code that renders a simple greeting message in HTML:
+
 ```tsx
 function Greeting(props: { name: string }) {
   return (
@@ -22,8 +26,7 @@ const html = <Greeting name="World" />;
 console.log(html);
 ```
 
-<details>
-<summary>Click to see transpiled JavaScript.</summary>
+Here's the same code transpiled to JavaScript:
 
 ```js
 function Greeting(props) {
@@ -35,13 +38,48 @@ const html = h(Greeting, { name: "World" });
 console.log(html);
 ```
 
-</details>
+The JSX syntax is shorthand for calling the JSX runtime function `h` with the
+component, its props, and any children. `h` is conventionally used to represent
+the `createElement` function in [React](https://react.dev/),
+[Preact](https://preactjs.com/),
+[Vue](https://vuejs.org/guide/extras/render-function#jsx-tsx), and other JSX
+runtimes, but it can be configured to use any function via the `jsxFactory` and
+`jsxFragment` options in the TypeScript compiler options.
 
-## What does JSX stand for?
+## Syntax
+
+JSX syntax is similar to HTML, but it is not HTML. For example,
+[void elements](https://developer.mozilla.org/en-US/docs/Glossary/Void_element)
+like `<img>` require a closing slash (`<img />`), and all tags must be closed.
+
+JSX also supports dynamic expressions between `{` and `}`. This is how data is
+dynamically inserted into JSX elements.
+
+```tsx
+function PokemonLink(props: { pokedexNumber: number }) {
+  return (
+    <A href={`/pokedex/${props.pokedexNumber}`}>
+      Pokemon #{props.pokedexNumber}
+    </A>
+  );
+}
+```
+
+## Project setup
+
+### Deno
+
+> [!NOTE]
+>
+> JSX project setup using 1 or more JSX runtimes coming soon.
+
+## Q&A
+
+### What does JSX stand for?
 
 JSX stands for "JavaScript XML".
 
-## What is JSX known for?
+### What is JSX known for?
 
 JSX is most commonly known for being a paradigm for writing web applications and
 is used by multiple popular libraries such as React and Preact to define and
@@ -50,98 +88,27 @@ compose user interfaces at scale.
 React is downloaded over 100 million times per week and is the tool of choice
 behind many popular platforms such as Facebook and Instagram.
 
-## What is JSX good for?
+### What is the difference between JSX and TSX?
 
-JSX is good for writing declarative, composable, and reusable components.
+TSX refers to TypeScript code with JSX syntax. JSX files are often denoted by
+the file extension `.jsx` while TSX files are denoted by the file extension
+`.tsx`.
 
-**Imagine JSX as a shortcut for building user interfaces (UI) in React.**
+It is recommended to use TSX files when writing JSX code in TypeScript projects.
+This is because TypeScript offers type checking that can help catch errors early
+in the development process.
 
-- It looks similar to HTML, the language used to create webpages. This makes it
-  familiar and easy to learn.
-- Instead of writing separate HTML and JavaScript code, JSX lets you combine
-  them.
-- You write the structure of your UI (headings, buttons, etc.) using JSX code
-  directly within JavaScript functions.
-- These functions are called components and can be reused throughout your
-  application.
+Learn more about [TypeScript](https://typescriptlang.org/).
 
-**Benefits of JSX:**
-
-- **Readability:** Seeing the UI structure and logic together makes your code
-  easier to understand.
-- **Maintainability:** Reusing components keeps your code organized and reduces
-  errors.
-- **Flexibility:** You can arrange the component properties (like colors, sizes)
-  in any order, making it less prone to mistakes.
-
-**Think of it like building with Lego bricks.**
-
-- Each Lego brick represents a component with its own properties (color, size).
-- You can snap these bricks together in any order to build different structures
-  (your UI).
-- JSX makes building these structures (UIs) in React more efficient and
-  enjoyable.
+### Why do JSX components only use a single argument?
 
 JSX's constraint of limiting components to functions with a single object
-argument is a fundamental aspect of its composability. Here's why:
+argument is a fundamental aspect of its composability.
 
-- **Single Object Argument:** This argument, often referred to as props,
-  consolidates all the data a component needs into one place. This makes it
-  easier to pass information between components and promotes reusability.
-  Imagine components like functions that take a single box (the props object)
-  containing everything they need to work.
-- **Composability:** Because components receive their data through a single
-  object, they become more predictable and easier to combine. You can take
-  smaller, well-defined components and assemble them into more complex UIs
-  without worrying about order or mixing data types.
+This argument, often referred to as "props", consolidates all the data a
+component needs into one place, simplifying how information is passed to
+components and how components are defined.
 
-Let's look at an analogy:
-
-- **Traditional Functions:** Imagine baking a cake. You might have a recipe that
-  lists ingredients one by one (sugar, flour, eggs, etc.). If you forget the
-  order or miss an ingredient, the cake might not turn out well.
-- **JSX Components:** With JSX components, it's like having a recipe that uses a
-  single "cake mix" object. This object contains all the pre-measured
-  ingredients (props) needed for the component to function. You can easily
-  combine different cake mixes (components) to create delicious desserts (UIs).
-
-**Benefits of Single Object Argument:**
-
-- **Readability:** Props make code easier to understand by keeping data
-  organized.
-- **Maintainability:** Changes to props are centralized, making updates simpler.
-- **Flexibility:** Components can accept different props or no props at all,
-  increasing reusability.
-
-**In essence, JSX's single object argument constraint promotes a structured and
+In essence, JSX's single object argument constraint promotes a structured and
 predictable way to pass data between components, which is essential for building
-complex UIs by composing smaller, reusable pieces.**
-
-## What does JSX solve?
-
-## Why does jsonx use JSX?
-
-> [!NOTE]
->
-> Coming soon.
-
-## JSX vs TSX
-
-> [!NOTE]
->
-> Difference between JSX and TSX coming soon.
-
-## Syntax
-
-> [!NOTE]
->
-> JSX syntax tutorial coming soon.
-
-## Project setup
-
-> [!NOTE]
->
-> JSX project setup using 1 or more JSX runtimes coming soon.
-
-```
-```
+complex programs by composing smaller, reusable pieces.
