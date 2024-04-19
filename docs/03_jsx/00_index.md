@@ -112,3 +112,13 @@ components and how components are defined.
 In essence, JSX's single object argument constraint promotes a structured and
 predictable way to pass data between components, which is essential for building
 complex programs by composing smaller, reusable pieces.
+
+### Why does jsonx use JSX?
+
+JSX is leveraged by jsonx to provide a familiar and expressive way to define
+components. This allows developers to define complex structures in a more
+readable and maintainable way.
+
+Traditionally, JSX is associated with HTML and web development, but jsonx
+extends its use to define components for any problem domain that can be
+expressed in JavaScript/TypeScript and JSON.
