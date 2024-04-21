@@ -17,7 +17,7 @@ code editor, version dropdown, play button, console, and share button.
 
 > [!NOTE]
 >
-> Screenshots of playground parts are coming soon.
+> Screenshots of playground parts are coming soon!
 
 ### Code editor
 
