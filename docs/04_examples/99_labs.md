@@ -6,16 +6,16 @@ title: Labs
 
 [Learn more about Labs](https://github.com/FartLabs/labs).
 
-```tsx
+```ts
 import { Lab } from "labs/labs.ts";
 
-export interface Note {
+interface Note {
   title?: string;
   content: string;
 }
 
-export const notesLab = new Lab()
-  .variable("notes", new Map())
+const notesLab = new Lab()
+  .variable("notes", new Map<string, Note>())
   .procedure(
     "notes.add",
     (note: Note, { notes }) => {
@@ -40,8 +40,15 @@ export const notesLab = new Lab()
     ["notes"],
   );
 
-notesLab.execute("notes.add", { title: "Hello", content: "World" });
+notesLab.execute(
+  "notes.add",
+  { title: "Hello", content: "World" },
+);
 
-const notes = notesLab.execute("notes.list", {});
+const notes = notesLab.execute(
+  "notes.list",
+  {},
+);
+
 console.log(notes);
 ```
