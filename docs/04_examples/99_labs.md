@@ -31,24 +31,17 @@ const notesLab = new Lab()
       return notes.get(id);
     },
     ["notes"],
-  )
-  .procedure(
-    "notes.list",
-    (_, { notes }) => {
-      return Array.from(notes.values());
-    },
-    ["notes"],
   );
 
-notesLab.execute(
+const noteID = notesLab.execute(
   "notes.add",
   { title: "Hello", content: "World" },
 );
 
-const notes = notesLab.execute(
-  "notes.list",
-  {},
+const note = notesLab.execute(
+  "notes.get",
+  { id: noteID.id },
 );
 
-console.log(notes);
+console.log(note); // { title: "Hello", content: "World" }
 ```
