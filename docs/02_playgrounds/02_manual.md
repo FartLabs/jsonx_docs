@@ -12,17 +12,20 @@ learning jsonx.
 
 ## Use
 
-To use a playground, let's take a look at the parts that make up one playground:
-code editor, version dropdown, play button, console, and share button.
+A playground is a programming environment where you can edit, transpile, and
+execute jsonx code.
 
-> [!NOTE]
->
-> Screenshots of playground parts are coming soon!
+To use a playground, let's take a look at the parts that make up one playground:
+code editor, version dropdown, play button, share button, and console.
+
+![Playground](/playground.png)
 
 ### Code editor
 
 The code editor is where you edit code. It is a TypeScript environment that
 comes with batteries-included for editing jsonx code.
+
+![Code editor](/code-editor.png)
 
 ### Version dropdown
 
@@ -30,10 +33,22 @@ The version dropdown allows you to select the version of jsonx you want to use.
 The default version is the latest stable version found on
 [jsr.io](https://jsr.io).
 
+![Version dropdown](/version-dropdown.png)
+
 ### Play button
 
 The play button transpiles and executes the code in the code editor. Output is
 displayed in the provided console.
+
+![Play button](/play-button.png)
+
+### Share button
+
+The share button generates a link to the playground and navigates the user to
+the new link. The link is unlisted (not indexed by search engines) and can be
+shared with others.
+
+![Share button](/share-button.png)
 
 ### Console
 
@@ -41,11 +56,7 @@ The console displays the output of the code executed in the code editor.
 
 The clear button clears the console.
 
-### Share button
-
-The share button generates a link to the playground and navigates the user to
-the new link. The link is unlisted (not indexed by search engines) and can be
-shared with others.
+![Console](/console.png)
 
 ## Recovery and disposal
 
