@@ -10,7 +10,7 @@ title: Labs
 import { Lab } from "labs/labs.ts";
 
 interface Note {
-  title?: string;
+  title: string;
   content: string;
 }
 
@@ -27,9 +27,7 @@ const notesLab = new Lab()
   )
   .procedure(
     "notes.get",
-    ({ id }: { id: string }, { notes }) => {
-      return notes.get(id);
-    },
+    ({ id }: { id: string }, { notes }) => notes.get(id),
     ["notes"],
   );
 
@@ -43,5 +41,5 @@ const note = notesLab.execute(
   { id: noteID.id },
 );
 
-console.log(note); // { title: "Hello", content: "World" }
+console.log(note);
 ```
