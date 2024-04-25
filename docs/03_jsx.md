@@ -69,9 +69,71 @@ function PokemonLink(props: { pokedexNumber: number }) {
 
 ### Deno
 
-> [!NOTE]
->
-> JSX project setup using 1 or more JSX runtimes coming soon.
+Configuring JSX runtimes with Deno is easy peasy lemon squeezy! 🍋
+
+If the Deno toolchain is not already installed on your system,
+[install Deno](https://docs.deno.com/runtime/manual/getting_started/installation).
+Run [`deno upgrade`](https://docs.deno.com/runtime/manual/tools/upgrade) to
+ensure you have the latest version.
+
+Initialize a new Deno project with the
+[`deno init`](https://docs.deno.com/runtime/manual/tools/init) subcommand.
+
+#### Configuring one JSX runtime in Deno
+
+To configure a JSX runtime across your entire Deno project, edit your Deno
+configuration file's compiler options according to your JSX runtime of choice.
+
+For example, [Fresh](https://fresh.deno.dev/) (Deno's next-gen web framework),
+uses Preact as its JSX runtime and is configured as follows:
+
+```json
+{
+  "compilerOptions": {
+    "jsx": "react-jsx",
+    "jsxImportSource": "preact"
+  }
+}
+```
+
+In this example, the `jsx` option is set to `"react-jsx"` which tells the
+compiler how to handle JSX syntax for Preact.
+
+The `jsxImportSource` option is set to `"preact"` which tells the compiler where
+to import the JSX runtime from e.g. the compiler will import its JSX runtime
+from `"preact/jsx-runtime"`. To make sure the compiler can find the JSX runtime,
+an import alias is assigned to a module that exports the JSX runtime. Since
+`https://esm.sh/preact/` exports the JSX runtime, the alias `preact/` is
+assigned to this module in your Deno configuration file:
+
+```json
+{
+  "imports": {
+    "preact/": "https://esm.sh/preact/"
+  }
+}
+```
+
+This is how a Fresh project is configured to use Preact as its JSX runtime in
+Deno. 🍋
+
+#### Configuring multiple JSX runtimes in Deno
+
+The Deno configuration file is only capable of configuring one JSX runtime at a
+time. If you need to use multiple JSX runtimes in your project, you can use the
+`--config` flag to specify a different configuration file for each runtime.
+
+Another available option is to override the `jsx` and `jsxImportSource` values
+in your project's Deno configuration file in each file that uses a different JSX
+runtime e.g.:
+
+```tsx
+/** @jsx react-jsx */
+/** @jsxImportSource @fartlabs/jsonx */
+```
+
+This alternative approach allows different JSX runtimes to be used in different
+files and is easier to manage than using multiple configuration files.
 
 ## Q&A
 
