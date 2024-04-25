@@ -79,3 +79,5 @@ Resulting `data.json`:
   ]
 }
 ```
+
+Learn more about [JSX](/jsx).
