@@ -27,7 +27,9 @@ const notesLab = new Lab()
   )
   .procedure(
     "notes.get",
-    ({ id }: { id: string }, { notes }) => notes.get(id),
+    ({ id }: { id: string }, { notes }) => {
+      return notes.get(id);
+    },
     ["notes"],
   );
 
