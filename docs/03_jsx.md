@@ -115,7 +115,7 @@ assigned to this module in your Deno configuration file:
 ```
 
 This is how a Fresh project is configured to use Preact as its JSX runtime in
-Deno. 🍋
+Deno!
 
 #### Configuring multiple JSX runtimes in Deno
 
