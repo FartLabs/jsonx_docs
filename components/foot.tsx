@@ -12,7 +12,7 @@ export default function Foot(
         <a href="https://github.com/FartLabs">
           <strong>@FartLabs</strong>
         </a>{" "}
-        <a class="fl-icon" href="https://github.com/FartLabs">🧪</a>
+        <a class="fl-icon" href="/">🧪</a>
       </p>
     </footer>
   );
