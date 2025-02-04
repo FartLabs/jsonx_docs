@@ -1,8 +1,8 @@
 {
   "deno.enable": true,
   "deno.lint": true,
-  "deno.unstable": true,
   "editor.formatOnSave": true,
+  "files.eol": "\n",
   "editor.defaultFormatter": "denoland.vscode-deno",
   "[typescriptreact]": {
     "editor.defaultFormatter": "denoland.vscode-deno"
