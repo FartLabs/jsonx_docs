@@ -14,6 +14,6 @@ export function CheckoutStep() {
  */
 export function SetupDenoStep() {
   return {
-    uses: "denoland/setup-deno@v1",
+    uses: "denoland/setup-deno@v2",
   };
 }
