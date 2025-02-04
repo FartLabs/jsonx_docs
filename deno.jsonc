@@ -15,7 +15,7 @@
   "exclude": ["**/_fresh/*"],
   "imports": {
     "#/": "./",
-    "$fresh/": "https://deno.land/x/fresh@1.6.8/",
+    "$fresh/": "https://deno.land/x/fresh@1.7.3/",
     "$std/": "https://deno.land/std@0.211.0/",
     "@fartlabs/jsonx": "jsr:@fartlabs/jsonx@^0.0.10",
     "@preact/signals": "https://esm.sh/*@preact/signals@1.2.2",
@@ -32,8 +32,8 @@
     "markdown-it": "npm:markdown-it@14.1.0",
     "markdown-it-anchor": "npm:markdown-it-anchor@8.6.7",
     "markdown-it-toc-done-right": "npm:markdown-it-toc-done-right@4.2.0",
-    "preact": "https://esm.sh/preact@10.19.6",
-    "preact/": "https://esm.sh/preact@10.19.6/"
+    "preact": "https://esm.sh/preact@10.22.0",
+    "preact/": "https://esm.sh/preact@10.22.0/"
   },
   "compilerOptions": { "jsx": "react-jsx", "jsxImportSource": "preact" }
 }

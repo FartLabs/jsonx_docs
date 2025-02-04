@@ -12,7 +12,7 @@ import * as $api_playgrounds_index from "./routes/api/playgrounds/index.ts";
 import * as $index from "./routes/index.ts";
 import * as $p_id_ from "./routes/p/[[id]].tsx";
 
-import { type Manifest } from "$fresh/server.ts";
+import type { Manifest } from "$fresh/server.ts";
 
 const manifest = {
   routes: {
