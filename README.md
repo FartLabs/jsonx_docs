@@ -1,4 +1,4 @@
-# jsonx_docs [➡️ jsonx.deno.dev ⬅️](https://jsonx.deno.dev/)
+# jsonx_docs
 
 Documentation site of [FartLabs/jsonx](https://github.com/FartLabs/jsonx), a JSX
 runtime for composing JSON data.
