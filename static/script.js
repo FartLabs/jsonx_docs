@@ -1,5 +1,5 @@
-import * as esbuild from "https://esm.sh/esbuild-wasm@0.20.1";
-import * as monaco from "https://cdn.jsdelivr.net/npm/monaco-editor@0.47.0/+esm";
+import { default as esbuild } from "https://esm.sh/esbuild-wasm";
+import * as monaco from "https://cdn.jsdelivr.net/npm/monaco-editor/+esm";
 
 document.addEventListener("DOMContentLoaded", () => {
   const initialData = JSON.parse(elements.initialJSONData.innerHTML);
@@ -118,7 +118,7 @@ function sharePlayground() {
  */
 async function setup(options) {
   const esbuildInitPromise = esbuild.initialize({
-    wasmURL: "https://esm.sh/esbuild-wasm@0.20.1/esbuild.wasm",
+    wasmURL: "https://esm.sh/esbuild-wasm/esbuild.wasm",
   });
   await createEditor({
     target: elements.editor,
