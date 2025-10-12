@@ -10,3 +10,6 @@ _fresh/
 .vite/
 # npm dependencies
 node_modules/
+
+# Sitemap
+static/sitemap.xml

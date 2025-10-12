@@ -2,11 +2,12 @@
   "nodeModulesDir": "auto",
   "tasks": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "vite build && deno task sitemap",
     "update": "deno update --latest",
     "preview": "deno serve -A _fresh/server.js",
     "generate": "deno run -Ar https://deno.land/x/generate/cli/main.ts gen.ts",
-    "precommit": "deno fmt && deno lint --fix && deno check && deno task build"
+    "precommit": "deno fmt && deno lint --fix && deno check && deno task build",
+    "sitemap": "deno run -A sitemap.ts"
   },
   "unstable": ["kv"],
   "lint": { "rules": { "tags": ["fresh", "recommended"] } },
@@ -30,7 +31,8 @@
     "preact": "npm:preact@^10.27.2",
     "preact/": "https://esm.sh/preact@10.22.0/",
     "fresh": "jsr:@fresh/core@^2.1.2",
-    "vite": "npm:vite@^7.1.9"
+    "vite": "npm:vite@^7.1.9",
+    "@elsoul/fresh-sitemap": "jsr:@elsoul/fresh-sitemap@^0.2.0"
   },
   "compilerOptions": { "jsx": "react-jsx", "jsxImportSource": "preact" }
 }
