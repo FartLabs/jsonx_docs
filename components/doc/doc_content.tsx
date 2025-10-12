@@ -1,7 +1,6 @@
 import type { PlaygroundData } from "#/lib/playgrounds/mod.ts";
 import { Meta } from "#/lib/meta/mod.ts";
 import Playground from "#/components/playground/playground.tsx";
-import { Head } from "$fresh/runtime.ts";
 import Hljs from "#/components/hljs.tsx";
 
 /**
@@ -39,7 +38,7 @@ export default function DocContent(props: DocContentProps) {
   const title = `jsonx | ${props.title ?? "Documentation"}`;
   return (
     <>
-      <Head>
+      <head>
         <title>{title}</title>
         <meta property="og:title" content={title} />
         <link rel="stylesheet" href="/md.css" />
@@ -47,16 +46,22 @@ export default function DocContent(props: DocContentProps) {
         {/* Choose an ID: https://highlightjs.org/examples */}
         <Hljs id="github-dark-dimmed" />
         <script src="/copy.js" defer></script>
-      </Head>
+      </head>
 
       <aside class="aside">
         <h2>On this page</h2>
-        <div dangerouslySetInnerHTML={{ __html: props.toc ?? "" }}></div>
+
+        <div
+          // deno-lint-ignore react-no-danger
+          dangerouslySetInnerHTML={{ __html: props.toc ?? "" }}
+        >
+        </div>
       </aside>
 
       <main class="main">
         <div
           className="markdown-body"
+          // deno-lint-ignore react-no-danger
           dangerouslySetInnerHTML={{ __html: props.body }}
         >
         </div>

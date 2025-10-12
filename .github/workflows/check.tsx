@@ -21,10 +21,10 @@ export function CheckWorkflow() {
       check: {
         "runs-on": "ubuntu-latest",
         steps: [
-          <CheckoutStep />,
-          <SetupDenoStep />,
-          <DenoFormatStep />,
-          <DenoLintStep />,
+          <CheckoutStep key="checkout" />,
+          <SetupDenoStep key="setup-deno" />,
+          <DenoFormatStep key="format" />,
+          <DenoLintStep key="lint" />,
         ],
       },
     },
