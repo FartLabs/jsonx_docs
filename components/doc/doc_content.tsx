@@ -1,7 +1,7 @@
 import type { PlaygroundData } from "#/lib/playgrounds/mod.ts";
 import { Meta } from "#/lib/meta/mod.ts";
 import Playground from "#/components/playground/playground.tsx";
-import { Head } from "$fresh/runtime.ts";
+import { Head } from "fresh/runtime";
 import Hljs from "#/components/hljs.tsx";
 
 /**

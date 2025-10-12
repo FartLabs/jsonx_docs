@@ -1,4 +1,4 @@
-import { Head } from "$fresh/runtime.ts";
+import { Head } from "fresh/runtime";
 import type { Meta } from "#/lib/meta/mod.ts";
 import PlaygroundScripts from "./scripts.tsx";
 

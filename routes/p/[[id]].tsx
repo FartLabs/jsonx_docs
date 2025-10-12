@@ -1,5 +1,5 @@
-import type { FreshContext } from "$fresh/server.ts";
-import { Head } from "$fresh/runtime.ts";
+import type { FreshContext } from "fresh";
+import { Head } from "fresh/runtime";
 import { getMeta } from "#/lib/meta/meta.ts";
 import { getPlayground } from "#/lib/playgrounds/deno_kv/mod.ts";
 import { kv } from "#/lib/resources/kv.ts";
@@ -10,7 +10,6 @@ import { parsePlaygroundExampleExpression } from "#/lib/playgrounds/expressions/
 import { readExample } from "#/lib/examples/mod.ts";
 
 export default async function PlaygroundHandler(
-  _request: Request,
   ctx: FreshContext,
 ) {
   const meta = await getMeta();

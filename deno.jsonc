@@ -1,12 +1,9 @@
 {
-  "lock": false,
   "tasks": {
-    "check": "deno fmt --check && deno lint && deno check **/*.ts && deno check **/*.tsx",
-    "cli": "echo \"import '\\$fresh/src/dev/cli.ts'\" | deno run --unstable -A -",
-    "manifest": "deno task cli manifest $(pwd)",
+    "check": "deno fmt --check && deno lint && deno check",
     "start": "deno run -A --watch=static/,routes/ dev.ts",
     "build": "deno run -A dev.ts build",
-    "preview": "deno run -A main.ts",
+    "preview": "deno serve -A _fresh/server.js",
     "update": "deno run -Ar https://fresh.deno.dev/update .",
     "generate": "deno run -Ar https://deno.land/x/generate/cli/main.ts gen.ts"
   },
@@ -15,11 +12,9 @@
   "exclude": ["**/_fresh/*"],
   "imports": {
     "#/": "./",
-    "$fresh/": "https://deno.land/x/fresh@1.7.3/",
     "$std/": "https://deno.land/std@0.211.0/",
     "@fartlabs/jsonx": "jsr:@fartlabs/jsonx@^0.0.11",
-    "@preact/signals": "https://esm.sh/*@preact/signals@1.2.2",
-    "@preact/signals-core": "https://esm.sh/*@preact/signals-core@1.5.1",
+    "@preact/signals": "npm:@preact/signals@^2.3.2",
     "@std/front-matter": "jsr:@std/front-matter@^1.0.8",
     "@std/front-matter/any": "jsr:@std/front-matter@^1.0.8/any",
     "@std/fs": "jsr:@std/fs@^1.0.14",
@@ -32,8 +27,9 @@
     "markdown-it": "npm:markdown-it@14.1.0",
     "markdown-it-anchor": "npm:markdown-it-anchor@9.2.0",
     "markdown-it-toc-done-right": "npm:markdown-it-toc-done-right@4.2.0",
-    "preact": "https://esm.sh/preact@10.22.0",
-    "preact/": "https://esm.sh/preact@10.22.0/"
+    "preact": "npm:preact@^10.27.2",
+    "preact/": "https://esm.sh/preact@10.22.0/",
+    "fresh": "jsr:@fresh/core@^2.1.2"
   },
   "compilerOptions": { "jsx": "react-jsx", "jsxImportSource": "preact" }
 }

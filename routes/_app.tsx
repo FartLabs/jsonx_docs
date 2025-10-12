@@ -1,4 +1,4 @@
-import type { PageProps } from "$fresh/server.ts";
+import type { PageProps } from "fresh";
 import { toPath } from "#/lib/to_path.ts";
 import Nav from "#/components/nav.tsx";
 import Foot from "#/components/foot.tsx";
