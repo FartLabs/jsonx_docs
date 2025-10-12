@@ -3,6 +3,7 @@ import { Meta } from "#/lib/meta/mod.ts";
 import Playground from "#/components/playground/playground.tsx";
 import Hljs from "#/components/hljs.tsx";
 import CopyMarkdownButton from "./copy_markdown_button.tsx";
+import { useSignal } from "@preact/signals";
 
 /**
  * DocContentProps are the properties for the DocContent component.
@@ -41,6 +42,7 @@ export interface DocContentProps {
  * DocContent is the content of a jsonx documentation page.
  */
 export default function DocContent(props: DocContentProps) {
+  const copied = useSignal(false);
   const title = `jsonx | ${props.title ?? "Documentation"}`;
   return (
     <>
@@ -66,7 +68,7 @@ export default function DocContent(props: DocContentProps) {
 
       <main class="main">
         <div class="flex justify-end mb-4">
-          <CopyMarkdownButton md={props.md} />
+          <CopyMarkdownButton md={props.md} copied={copied} />
         </div>
         <div
           className="markdown-body"
