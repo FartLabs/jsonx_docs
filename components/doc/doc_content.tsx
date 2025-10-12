@@ -2,6 +2,7 @@ import type { PlaygroundData } from "#/lib/playgrounds/mod.ts";
 import { Meta } from "#/lib/meta/mod.ts";
 import Playground from "#/components/playground/playground.tsx";
 import Hljs from "#/components/hljs.tsx";
+import CopyMarkdownButton from "./copy_markdown_button.tsx";
 
 /**
  * DocContentProps are the properties for the DocContent component.
@@ -16,6 +17,11 @@ export interface DocContentProps {
    * body is the html content of the documentation page.
    */
   body: string;
+
+  /**
+   * md is the markdown content of the documentation page.
+   */
+  md: string;
 
   /**
    * toc is the table of contents of the documentation page.
@@ -59,6 +65,9 @@ export default function DocContent(props: DocContentProps) {
       </aside>
 
       <main class="main">
+        <div class="flex justify-end mb-4">
+          <CopyMarkdownButton md={props.md} />
+        </div>
         <div
           className="markdown-body"
           // deno-lint-ignore react-no-danger
