@@ -16,6 +16,8 @@ export default function App({ Component, url }: PageProps) {
       </head>
       <body>
         <Nav path={toPath(url.pathname)} />
+
+        {/* @ts-ignore */}
         <Component />
         <Foot />
       </body>

@@ -1,8 +1,8 @@
 import { getMeta } from "#/lib/meta/mod.ts";
-import { Handlers } from "fresh";
+import { Context, HandlerFn } from "fresh";
 
-export const handler: Handlers = {
-  async GET(_ctx) {
+export const handler: Record<string, HandlerFn<unknown, unknown>> = {
+  async GET(_ctx: Context<unknown>) {
     const meta = await getMeta();
     return Response.json(meta);
   },

@@ -1,5 +1,4 @@
 import type { PageProps } from "fresh";
-import { Head } from "fresh";
 import { getMeta } from "#/lib/meta/meta.ts";
 import { getPlayground } from "#/lib/playgrounds/deno_kv/mod.ts";
 import { kv } from "#/lib/resources/kv.ts";
@@ -38,7 +37,7 @@ export default async function PlaygroundHandler(
   const pageTitle = "jsonx | Playground";
   return (
     <>
-      <Head>
+      <head>
         <title>{pageTitle}</title>
         <meta property="og:title" content={pageTitle} />
         <meta
@@ -46,7 +45,7 @@ export default async function PlaygroundHandler(
           content="Edit and run jsonx code in your browser."
         />
         <meta name="robots" content="noindex, nofollow" />
-      </Head>
+      </head>
 
       <aside class="aside">
         <PlaygroundAside id={props.params.id} version={version} />
