@@ -3,6 +3,7 @@
   "tasks": {
     "dev": "vite",
     "build": "vite build",
+    "update": "deno update --latest",
     "preview": "deno serve -A _fresh/server.js",
     "generate": "deno run -Ar https://deno.land/x/generate/cli/main.ts gen.ts",
     "precommit": "deno fmt && deno lint --fix && deno check && deno task build"
@@ -15,11 +16,9 @@
     "$std/": "https://deno.land/std@0.211.0/",
     "@fartlabs/jsonx": "jsr:@fartlabs/jsonx@^0.0.11",
     "@fresh/plugin-vite": "jsr:@fresh/plugin-vite@^1.0.5",
-    "@preact/signals": "npm:@preact/signals@^2.3.2",
     "@std/front-matter": "jsr:@std/front-matter@^1.0.9",
     "@std/front-matter/any": "jsr:@std/front-matter@^1.0.9/any",
     "@std/fs": "jsr:@std/fs@^1.0.19",
-    "@std/http": "jsr:@std/http@^1.0.21",
     "@std/path": "jsr:@std/path@^1.1.2",
     "@std/semver": "jsr:@std/semver@^1.0.6",
     "@std/ulid": "jsr:@std/ulid@^1.0.0",
