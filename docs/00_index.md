@@ -1,6 +1,6 @@
 ---
 title: Overview
-playground: 'example:01_animals.tsx'
+playground: "example:01_animals.tsx"
 ---
 
 # Overview

@@ -1,4 +1,4 @@
-import { Head } from "fresh/runtime";
+import { Head } from "fresh";
 import type { Meta } from "#/lib/meta/mod.ts";
 import PlaygroundScripts from "./scripts.tsx";
 
@@ -34,8 +34,8 @@ export default function Playground(props: PlaygroundProps) {
                   <option value={version}>{`Version: ${version}`}</option>
                 ))}
               </select>
-              <button id="play" disabled>Play</button>
-              <button id="share" disabled>Share</button>
+              <button id="play" type="button" disabled>Play</button>
+              <button id="share" type="button" disabled>Share</button>
             </span>
           </summary>
 
@@ -45,7 +45,7 @@ export default function Playground(props: PlaygroundProps) {
         <details id="consoleDetails" open>
           <summary>
             <span>Console</span>
-            <button id="clearConsoleOutput">Clear</button>
+            <button id="clearConsoleOutput" type="button">Clear</button>
           </summary>
           <ul id="consoleOutput"></ul>
         </details>
@@ -58,8 +58,8 @@ export default function Playground(props: PlaygroundProps) {
         sandbox="allow-forms allow-modals allow-pointer-lock allow-popups allow-same-origin allow-scripts allow-top-navigation-by-user-activation allow-downloads allow-presentation"
         allow="accelerometer *; camera *; encrypted-media *; display-capture *; geolocation *; gyroscope *; microphone *; midi *; clipboard-read *; clipboard-write *; web-share *; serial *; xr-spatial-tracking *"
         scrolling="auto"
-        allowTransparency={true}
-        allowFullScreen={true}
+        allowTransparency
+        allowFullScreen
         loading="lazy"
         spellCheck={false}
       >

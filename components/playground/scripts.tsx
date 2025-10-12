@@ -9,6 +9,7 @@ export default function PlaygroundScripts(props: PlaygroundScriptsProps) {
       <script
         id="initialJSONData"
         type="application/json"
+        // deno-lint-ignore react-no-danger
         dangerouslySetInnerHTML={{ __html: JSON.stringify(props) }}
       >
       </script>

@@ -1,10 +1,10 @@
 import type { AddPlaygroundRequest } from "#/lib/playgrounds/mod.ts";
 import { addPlayground } from "#/lib/playgrounds/deno_kv/mod.ts";
 import { kv } from "#/lib/resources/kv.ts";
-import { Handlers } from "fresh/compat";
+import { Handlers } from "fresh";
 
 export const handler: Handlers = {
-  async POST(_ctx) {
+  async POST(ctx) {
     const request = ctx.req;
     const data: AddPlaygroundRequest = await request.json();
     const playground = await addPlayground(kv, data);

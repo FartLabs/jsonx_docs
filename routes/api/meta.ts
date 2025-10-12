@@ -1,5 +1,5 @@
 import { getMeta } from "#/lib/meta/mod.ts";
-import { Handlers } from "fresh/compat";
+import { Handlers } from "fresh";
 
 export const handler: Handlers = {
   async GET(_ctx) {

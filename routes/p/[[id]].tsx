@@ -1,5 +1,5 @@
-import type { FreshContext } from "fresh";
-import { Head } from "fresh/runtime";
+import type { PageProps } from "fresh";
+import { Head } from "fresh";
 import { getMeta } from "#/lib/meta/meta.ts";
 import { getPlayground } from "#/lib/playgrounds/deno_kv/mod.ts";
 import { kv } from "#/lib/resources/kv.ts";
@@ -10,13 +10,13 @@ import { parsePlaygroundExampleExpression } from "#/lib/playgrounds/expressions/
 import { readExample } from "#/lib/examples/mod.ts";
 
 export default async function PlaygroundHandler(
-  ctx: FreshContext,
+  props: PageProps,
 ) {
   const meta = await getMeta();
   let code = defaultExample;
   let version = meta.latest;
-  if (ctx.params.id) {
-    const exampleName = parsePlaygroundExampleExpression(ctx.params.id);
+  if (props.params.id) {
+    const exampleName = parsePlaygroundExampleExpression(props.params.id);
     if (exampleName) {
       const example = await readExample(`./examples/${exampleName}`);
       if (!example) {
@@ -25,7 +25,7 @@ export default async function PlaygroundHandler(
 
       code = example;
     } else {
-      const playground = await getPlayground(kv, ctx.params.id);
+      const playground = await getPlayground(kv, props.params.id);
       if (!playground) {
         return new Response("Not found!", { status: 404 });
       }
@@ -49,7 +49,7 @@ export default async function PlaygroundHandler(
       </Head>
 
       <aside class="aside">
-        <PlaygroundAside id={ctx.params.id} version={version} />
+        <PlaygroundAside id={props.params.id} version={version} />
       </aside>
 
       <main class="main">
