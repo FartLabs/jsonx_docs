@@ -7,5 +7,6 @@
 
 # Fresh build directory
 _fresh/
+.vite/
 # npm dependencies
 node_modules/

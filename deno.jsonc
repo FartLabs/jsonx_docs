@@ -1,11 +1,12 @@
 {
+  "nodeModulesDir": "auto",
   "tasks": {
     "dev": "vite",
     "build": "vite build",
     "preview": "deno serve -A _fresh/server.js",
     "update": "deno run -Ar https://fresh.deno.dev/update .",
     "generate": "deno run -Ar https://deno.land/x/generate/cli/main.ts gen.ts",
-    "precommit": "deno fmt && deno lint --fix && deno check"
+    "precommit": "deno fmt && deno lint --fix && deno check && deno task build"
   },
   "unstable": ["kv"],
   "lint": { "rules": { "tags": ["fresh", "recommended"] } },
