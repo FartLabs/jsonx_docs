@@ -76,13 +76,15 @@ export default function DocContent(props: DocContentProps) {
           dangerouslySetInnerHTML={{ __html: props.body }}
         >
         </div>
-        {props.playground && (
-          <Playground
-            code={props.playground.data.code}
-            version={props.playground.data.version}
-            meta={props.playground.meta}
-          />
-        )}
+        {props.playground !== undefined
+          ? (
+            <Playground
+              code={props.playground.data.code}
+              version={props.playground.data.version}
+              meta={props.playground.meta}
+            />
+          )
+          : null}
       </main>
     </>
   );
