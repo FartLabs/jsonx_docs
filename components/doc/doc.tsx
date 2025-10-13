@@ -14,6 +14,7 @@ export default async function DocumentationPage(request: Request) {
       body={content.body}
       toc={content.toc}
       playground={playground}
+      md={content.md}
     />
   );
 }

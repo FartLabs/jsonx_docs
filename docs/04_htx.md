@@ -95,41 +95,7 @@ element.insertAdjacentHTML("beforeend", <LI>New item</LI>);
 setState([...items, newItem]);
 ```
 
-### 6. JavaScript
-
-JavaScript enhances HTML with interactivity.
-
-Define JavaScript functions in separate script tags and reference them with HTML
-event handlers.
-
-```tsx
-// ✅ Correct - functions defined in script tag
-function MyComponent() {
-  return (
-    <>
-      <BUTTON onclick="handleClick()">Click me</BUTTON>
-      <SCRIPT>
-        {`
-          function handleClick() {
-            alert('Button clicked!');
-          }
-        `}
-      </SCRIPT>
-    </>
-  );
-}
-
-// ❌ Incorrect - React style with function references
-function MyComponent() {
-  return (
-    <BUTTON onClick={() => alert("Button clicked!")}>
-      Click me
-    </BUTTON>
-  );
-}
-```
-
-### 7. Import patterns
+### 6. Import patterns
 
 #### Convenient import (all components)
 
