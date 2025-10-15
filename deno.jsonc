@@ -5,8 +5,7 @@
     "build": "vite build",
     "update": "deno update --latest",
     "preview": "deno serve -A _fresh/server.js",
-    "generate": "deno run -Ar https://deno.land/x/generate/cli/main.ts gen.ts",
-    "precommit": "deno task generate && deno fmt && deno lint --fix && deno check && deno task build"
+    "precommit": "deno fmt && deno lint --fix && deno check"
   },
   "unstable": ["kv"],
   "lint": { "rules": { "tags": ["fresh", "recommended"] } },
