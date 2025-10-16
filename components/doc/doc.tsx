@@ -1,3 +1,4 @@
+import { go } from "@fartlabs/go";
 import { contents } from "#/lib/resources/docs.ts";
 import { fromExpression } from "#/lib/playgrounds/expressions/mod.ts";
 import { getMeta } from "#/lib/meta/mod.ts";
@@ -6,6 +7,19 @@ import type { DocContentProps } from "./doc_content.tsx";
 import DocContent from "./doc_content.tsx";
 
 export default async function DocumentationPage(request: Request) {
+  const url = new URL(request.url);
+
+  // Redirect backwards-compatible paths to new paths.
+  const redirectURL = go(url, {
+    "jsx": "/concepts/jsx",
+    "htx": "/concepts/htx",
+    "rtx": "/concepts/rtx",
+    "fartkit": "/concepts/fartkit",
+  });
+  if (url.toString() !== redirectURL.toString()) {
+    return Response.redirect(redirectURL, 301);
+  }
+
   const content = contentOf(request);
   const playground = await playgroundOf(content.playground);
   return (
