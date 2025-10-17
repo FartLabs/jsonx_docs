@@ -42,9 +42,10 @@ const renderer: MarkdownIt = new MarkdownIt({
 });
 
 renderer.use(anchorPlugin, {
-  permalink: true,
-  permalinkBefore: true,
-  permalinkSymbol: "§",
+  permalink: anchorPlugin.permalink.linkInsideHeader({
+    symbol: "§",
+    placement: "before",
+  }),
 });
 
 renderer.use(tocDoneRightPlugin);
