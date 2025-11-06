@@ -164,7 +164,7 @@ export async function readFSItems(
   }
 
   // Return items relative to the root.
-  return { items, contents, nodes: toNodes(items) };
+  return { items, contents, nodes };
 }
 
 /**
