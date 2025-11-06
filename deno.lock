@@ -9,6 +9,7 @@
     "jsr:@fartlabs/jsonx@^0.0.11": "0.0.11",
     "jsr:@fresh/build-id@1": "1.0.1",
     "jsr:@fresh/core@2": "2.1.4",
+    "jsr:@fresh/core@2.1.4": "2.1.4",
     "jsr:@fresh/core@^2.1.4": "2.1.4",
     "jsr:@fresh/plugin-vite@^1.0.7": "1.0.7",
     "jsr:@std/assert@^1.0.15": "1.0.15",

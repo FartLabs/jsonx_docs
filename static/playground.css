@@ -9,7 +9,14 @@ body {
   padding: 0.5em;
   background-color: rgba(13, 24, 10, 0.5);
   border: 1px solid rgba(127, 238, 100, 0.2);
-  margin-bottom: 2em;
+  margin: 0 auto 2em auto;
+  max-width: 65ch;
+}
+
+@media (min-width: 768px) {
+  #playground-container {
+    width: min(65ch, 100%);
+  }
 }
 
 #consoleDetails {

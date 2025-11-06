@@ -3,6 +3,7 @@ import { toPath } from "#/lib/to_path.ts";
 import Nav from "#/components/nav.tsx";
 import Foot from "#/components/foot.tsx";
 import Header from "#/components/header.tsx";
+import { nodes } from "#/lib/resources/docs.ts";
 
 export default function App({ Component, url }: PageProps) {
   return (
@@ -14,9 +15,10 @@ export default function App({ Component, url }: PageProps) {
         <meta property="og:title" content="jsonx | Documentation" />
         <meta property="og:description" content="Learn how to use jsonx." />
         <link rel="stylesheet" href="/global.css" />
+        <script type="module" src="/nav.js" defer></script>
       </head>
       <body>
-        <Header />
+        <Header path={toPath(url.pathname)} nodes={nodes} />
         <div class="main-content">
           <Nav path={toPath(url.pathname)} />
           {/* @ts-ignore */}
@@ -27,16 +29,39 @@ export default function App({ Component, url }: PageProps) {
           // deno-lint-ignore react-no-danger
           dangerouslySetInnerHTML={{
             __html: `
-              // Close mobile nav when clicking outside
+              // Close mobile nav dialog when clicking outside or pressing Escape
               document.addEventListener('click', (e) => {
-                const nav = document.querySelector('.nav');
-                const navToggle = document.getElementById('navToggle');
+                const dialog = document.getElementById('navDialog');
                 const overlay = document.getElementById('navOverlay');
-                if (nav && nav.classList.contains('open') && 
-                    !nav.contains(e.target) && 
-                    !navToggle?.contains(e.target)) {
-                  nav.classList.remove('open');
+                if (dialog && dialog.open && 
+                    e.target === overlay) {
+                  dialog.close();
                   overlay?.classList.remove('active');
+                }
+              });
+              
+              // Close dialog on Escape key
+              document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape') {
+                  const dialog = document.getElementById('navDialog');
+                  const overlay = document.querySelector('.nav-overlay');
+                  if (dialog && dialog.open) {
+                    dialog.close();
+                    overlay?.classList.remove('active');
+                  }
+                }
+              });
+              
+              // Close dialog when clicking a link inside it
+              document.addEventListener('click', (e) => {
+                const dialog = document.getElementById('navDialog');
+                const target = e.target;
+                if (dialog && dialog.open && target instanceof HTMLAnchorElement) {
+                  const navContent = dialog.querySelector('.nav-dialog-content');
+                  if (navContent && navContent.contains(target)) {
+                    dialog.close();
+                    document.querySelector('.nav-overlay')?.classList.remove('active');
+                  }
                 }
               });
             `,

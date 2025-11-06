@@ -13,43 +13,16 @@ export interface NavProps {
  */
 export default function Nav(props: NavProps) {
   return (
-    <>
-      <button
-        type="button"
-        class="nav-toggle"
-        id="navToggle"
-        aria-label="Toggle navigation"
-        onClick={() => {
-          const nav = document.querySelector(".nav");
-          const overlay = document.querySelector(".nav-overlay");
-          nav?.classList.toggle("open");
-          overlay?.classList.toggle("active");
-        }}
-      >
-        ☰
-      </button>
-      <div
-        class="nav-overlay"
-        id="navOverlay"
-        onClick={() => {
-          const nav = document.querySelector(".nav");
-          const overlay = document.querySelector(".nav-overlay");
-          nav?.classList.remove("open");
-          overlay?.classList.remove("active");
-        }}
-      >
-      </div>
-      <nav class="nav">
-        <h2>TABLE OF CONTENTS</h2>
+    <nav class="nav">
+      <h2>TABLE OF CONTENTS</h2>
 
-        <ToC
-          nodes={nodes}
-          filter={(node) =>
-            startsWith(props.path, node.name) &&
-            node.name.length <= props.path.length + 1}
-        />
-      </nav>
-    </>
+      <ToC
+        nodes={nodes}
+        filter={(node) =>
+          startsWith(props.path, node.name) &&
+          node.name.length <= props.path.length + 1}
+      />
+    </nav>
   );
 }
 
