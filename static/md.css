@@ -137,13 +137,12 @@
 
 .markdown-body pre button {
   position: absolute;
-  top: 0.5em;
-  right: 0.5em;
   color: #7fee64;
   background-color: rgba(13, 24, 10, 0.95);
   border: 1px solid rgba(127, 238, 100, 0.3);
   border-radius: 4px;
   padding: 0.4em 0.75em;
+  margin: -0.2em 0;
   cursor: pointer;
   font-size: 0.75rem;
   font-family: "Inter Variable", "Inter", ui-sans-serif, system-ui, sans-serif;
