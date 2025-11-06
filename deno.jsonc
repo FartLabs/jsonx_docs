@@ -31,7 +31,7 @@
     "markdown-it-toc-done-right": "npm:markdown-it-toc-done-right@4.2.0",
     "preact": "npm:preact@^10.27.2",
     "preact/": "https://esm.sh/preact@10.22.0/",
-    "fresh": "jsr:@fresh/core@^2.1.2",
+    "fresh": "jsr:@fresh/core@^2.1.4",
     "vite": "npm:vite@^7.1.10"
   },
   "compilerOptions": { "jsx": "react-jsx", "jsxImportSource": "preact" }
