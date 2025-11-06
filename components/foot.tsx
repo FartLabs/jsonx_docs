@@ -6,7 +6,6 @@ export default function Foot(
 ) {
   return (
     <footer class="foot">
-      <hr />
       <p>
         © {props.year}{" "}
         <a href="https://github.com/FartLabs">

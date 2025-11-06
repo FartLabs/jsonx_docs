@@ -2,6 +2,7 @@ import type { PageProps } from "fresh";
 import { toPath } from "#/lib/to_path.ts";
 import Nav from "#/components/nav.tsx";
 import Foot from "#/components/foot.tsx";
+import Header from "#/components/header.tsx";
 
 export default function App({ Component, url }: PageProps) {
   return (
@@ -15,11 +16,31 @@ export default function App({ Component, url }: PageProps) {
         <link rel="stylesheet" href="/global.css" />
       </head>
       <body>
-        <Nav path={toPath(url.pathname)} />
-
-        {/* @ts-ignore */}
-        <Component />
+        <Header />
+        <div class="main-content">
+          <Nav path={toPath(url.pathname)} />
+          {/* @ts-ignore */}
+          <Component />
+        </div>
         <Foot />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              // Close mobile nav when clicking outside
+              document.addEventListener('click', (e) => {
+                const nav = document.querySelector('.nav');
+                const navToggle = document.getElementById('navToggle');
+                const overlay = document.getElementById('navOverlay');
+                if (nav && nav.classList.contains('open') && 
+                    !nav.contains(e.target) && 
+                    !navToggle?.contains(e.target)) {
+                  nav.classList.remove('open');
+                  overlay?.classList.remove('active');
+                }
+              });
+            `,
+          }}
+        />
       </body>
     </html>
   );

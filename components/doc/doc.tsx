@@ -22,6 +22,7 @@ export default async function DocumentationPage(request: Request) {
 
   const content = contentOf(request);
   const playground = await playgroundOf(content.playground);
+  const path = toPath(url.pathname);
   return (
     <DocContent
       title={content.title}
@@ -29,6 +30,7 @@ export default async function DocumentationPage(request: Request) {
       toc={content.toc}
       playground={playground}
       md={content.md}
+      currentPath={path}
     />
   );
 }
