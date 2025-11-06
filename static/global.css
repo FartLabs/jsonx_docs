@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap");
+@import url("./Zenbones-Brainy-Unhinted.css");
 
 * {
   box-sizing: border-box;
@@ -94,6 +95,9 @@ a:hover {
   font-size: 1.25rem;
   font-weight: 600;
   margin: 0;
+  font-family:
+    "Zenbones Brainy Web", "Inter Variable", "Inter", ui-sans-serif, system-ui,
+    sans-serif;
 }
 
 .header h1 a {
@@ -118,6 +122,9 @@ a:hover {
   color: rgba(127, 238, 100, 0.7);
   margin-bottom: 1rem;
   margin-top: 0;
+  font-family:
+    "Zenbones Brainy Web", "Inter Variable", "Inter", ui-sans-serif, system-ui,
+    sans-serif;
 }
 
 .nav ul {
@@ -186,6 +193,9 @@ a:hover {
   color: rgba(127, 238, 100, 0.7);
   margin-bottom: 1rem;
   margin-top: 0;
+  font-family:
+    "Zenbones Brainy Web", "Inter Variable", "Inter", ui-sans-serif, system-ui,
+    sans-serif;
 }
 
 .aside a {
@@ -219,6 +229,9 @@ a:hover {
   color: rgba(127, 238, 100, 0.7);
   margin-bottom: 1rem;
   margin-top: 0;
+  font-family:
+    "Zenbones Brainy Web", "Inter Variable", "Inter", ui-sans-serif, system-ui,
+    sans-serif;
 }
 
 .page-toc-mobile a {
@@ -379,6 +392,9 @@ hr {
   letter-spacing: 0.1em;
   color: rgba(127, 238, 100, 0.7);
   margin: 0;
+  font-family:
+    "Zenbones Brainy Web", "Inter Variable", "Inter", ui-sans-serif, system-ui,
+    sans-serif;
 }
 
 .nav-dialog-close {
