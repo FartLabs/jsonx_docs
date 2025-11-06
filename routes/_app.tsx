@@ -24,6 +24,7 @@ export default function App({ Component, url }: PageProps) {
         </div>
         <Foot />
         <script
+          // deno-lint-ignore react-no-danger
           dangerouslySetInnerHTML={{
             __html: `
               // Close mobile nav when clicking outside

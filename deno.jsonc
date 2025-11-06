@@ -13,9 +13,9 @@
   "imports": {
     "#/": "./",
     "$std/": "https://deno.land/std@0.211.0/",
-    "@fartlabs/go": "jsr:@fartlabs/go@^0.0.1",
+    "@fartlabs/go": "jsr:@fartlabs/go@^0.0.2",
     "@fartlabs/jsonx": "jsr:@fartlabs/jsonx@^0.0.11",
-    "@fresh/plugin-vite": "jsr:@fresh/plugin-vite@^1.0.5",
+    "@fresh/plugin-vite": "jsr:@fresh/plugin-vite@^1.0.7",
     "@preact/signals": "npm:@preact/signals@^2.3.2",
     "@std/assert": "jsr:@std/assert@^1.0.15",
     "@std/front-matter": "jsr:@std/front-matter@^1.0.9",
@@ -32,7 +32,7 @@
     "preact": "npm:preact@^10.27.2",
     "preact/": "https://esm.sh/preact@10.22.0/",
     "fresh": "jsr:@fresh/core@^2.1.4",
-    "vite": "npm:vite@^7.1.10"
+    "vite": "npm:vite@^7.2.1"
   },
   "compilerOptions": { "jsx": "react-jsx", "jsxImportSource": "preact" }
 }

@@ -62,6 +62,7 @@ export default function DocContent(props: DocContentProps) {
         <script src="/copy.js" defer></script>
         {props.currentPath && (
           <script
+            // deno-lint-ignore react-no-danger
             dangerouslySetInnerHTML={{
               __html: `
                 document.addEventListener('keydown', (e) => {

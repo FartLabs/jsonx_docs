@@ -15,6 +15,7 @@ export default function Nav(props: NavProps) {
   return (
     <>
       <button
+        type="button"
         class="nav-toggle"
         id="navToggle"
         aria-label="Toggle navigation"
