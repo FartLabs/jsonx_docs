@@ -36,6 +36,8 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5em;
   padding: 0.75em 1em;
   border-radius: 0.5em;
   background-color: rgba(13, 24, 10, 0.8);
@@ -130,7 +132,8 @@ body {
   font-weight: 500;
   cursor: pointer;
   transition: all 0.2s;
-  margin-left: 0.5em;
+  margin: 0;
+  flex-shrink: 0;
 }
 
 #codeDetails summary button:hover:not(:disabled),
@@ -170,7 +173,9 @@ body {
 #codeDetails summary span:last-child {
   display: flex;
   align-items: center;
+  flex-wrap: wrap;
   gap: 0.5em;
+  margin-left: auto;
 }
 
 /* Monaco Editor custom styling to match site theme */
