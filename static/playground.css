@@ -172,3 +172,283 @@ body {
   align-items: center;
   gap: 0.5em;
 }
+
+/* Monaco Editor custom styling to match site theme */
+.monaco-editor {
+  border-radius: 0 0 0.5em 0.5em;
+}
+
+.monaco-editor .monaco-scrollable-element > .scrollbar {
+  background-color: rgba(13, 24, 10, 0.7);
+}
+
+.monaco-editor .monaco-scrollable-element > .scrollbar > .slider {
+  background-color: rgba(127, 238, 100, 0.35);
+  border: 2px solid rgba(13, 24, 10, 0.8);
+  border-radius: 8px;
+}
+
+.monaco-editor .monaco-scrollable-element > .scrollbar > .slider:hover {
+  background-color: rgba(127, 238, 100, 0.55);
+}
+
+.monaco-editor .monaco-scrollable-element > .scrollbar > .slider:active {
+  background-color: rgba(127, 238, 100, 0.7);
+}
+
+/* Minimap styling */
+.monaco-editor .minimap {
+  background-color: rgba(13, 24, 10, 0.5);
+}
+
+.monaco-editor .minimap-slider {
+  background-color: rgba(127, 238, 100, 0.2);
+}
+
+.monaco-editor .minimap-slider:hover {
+  background-color: rgba(127, 238, 100, 0.3);
+}
+
+/* Context menu and dropdowns */
+.monaco-menu {
+  background-color: rgba(13, 24, 10, 0.95);
+  border: 1px solid rgba(127, 238, 100, 0.2);
+  border-radius: 4px;
+}
+
+.monaco-menu .monaco-action-bar .action-item .action-label {
+  color: #7fee64;
+}
+
+.monaco-menu .monaco-action-bar .action-item .action-label:hover {
+  background-color: rgba(127, 238, 100, 0.1);
+  color: #9fff7a;
+}
+
+/* Overlay widgets (hover, suggestions, etc.) */
+.monaco-editor .monaco-hover {
+  background-color: rgba(13, 24, 10, 0.95);
+  border: 1px solid rgba(127, 238, 100, 0.2);
+  border-radius: 4px;
+  color: #7fee64;
+}
+
+.monaco-editor .suggest-widget {
+  background-color: rgba(13, 24, 10, 0.95);
+  border: 1px solid rgba(127, 238, 100, 0.2);
+  border-radius: 4px;
+}
+
+.monaco-editor .suggest-widget .monaco-list .monaco-list-row {
+  color: #7fee64;
+}
+
+.monaco-editor .suggest-widget .monaco-list .monaco-list-row.focused {
+  background-color: rgba(127, 238, 100, 0.1);
+  color: #9fff7a;
+}
+
+/* Parameter hints */
+.monaco-editor .parameter-hints-widget {
+  background-color: rgba(13, 24, 10, 0.95);
+  border: 1px solid rgba(127, 238, 100, 0.2);
+  border-radius: 4px;
+  color: #7fee64;
+}
+
+/* Find widget */
+.monaco-editor .find-widget {
+  background-color: rgba(13, 24, 10, 0.95);
+  border: 1px solid rgba(127, 238, 100, 0.2);
+  border-radius: 4px;
+}
+
+.monaco-editor .find-widget input {
+  background-color: rgba(13, 24, 10, 0.8);
+  color: #7fee64;
+  border: 1px solid rgba(127, 238, 100, 0.3);
+  border-radius: 4px;
+}
+
+.monaco-editor .find-widget button {
+  background-color: rgba(13, 24, 10, 0.95);
+  color: #7fee64;
+  border: 1px solid rgba(127, 238, 100, 0.3);
+  border-radius: 4px;
+}
+
+.monaco-editor .find-widget button:hover {
+  background-color: rgba(127, 238, 100, 0.1);
+  border-color: rgba(127, 238, 100, 0.5);
+  color: #9fff7a;
+}
+
+/* Keep line numbers green even when there are errors */
+.monaco-editor .margin .line-numbers {
+  color: rgba(127, 238, 100, 0.5) !important;
+}
+
+.monaco-editor .margin .line-numbers .line-number {
+  color: rgba(127, 238, 100, 0.5) !important;
+}
+
+.monaco-editor .margin .line-numbers .line-number.current-line {
+  color: #7fee64 !important;
+}
+
+/* Override any error/warning line number colors */
+.monaco-editor .margin .line-numbers .line-number[class*="error"],
+.monaco-editor .margin .line-numbers .line-number[class*="warning"],
+.monaco-editor .margin .line-numbers .line-number.error-line,
+.monaco-editor .margin .line-numbers .line-number.warning-line {
+  color: rgba(127, 238, 100, 0.5) !important;
+}
+
+/* Subtle error styling - warm amber instead of bright red */
+.monaco-editor .squiggly-error {
+  border-bottom: 2px wavy rgba(212, 165, 116, 0.6);
+  background-color: rgba(212, 165, 116, 0.08);
+}
+
+.monaco-editor .squiggly-warning {
+  border-bottom: 2px wavy rgba(212, 165, 116, 0.5);
+  background-color: rgba(212, 165, 116, 0.06);
+}
+
+/* Subtle error line background */
+.monaco-editor .view-line .line-content.error-line {
+  background-color: rgba(212, 165, 116, 0.06) !important;
+}
+
+.monaco-editor .view-line .line-content.warning-line {
+  background-color: rgba(212, 165, 116, 0.04) !important;
+}
+
+/* Error markers in gutter - subtle */
+.monaco-editor .margin .glyph-margin {
+  background-color: transparent;
+}
+
+.monaco-editor .margin .glyph-margin .error-glyph,
+.monaco-editor .margin .glyph-margin .warning-glyph {
+  opacity: 0.7;
+}
+
+/* Error overlay messages - subtle styling */
+.monaco-editor .monaco-editor-overlaymessage {
+  background-color: rgba(13, 24, 10, 0.95);
+  border: 1px solid rgba(212, 165, 116, 0.4);
+  color: #d4a574;
+}
+
+/* Ensure no red backgrounds on error lines */
+.monaco-editor .view-line .line-content {
+  background-color: transparent !important;
+}
+
+.monaco-editor .view-line .line-content.error-line {
+  background-color: rgba(212, 165, 116, 0.06) !important;
+}
+
+.monaco-editor .view-line .line-content.warning-line {
+  background-color: rgba(212, 165, 116, 0.04) !important;
+}
+
+/* Bracket matching - use lavender instead of red */
+.monaco-editor .bracket-match {
+  background-color: rgba(230, 230, 250, 0.15) !important;
+  border: 1px solid rgba(230, 230, 250, 0.6) !important;
+}
+
+.monaco-editor .current-line .bracket-match {
+  background-color: rgba(230, 230, 250, 0.2) !important;
+}
+
+/* Override any red bracket highlighting */
+.monaco-editor .view-line .bracket-match,
+.monaco-editor .view-line .bracket-match-0,
+.monaco-editor .view-line .bracket-match-1,
+.monaco-editor .view-line .bracket-match-2,
+.monaco-editor .view-line .bracket-match-3,
+.monaco-editor .view-line .bracket-match-4,
+.monaco-editor .view-line .bracket-match-5 {
+  background-color: rgba(230, 230, 250, 0.15) !important;
+  border-color: rgba(230, 230, 250, 0.6) !important;
+}
+
+/* Override any red selection or highlight colors */
+.monaco-editor .selected-text,
+.monaco-editor .view-line .selected-text {
+  background-color: rgba(127, 238, 100, 0.3) !important;
+}
+
+/* Override any red bracket pair colors */
+.monaco-editor .bracket-pair-color-0 {
+  color: #e6e6fa !important;
+}
+
+.monaco-editor .bracket-pair-color-1 {
+  color: #dda0dd !important;
+}
+
+.monaco-editor .bracket-pair-color-2 {
+  color: #ba55d3 !important;
+}
+
+.monaco-editor .bracket-pair-color-3 {
+  color: #9370db !important;
+}
+
+.monaco-editor .bracket-pair-color-4 {
+  color: #8a2be2 !important;
+}
+
+.monaco-editor .bracket-pair-color-5 {
+  color: #7b68ee !important;
+}
+
+/* Override any red colors in editor decorations */
+.monaco-editor .view-overlays .current-line,
+.monaco-editor .view-overlays .selected-text {
+  background-color: rgba(127, 238, 100, 0.3) !important;
+}
+
+/* Override any red bracket pair box decorations */
+.monaco-editor .view-overlays .bracket-match {
+  background-color: rgba(230, 230, 250, 0.15) !important;
+  border: 1px solid rgba(230, 230, 250, 0.6) !important;
+}
+
+/* Override any red in range highlights */
+.monaco-editor .rangeHighlight {
+  background-color: rgba(230, 230, 250, 0.1) !important;
+}
+
+/* Override any red in symbol highlights */
+.monaco-editor .symbolHighlight {
+  background-color: rgba(230, 230, 250, 0.15) !important;
+}
+
+/* Override any red in word highlights */
+.monaco-editor .wordHighlight {
+  background-color: rgba(230, 230, 250, 0.15) !important;
+}
+
+.monaco-editor .wordHighlightStrong {
+  background-color: rgba(230, 230, 250, 0.25) !important;
+}
+
+/* Override any red in find matches */
+.monaco-editor .findMatch {
+  background-color: rgba(230, 230, 250, 0.2) !important;
+  border: 1px solid rgba(230, 230, 250, 0.5) !important;
+}
+
+.monaco-editor .currentFindMatch {
+  background-color: rgba(230, 230, 250, 0.3) !important;
+  border: 1px solid rgba(230, 230, 250, 0.7) !important;
+}
+
+.monaco-editor .findScope {
+  background-color: rgba(230, 230, 250, 0.1) !important;
+}

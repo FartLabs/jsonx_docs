@@ -31,16 +31,89 @@ async function transform(options) {
 
 let monacoEditor;
 
+// Define custom theme to match the site's green-on-dark aesthetic
+function defineCustomTheme() {
+  monaco.editor.defineTheme("jsonx-dark", {
+    base: "vs-dark",
+    inherit: true,
+    rules: [
+      { token: "", foreground: "7fee64", background: "0d180a" },
+      { token: "comment", foreground: "4a7c3a", fontStyle: "italic" },
+      { token: "keyword", foreground: "9fff7a", fontStyle: "bold" },
+      { token: "string", foreground: "7fee64" },
+      { token: "number", foreground: "9fff7a" },
+      { token: "type", foreground: "7fee64" },
+      { token: "class", foreground: "9fff7a" },
+      { token: "function", foreground: "7fee64" },
+      { token: "variable", foreground: "7fee64" },
+      { token: "operator", foreground: "9fff7a" },
+      { token: "delimiter", foreground: "7fee64" },
+      { token: "tag", foreground: "9fff7a" },
+      { token: "attribute.name", foreground: "7fee64" },
+      { token: "attribute.value", foreground: "9fff7a" },
+    ],
+    colors: {
+      "editor.background": "#0d180a",
+      "editor.foreground": "#7fee64",
+      "editor.lineHighlightBackground": "rgba(127, 238, 100, 0.05)",
+      "editor.selectionBackground": "rgba(230, 230, 250, 0.3)",
+      "editor.inactiveSelectionBackground": "rgba(230, 230, 250, 0.1)",
+      "editorCursor.foreground": "#7fee64",
+      "editorWhitespace.foreground": "rgba(127, 238, 100, 0.2)",
+      "editorIndentGuide.background": "rgba(127, 238, 100, 0.1)",
+      "editorIndentGuide.activeBackground": "rgba(127, 238, 100, 0.2)",
+      "editorLineNumber.foreground": "rgba(127, 238, 100, 0.5)",
+      "editorLineNumber.activeForeground": "#7fee64",
+      "editorLineNumber.errorForeground": "rgba(127, 238, 100, 0.5)",
+      "editorLineNumber.warningForeground": "rgba(127, 238, 100, 0.5)",
+      "editorGutter.background": "#0d180a",
+      "editorBracketMatch.background": "rgba(230, 230, 250, 0.15)",
+      "editorBracketMatch.border": "rgba(230, 230, 250, 0.6)",
+      "editorBracketHighlight.foreground1": "#e6e6fa",
+      "editorBracketHighlight.foreground2": "#dda0dd",
+      "editorBracketHighlight.foreground3": "#ba55d3",
+      "editorBracketHighlight.foreground4": "#9370db",
+      "editorBracketHighlight.foreground5": "#8a2be2",
+      "editorBracketHighlight.foreground6": "#7b68ee",
+      "editorBracketPairGuide.activeBackground1": "rgba(230, 230, 250, 0.3)",
+      "editorBracketPairGuide.activeBackground2": "rgba(221, 160, 221, 0.3)",
+      "editorBracketPairGuide.activeBackground3": "rgba(186, 85, 211, 0.3)",
+      "editorBracketPairGuide.activeBackground4": "rgba(147, 112, 219, 0.3)",
+      "editorBracketPairGuide.activeBackground5": "rgba(138, 43, 226, 0.3)",
+      "editorBracketPairGuide.activeBackground6": "rgba(123, 104, 238, 0.3)",
+      "editorBracketPairGuide.background1": "rgba(230, 230, 250, 0.15)",
+      "editorBracketPairGuide.background2": "rgba(221, 160, 221, 0.15)",
+      "editorBracketPairGuide.background3": "rgba(186, 85, 211, 0.15)",
+      "editorBracketPairGuide.background4": "rgba(147, 112, 219, 0.15)",
+      "editorBracketPairGuide.background5": "rgba(138, 43, 226, 0.15)",
+      "editorBracketPairGuide.background6": "rgba(123, 104, 238, 0.15)",
+      "editorWidget.background": "rgba(13, 24, 10, 0.95)",
+      "editorWidget.border": "rgba(127, 238, 100, 0.2)",
+      "editorSuggestWidget.background": "rgba(13, 24, 10, 0.95)",
+      "editorSuggestWidget.border": "rgba(127, 238, 100, 0.2)",
+      "editorSuggestWidget.foreground": "#7fee64",
+      "editorSuggestWidget.selectedBackground": "rgba(127, 238, 100, 0.1)",
+      "editorHoverWidget.background": "rgba(13, 24, 10, 0.95)",
+      "editorHoverWidget.border": "rgba(127, 238, 100, 0.2)",
+      "editorError.foreground": "#d4a574",
+      "editorError.border": "rgba(212, 165, 116, 0.4)",
+      "editorWarning.foreground": "#d4a574",
+      "editorWarning.border": "rgba(212, 165, 116, 0.3)",
+      "scrollbarSlider.background": "rgba(127, 238, 100, 0.35)",
+      "scrollbarSlider.hoverBackground": "rgba(127, 238, 100, 0.55)",
+      "scrollbarSlider.activeBackground": "rgba(127, 238, 100, 0.7)",
+    },
+  });
+}
+
 function createEditor(options) {
-  // TODO: Figure out how to resolve this error.
-  //
-  // codicon.ttf:1
-  // Failed to load resource: the server responded with a status of 500 (Internal Server Error)
+  // Define the custom theme before creating the editor
+  defineCustomTheme();
 
   monacoEditor = monaco.editor.create(
     options.target,
     {
-      theme: "vs-dark",
+      theme: "jsonx-dark",
       fontSize: 18,
       fontFamily: "Fira Code",
       model: monaco.editor.createModel(
