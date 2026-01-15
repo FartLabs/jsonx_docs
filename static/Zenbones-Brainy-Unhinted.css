@@ -5,8 +5,7 @@
   font-stretch: normal;
   font-style: normal;
   src:
-    url("WOFF2-Unhinted/Zenbones-Brainy-Thin.woff2") format("woff2"),
-    url("TTF-Unhinted/Zenbones-Brainy-Thin.ttf") format("truetype");
+    url("WOFF2-Unhinted/Zenbones-Brainy-Thin.woff2") format("woff2");
 }
 
 @font-face {
@@ -16,8 +15,7 @@
   font-stretch: normal;
   font-style: oblique;
   src:
-    url("WOFF2-Unhinted/Zenbones-Brainy-ThinOblique.woff2") format("woff2"),
-    url("TTF-Unhinted/Zenbones-Brainy-ThinOblique.ttf") format("truetype");
+    url("WOFF2-Unhinted/Zenbones-Brainy-ThinOblique.woff2") format("woff2");
 }
 
 @font-face {
@@ -26,8 +24,7 @@
   font-weight: 100;
   font-stretch: normal;
   src:
-    url("WOFF2-Unhinted/Zenbones-Brainy-ThinOblique.woff2") format("woff2"),
-    url("TTF-Unhinted/Zenbones-Brainy-ThinOblique.ttf") format("truetype");
+    url("WOFF2-Unhinted/Zenbones-Brainy-ThinOblique.woff2") format("woff2");
 }
 
 @font-face {
@@ -37,8 +34,7 @@
   font-stretch: normal;
   font-style: italic;
   src:
-    url("WOFF2-Unhinted/Zenbones-Brainy-ThinItalic.woff2") format("woff2"),
-    url("TTF-Unhinted/Zenbones-Brainy-ThinItalic.ttf") format("truetype");
+    url("WOFF2-Unhinted/Zenbones-Brainy-ThinItalic.woff2") format("woff2");
 }
 
 @font-face {
@@ -48,8 +44,7 @@
   font-stretch: normal;
   font-style: normal;
   src:
-    url("WOFF2-Unhinted/Zenbones-Brainy-ExtraLight.woff2") format("woff2"),
-    url("TTF-Unhinted/Zenbones-Brainy-ExtraLight.ttf") format("truetype");
+    url("WOFF2-Unhinted/Zenbones-Brainy-ExtraLight.woff2") format("woff2");
 }
 
 @font-face {
@@ -60,9 +55,7 @@
   font-style: oblique;
   src:
     url("WOFF2-Unhinted/Zenbones-Brainy-ExtraLightOblique.woff2")
-    format("woff2"),
-    url("TTF-Unhinted/Zenbones-Brainy-ExtraLightOblique.ttf")
-    format("truetype");
+    format("woff2");
 }
 
 @font-face {
@@ -72,9 +65,7 @@
   font-stretch: normal;
   src:
     url("WOFF2-Unhinted/Zenbones-Brainy-ExtraLightOblique.woff2")
-    format("woff2"),
-    url("TTF-Unhinted/Zenbones-Brainy-ExtraLightOblique.ttf")
-    format("truetype");
+    format("woff2");
 }
 
 @font-face {
@@ -85,8 +76,7 @@
   font-style: italic;
   src:
     url("WOFF2-Unhinted/Zenbones-Brainy-ExtraLightItalic.woff2")
-    format("woff2"),
-    url("TTF-Unhinted/Zenbones-Brainy-ExtraLightItalic.ttf") format("truetype");
+    format("woff2");
 }
 
 @font-face {
@@ -96,8 +86,7 @@
   font-stretch: normal;
   font-style: normal;
   src:
-    url("WOFF2-Unhinted/Zenbones-Brainy-Light.woff2") format("woff2"),
-    url("TTF-Unhinted/Zenbones-Brainy-Light.ttf") format("truetype");
+    url("WOFF2-Unhinted/Zenbones-Brainy-Light.woff2") format("woff2");
 }
 
 @font-face {
@@ -107,8 +96,7 @@
   font-stretch: normal;
   font-style: oblique;
   src:
-    url("WOFF2-Unhinted/Zenbones-Brainy-LightOblique.woff2") format("woff2"),
-    url("TTF-Unhinted/Zenbones-Brainy-LightOblique.ttf") format("truetype");
+    url("WOFF2-Unhinted/Zenbones-Brainy-LightOblique.woff2") format("woff2");
 }
 
 @font-face {
@@ -117,8 +105,7 @@
   font-weight: 300;
   font-stretch: normal;
   src:
-    url("WOFF2-Unhinted/Zenbones-Brainy-LightOblique.woff2") format("woff2"),
-    url("TTF-Unhinted/Zenbones-Brainy-LightOblique.ttf") format("truetype");
+    url("WOFF2-Unhinted/Zenbones-Brainy-LightOblique.woff2") format("woff2");
 }
 
 @font-face {
@@ -128,8 +115,7 @@
   font-stretch: normal;
   font-style: italic;
   src:
-    url("WOFF2-Unhinted/Zenbones-Brainy-LightItalic.woff2") format("woff2"),
-    url("TTF-Unhinted/Zenbones-Brainy-LightItalic.ttf") format("truetype");
+    url("WOFF2-Unhinted/Zenbones-Brainy-LightItalic.woff2") format("woff2");
 }
 
 @font-face {
@@ -139,8 +125,7 @@
   font-stretch: normal;
   font-style: normal;
   src:
-    url("WOFF2-Unhinted/Zenbones-Brainy-Regular.woff2") format("woff2"),
-    url("TTF-Unhinted/Zenbones-Brainy-Regular.ttf") format("truetype");
+    url("WOFF2-Unhinted/Zenbones-Brainy-Regular.woff2") format("woff2");
 }
 
 @font-face {
@@ -150,8 +135,7 @@
   font-stretch: normal;
   font-style: oblique;
   src:
-    url("WOFF2-Unhinted/Zenbones-Brainy-Oblique.woff2") format("woff2"),
-    url("TTF-Unhinted/Zenbones-Brainy-Oblique.ttf") format("truetype");
+    url("WOFF2-Unhinted/Zenbones-Brainy-Oblique.woff2") format("woff2");
 }
 
 @font-face {
@@ -160,8 +144,7 @@
   font-weight: 400;
   font-stretch: normal;
   src:
-    url("WOFF2-Unhinted/Zenbones-Brainy-Oblique.woff2") format("woff2"),
-    url("TTF-Unhinted/Zenbones-Brainy-Oblique.ttf") format("truetype");
+    url("WOFF2-Unhinted/Zenbones-Brainy-Oblique.woff2") format("woff2");
 }
 
 @font-face {
@@ -171,8 +154,7 @@
   font-stretch: normal;
   font-style: italic;
   src:
-    url("WOFF2-Unhinted/Zenbones-Brainy-Italic.woff2") format("woff2"),
-    url("TTF-Unhinted/Zenbones-Brainy-Italic.ttf") format("truetype");
+    url("WOFF2-Unhinted/Zenbones-Brainy-Italic.woff2") format("woff2");
 }
 
 @font-face {
@@ -182,8 +164,7 @@
   font-stretch: normal;
   font-style: normal;
   src:
-    url("WOFF2-Unhinted/Zenbones-Brainy-Medium.woff2") format("woff2"),
-    url("TTF-Unhinted/Zenbones-Brainy-Medium.ttf") format("truetype");
+    url("WOFF2-Unhinted/Zenbones-Brainy-Medium.woff2") format("woff2");
 }
 
 @font-face {
@@ -193,8 +174,7 @@
   font-stretch: normal;
   font-style: oblique;
   src:
-    url("WOFF2-Unhinted/Zenbones-Brainy-MediumOblique.woff2") format("woff2"),
-    url("TTF-Unhinted/Zenbones-Brainy-MediumOblique.ttf") format("truetype");
+    url("WOFF2-Unhinted/Zenbones-Brainy-MediumOblique.woff2") format("woff2");
 }
 
 @font-face {
@@ -203,8 +183,7 @@
   font-weight: 500;
   font-stretch: normal;
   src:
-    url("WOFF2-Unhinted/Zenbones-Brainy-MediumOblique.woff2") format("woff2"),
-    url("TTF-Unhinted/Zenbones-Brainy-MediumOblique.ttf") format("truetype");
+    url("WOFF2-Unhinted/Zenbones-Brainy-MediumOblique.woff2") format("woff2");
 }
 
 @font-face {
@@ -214,8 +193,7 @@
   font-stretch: normal;
   font-style: italic;
   src:
-    url("WOFF2-Unhinted/Zenbones-Brainy-MediumItalic.woff2") format("woff2"),
-    url("TTF-Unhinted/Zenbones-Brainy-MediumItalic.ttf") format("truetype");
+    url("WOFF2-Unhinted/Zenbones-Brainy-MediumItalic.woff2") format("woff2");
 }
 
 @font-face {
@@ -225,8 +203,7 @@
   font-stretch: normal;
   font-style: normal;
   src:
-    url("WOFF2-Unhinted/Zenbones-Brainy-SemiBold.woff2") format("woff2"),
-    url("TTF-Unhinted/Zenbones-Brainy-SemiBold.ttf") format("truetype");
+    url("WOFF2-Unhinted/Zenbones-Brainy-SemiBold.woff2") format("woff2");
 }
 
 @font-face {
@@ -236,8 +213,7 @@
   font-stretch: normal;
   font-style: oblique;
   src:
-    url("WOFF2-Unhinted/Zenbones-Brainy-SemiBoldOblique.woff2") format("woff2"),
-    url("TTF-Unhinted/Zenbones-Brainy-SemiBoldOblique.ttf") format("truetype");
+    url("WOFF2-Unhinted/Zenbones-Brainy-SemiBoldOblique.woff2") format("woff2");
 }
 
 @font-face {
@@ -246,8 +222,7 @@
   font-weight: 600;
   font-stretch: normal;
   src:
-    url("WOFF2-Unhinted/Zenbones-Brainy-SemiBoldOblique.woff2") format("woff2"),
-    url("TTF-Unhinted/Zenbones-Brainy-SemiBoldOblique.ttf") format("truetype");
+    url("WOFF2-Unhinted/Zenbones-Brainy-SemiBoldOblique.woff2") format("woff2");
 }
 
 @font-face {
@@ -257,8 +232,7 @@
   font-stretch: normal;
   font-style: italic;
   src:
-    url("WOFF2-Unhinted/Zenbones-Brainy-SemiBoldItalic.woff2") format("woff2"),
-    url("TTF-Unhinted/Zenbones-Brainy-SemiBoldItalic.ttf") format("truetype");
+    url("WOFF2-Unhinted/Zenbones-Brainy-SemiBoldItalic.woff2") format("woff2");
 }
 
 @font-face {
@@ -268,8 +242,7 @@
   font-stretch: normal;
   font-style: normal;
   src:
-    url("WOFF2-Unhinted/Zenbones-Brainy-Bold.woff2") format("woff2"),
-    url("TTF-Unhinted/Zenbones-Brainy-Bold.ttf") format("truetype");
+    url("WOFF2-Unhinted/Zenbones-Brainy-Bold.woff2") format("woff2");
 }
 
 @font-face {
@@ -279,8 +252,7 @@
   font-stretch: normal;
   font-style: oblique;
   src:
-    url("WOFF2-Unhinted/Zenbones-Brainy-BoldOblique.woff2") format("woff2"),
-    url("TTF-Unhinted/Zenbones-Brainy-BoldOblique.ttf") format("truetype");
+    url("WOFF2-Unhinted/Zenbones-Brainy-BoldOblique.woff2") format("woff2");
 }
 
 @font-face {
@@ -289,8 +261,7 @@
   font-weight: 700;
   font-stretch: normal;
   src:
-    url("WOFF2-Unhinted/Zenbones-Brainy-BoldOblique.woff2") format("woff2"),
-    url("TTF-Unhinted/Zenbones-Brainy-BoldOblique.ttf") format("truetype");
+    url("WOFF2-Unhinted/Zenbones-Brainy-BoldOblique.woff2") format("woff2");
 }
 
 @font-face {
@@ -300,8 +271,7 @@
   font-stretch: normal;
   font-style: italic;
   src:
-    url("WOFF2-Unhinted/Zenbones-Brainy-BoldItalic.woff2") format("woff2"),
-    url("TTF-Unhinted/Zenbones-Brainy-BoldItalic.ttf") format("truetype");
+    url("WOFF2-Unhinted/Zenbones-Brainy-BoldItalic.woff2") format("woff2");
 }
 
 @font-face {
@@ -311,8 +281,7 @@
   font-stretch: normal;
   font-style: normal;
   src:
-    url("WOFF2-Unhinted/Zenbones-Brainy-ExtraBold.woff2") format("woff2"),
-    url("TTF-Unhinted/Zenbones-Brainy-ExtraBold.ttf") format("truetype");
+    url("WOFF2-Unhinted/Zenbones-Brainy-ExtraBold.woff2") format("woff2");
 }
 
 @font-face {
@@ -323,8 +292,7 @@
   font-style: oblique;
   src:
     url("WOFF2-Unhinted/Zenbones-Brainy-ExtraBoldOblique.woff2")
-    format("woff2"),
-    url("TTF-Unhinted/Zenbones-Brainy-ExtraBoldOblique.ttf") format("truetype");
+    format("woff2");
 }
 
 @font-face {
@@ -334,8 +302,7 @@
   font-stretch: normal;
   src:
     url("WOFF2-Unhinted/Zenbones-Brainy-ExtraBoldOblique.woff2")
-    format("woff2"),
-    url("TTF-Unhinted/Zenbones-Brainy-ExtraBoldOblique.ttf") format("truetype");
+    format("woff2");
 }
 
 @font-face {
@@ -345,8 +312,7 @@
   font-stretch: normal;
   font-style: italic;
   src:
-    url("WOFF2-Unhinted/Zenbones-Brainy-ExtraBoldItalic.woff2") format("woff2"),
-    url("TTF-Unhinted/Zenbones-Brainy-ExtraBoldItalic.ttf") format("truetype");
+    url("WOFF2-Unhinted/Zenbones-Brainy-ExtraBoldItalic.woff2") format("woff2");
 }
 
 @font-face {
@@ -356,8 +322,7 @@
   font-stretch: normal;
   font-style: normal;
   src:
-    url("WOFF2-Unhinted/Zenbones-Brainy-Heavy.woff2") format("woff2"),
-    url("TTF-Unhinted/Zenbones-Brainy-Heavy.ttf") format("truetype");
+    url("WOFF2-Unhinted/Zenbones-Brainy-Heavy.woff2") format("woff2");
 }
 
 @font-face {
@@ -367,8 +332,7 @@
   font-stretch: normal;
   font-style: oblique;
   src:
-    url("WOFF2-Unhinted/Zenbones-Brainy-HeavyOblique.woff2") format("woff2"),
-    url("TTF-Unhinted/Zenbones-Brainy-HeavyOblique.ttf") format("truetype");
+    url("WOFF2-Unhinted/Zenbones-Brainy-HeavyOblique.woff2") format("woff2");
 }
 
 @font-face {
@@ -377,8 +341,7 @@
   font-weight: 900;
   font-stretch: normal;
   src:
-    url("WOFF2-Unhinted/Zenbones-Brainy-HeavyOblique.woff2") format("woff2"),
-    url("TTF-Unhinted/Zenbones-Brainy-HeavyOblique.ttf") format("truetype");
+    url("WOFF2-Unhinted/Zenbones-Brainy-HeavyOblique.woff2") format("woff2");
 }
 
 @font-face {
@@ -388,6 +351,5 @@
   font-stretch: normal;
   font-style: italic;
   src:
-    url("WOFF2-Unhinted/Zenbones-Brainy-HeavyItalic.woff2") format("woff2"),
-    url("TTF-Unhinted/Zenbones-Brainy-HeavyItalic.ttf") format("truetype");
+    url("WOFF2-Unhinted/Zenbones-Brainy-HeavyItalic.woff2") format("woff2");
 }
