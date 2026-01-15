@@ -60,7 +60,7 @@ export default function Playground(props: PlaygroundProps) {
         allowTransparency
         allowFullScreen
         loading="lazy"
-        spellCheck={false}
+        spellcheck={false}
       >
       </iframe>
     </>
