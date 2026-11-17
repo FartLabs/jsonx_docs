@@ -5,7 +5,7 @@
     "jsr:@deno/esbuild-plugin@^1.2.0": "1.2.1",
     "jsr:@deno/loader@~0.3.10": "0.3.11",
     "jsr:@deno/loader@~0.3.2": "0.3.11",
-    "jsr:@fartlabs/go@^0.0.3": "0.0.3",
+    "jsr:@fartlabs/go@^0.0.4": "0.0.4",
     "jsr:@fartlabs/jsonx@0.0.11": "0.0.11",
     "jsr:@fartlabs/jsonx@^0.0.11": "0.0.11",
     "jsr:@fresh/build-id@1": "1.0.1",
@@ -80,8 +80,8 @@
     "@deno/loader@0.3.11": {
       "integrity": "7c62f4f09cdfc34e66ba25b5a775a1830cbb5266b3e39f67b0f620c75484df8d"
     },
-    "@fartlabs/go@0.0.3": {
-      "integrity": "4c3f323f1cb4b6a1ef715a8bf28474c940d581aac489b9aa6dbffc91ae008d5e"
+    "@fartlabs/go@0.0.4": {
+      "integrity": "d995efebd9af87d3ab9628edb6d4e61576e1b1ffeedac6846c556c78ef8f466e"
     },
     "@fartlabs/jsonx@0.0.11": {
       "integrity": "25e70bc64e680c90f0b91d2e639a04d3e8a7811809282a4b82a27e2862218438",
@@ -1302,7 +1302,7 @@
   },
   "workspace": {
     "dependencies": [
-      "jsr:@fartlabs/go@^0.0.3",
+      "jsr:@fartlabs/go@^0.0.4",
       "jsr:@fartlabs/jsonx@^0.0.11",
       "jsr:@fresh/core@^2.2.0",
       "jsr:@fresh/plugin-vite@^1.0.8",
