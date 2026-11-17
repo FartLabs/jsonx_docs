@@ -45,8 +45,9 @@ deno task preview
 
 ### Deploy
 
-`jsonx.fart.tools` runs as the `jsonx-fart-tools` Cloudflare Worker. Deno Deploy has been replaced, so the docs and
-examples are rendered ahead of time by `deno task generate` (part of `build`), and saved playgrounds live in a Workers
+`jsonx.fart.tools` runs as the `jsonx-fart-tools` Cloudflare Worker. Deno Deploy
+has been replaced, so the docs and examples are rendered ahead of time by
+`deno task generate` (part of `build`), and saved playgrounds live in a Workers
 KV namespace instead of Deno KV.
 
 ```bash
@@ -54,8 +55,9 @@ deno task build # renders docs/ and examples/ into generated/, then builds _fres
 npx wrangler deploy
 ```
 
-`_fresh/client` is uploaded as static assets, and `worker.ts` runs the Fresh server for everything else. The KV binding
-is `PLAYGROUNDS` in `wrangler.jsonc`. Playgrounds saved under the old Deno Deploy site were not migrated.
+`_fresh/client` is uploaded as static assets, and `worker.ts` runs the Fresh
+server for everything else. The KV binding is `PLAYGROUNDS` in `wrangler.jsonc`.
+Playgrounds saved under the old Deno Deploy site were not migrated.
 
 ## Examples
 
