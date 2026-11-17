@@ -1,6 +1,5 @@
-/// <reference lib="deno.unstable" />
-
 import { ulid } from "@std/ulid";
+import type { KvStore } from "#/lib/resources/kv.ts";
 import type {
   AddPlaygroundRequest,
   Playground,
@@ -10,7 +9,7 @@ import type {
  * getPlayground gets a playground by ID.
  */
 export async function getPlayground(
-  kv: Deno.Kv,
+  kv: KvStore,
   id: string,
 ): Promise<Playground | null> {
   const result = await kv.get<Playground>(playgroundKey(id));
@@ -21,7 +20,7 @@ export async function getPlayground(
  * addPlayground adds a new playground.
  */
 export async function addPlayground(
-  kv: Deno.Kv,
+  kv: KvStore,
   request: AddPlaygroundRequest,
 ): Promise<Playground> {
   const id = ulid();
@@ -38,7 +37,7 @@ export async function addPlayground(
  * setPlayground sets a playground by ID.
  */
 export async function setPlayground(
-  kv: Deno.Kv,
+  kv: KvStore,
   playground: Playground,
 ): Promise<void> {
   const result = await kv.set(playgroundKey(playground.id), playground);
@@ -50,6 +49,6 @@ export async function setPlayground(
 // TODO: Add playground title in playground storage via
 // https://developer.mozilla.org/en-US/docs/Web/API/Window/prompt
 
-function playgroundKey(id: string): Deno.KvKey {
+function playgroundKey(id: string): readonly string[] {
   return ["playgrounds", id];
 }
