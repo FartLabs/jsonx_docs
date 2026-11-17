@@ -13,7 +13,7 @@
   "imports": {
     "#/": "./",
     "$std/": "https://deno.land/std@0.211.0/",
-    "@fartlabs/go": "jsr:@fartlabs/go@^0.0.3",
+    "@fartlabs/go": "jsr:@fartlabs/go@^0.0.4",
     "@fartlabs/jsonx": "jsr:@fartlabs/jsonx@^0.0.11",
     "@fresh/plugin-vite": "jsr:@fresh/plugin-vite@^1.0.8",
     "@preact/signals": "npm:@preact/signals@^2.7.1",
