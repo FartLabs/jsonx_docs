@@ -16,3 +16,5 @@ jobs:
         run: deno fmt && git diff-index --quiet HEAD
       - name: Lint
         run: deno lint && git diff-index --quiet HEAD
+      - name: Build
+        run: deno task build

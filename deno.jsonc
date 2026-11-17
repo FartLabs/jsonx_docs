@@ -1,8 +1,9 @@
 {
   "nodeModulesDir": "auto",
   "tasks": {
-    "dev": "vite",
-    "build": "vite build",
+    "generate": "deno run -A codegen/generate.ts",
+    "dev": "deno task generate && vite",
+    "build": "deno task generate && vite build",
     "update": "deno update --latest",
     "preview": "deno serve -A _fresh/server.js",
     "precommit": "deno fmt && deno lint --fix && deno check"

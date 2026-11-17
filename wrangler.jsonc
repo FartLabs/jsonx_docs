@@ -1,0 +1,17 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "jsonx-fart-tools",
+  "main": "worker.ts",
+  "compatibility_date": "2026-09-01",
+  "compatibility_flags": ["nodejs_compat"],
+  "workers_dev": true,
+  "assets": {
+    "directory": "_fresh/client",
+    "binding": "ASSETS"
+  },
+  "kv_namespaces": [
+    // Saved playgrounds (replaces Deno KV). Created with `wrangler kv namespace create jsonx-playgrounds`.
+    { "binding": "PLAYGROUNDS", "id": "fca1d168ff6a4ac4a92d0e9561c956f0" }
+  ],
+  "routes": [{ "pattern": "jsonx.fart.tools", "custom_domain": true }]
+}

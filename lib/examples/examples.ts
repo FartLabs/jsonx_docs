@@ -1,24 +1,11 @@
+import examples from "#/generated/examples.json" with { type: "json" };
+
 /**
- * readExample reads the example file and returns the content.
+ * readExample returns the example code for a path such as `./examples/01_animals.tsx`.
+ *
+ * Examples are read from the generated bundle (see `codegen/generate.ts`) so this works without a file system.
  */
-export async function readExample(path: string | URL): Promise<string | null> {
-  try {
-    const text = await Deno.readTextFile(path);
-    return trimJSXImportSource(text);
-  } catch (error) {
-    if (error instanceof Deno.errors.NotFound) {
-      return null;
-    }
-
-    throw error;
-  }
-}
-
-function trimJSXImportSource(code: string): string {
-  const jsxImportSource = "/** @jsxImportSource @fartlabs/jsonx */\n\n";
-  if (code.startsWith(jsxImportSource)) {
-    return code.substring(jsxImportSource.length);
-  }
-
-  return code;
+export function readExample(path: string | URL): Promise<string | null> {
+  const code = (examples as Record<string, string>)[String(path)];
+  return Promise.resolve(code ?? null);
 }
