@@ -49,7 +49,7 @@
     "npm:@opentelemetry/api@^1.9.0": "1.9.0",
     "npm:@preact/signals@^2.2.1": "2.7.1_preact@10.28.3",
     "npm:@preact/signals@^2.7.1": "2.7.1_preact@10.28.3",
-    "npm:@prefresh/vite@^2.4.8": "2.4.11_preact@10.28.3_vite@7.3.1",
+    "npm:@prefresh/vite@^2.4.8": "2.4.11_preact@10.28.3_vite@7.3.1__picomatch@4.0.3",
     "npm:esbuild-wasm@~0.25.11": "0.25.12",
     "npm:esbuild@0.25.7": "0.25.7",
     "npm:esbuild@~0.25.5": "0.25.7",
@@ -62,7 +62,6 @@
     "npm:preact@^10.27.2": "10.28.3",
     "npm:preact@^10.28.3": "10.28.3",
     "npm:rollup@^4.50.0": "4.55.1",
-    "npm:vite@*": "7.3.1_picomatch@4.0.3",
     "npm:vite@^7.1.4": "7.3.1_picomatch@4.0.3",
     "npm:vite@^7.3.1": "7.3.1_picomatch@4.0.3"
   },
@@ -90,8 +89,7 @@
         "jsr:@cross/deepmerge",
         "jsr:@std/encoding@~0.220.1",
         "jsr:@std/fs@~0.220.1",
-        "jsr:@std/path@~0.220.1",
-        "npm:preact@^10.28.3"
+        "jsr:@std/path@~0.220.1"
       ]
     },
     "@fresh/build-id@1.0.1": {
@@ -744,7 +742,7 @@
     "@prefresh/utils@1.2.1": {
       "integrity": "sha512-vq/sIuN5nYfYzvyayXI4C2QkprfNaHUQ9ZX+3xLD8nL3rWyzpxOm1+K7RtMbhd+66QcaISViK7amjnheQ/4WZw=="
     },
-    "@prefresh/vite@2.4.11_preact@10.28.3_vite@7.3.1": {
+    "@prefresh/vite@2.4.11_preact@10.28.3_vite@7.3.1__picomatch@4.0.3": {
       "integrity": "sha512-/XjURQqdRiCG3NpMmWqE9kJwrg9IchIOWHzulCfqg2sRe/8oQ1g5De7xrk9lbqPIQLn7ntBkKdqWXIj4E9YXyg==",
       "dependencies": [
         "@babel/core",
