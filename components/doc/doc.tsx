@@ -1,4 +1,5 @@
 import { go } from "@fartlabs/go";
+import { HttpError } from "fresh";
 import { contents } from "#/lib/resources/docs.ts";
 import { fromExpression } from "#/lib/playgrounds/expressions/mod.ts";
 import { getMeta } from "#/lib/meta/mod.ts";
@@ -40,7 +41,7 @@ function contentOf(request: Request) {
   const path = toPath(url.pathname).join("/");
   const content = contents.get(path);
   if (!content) {
-    throw new Error(`Content not found: ${path}`);
+    throw new HttpError(404, `Content not found: ${path}`);
   }
 
   return content;
