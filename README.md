@@ -50,6 +50,11 @@ has been replaced, so the docs and examples are rendered ahead of time by
 `deno task generate` (part of `build`), and saved playgrounds live in a Workers
 KV namespace instead of Deno KV.
 
+Every push to `main` deploys through Cloudflare Workers Builds. The build image
+has no Deno, so the build command is
+`npm i -g deno@2.9.6 && deno install && deno task build`, followed by
+`npx wrangler deploy`. To deploy by hand:
+
 ```bash
 deno task build # renders docs/ and examples/ into generated/, then builds _fresh/
 npx wrangler deploy
