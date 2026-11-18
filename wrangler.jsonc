@@ -13,5 +13,7 @@
     // Saved playgrounds (replaces Deno KV). Created with `wrangler kv namespace create jsonx-playgrounds`.
     { "binding": "PLAYGROUNDS", "id": "fca1d168ff6a4ac4a92d0e9561c956f0" }
   ],
-  "routes": [{ "pattern": "jsonx.fart.tools", "custom_domain": true }]
+  "routes": [{ "pattern": "jsonx.fart.tools", "custom_domain": true }],
+  // Required by `wrangler preview`, which Workers Builds runs for non-production branches.
+  "previews": {}
 }
