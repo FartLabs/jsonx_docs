@@ -5,7 +5,7 @@
     "jsr:@deno/esbuild-plugin@^1.2.0": "1.2.1",
     "jsr:@deno/loader@~0.3.10": "0.3.11",
     "jsr:@deno/loader@~0.3.2": "0.3.11",
-    "jsr:@fartlabs/go@^0.0.4": "0.0.4",
+    "jsr:@fartlabs/go@^0.0.5": "0.0.5",
     "jsr:@fartlabs/jsonx@0.0.11": "0.0.11",
     "jsr:@fartlabs/jsonx@^0.0.11": "0.0.11",
     "jsr:@fresh/build-id@1": "1.0.1",
@@ -49,7 +49,7 @@
     "npm:@opentelemetry/api@^1.9.0": "1.9.0",
     "npm:@preact/signals@^2.2.1": "2.7.1_preact@10.28.3",
     "npm:@preact/signals@^2.7.1": "2.7.1_preact@10.28.3",
-    "npm:@prefresh/vite@^2.4.8": "2.4.11_preact@10.28.3_vite@7.3.1__picomatch@4.0.3",
+    "npm:@prefresh/vite@^2.4.8": "2.4.11_preact@10.28.3_vite@7.3.1",
     "npm:esbuild-wasm@~0.25.11": "0.25.12",
     "npm:esbuild@0.25.7": "0.25.7",
     "npm:esbuild@~0.25.5": "0.25.7",
@@ -80,8 +80,8 @@
     "@deno/loader@0.3.11": {
       "integrity": "7c62f4f09cdfc34e66ba25b5a775a1830cbb5266b3e39f67b0f620c75484df8d"
     },
-    "@fartlabs/go@0.0.4": {
-      "integrity": "d995efebd9af87d3ab9628edb6d4e61576e1b1ffeedac6846c556c78ef8f466e"
+    "@fartlabs/go@0.0.5": {
+      "integrity": "a3121248ac467800d361795139813dbf7abe66c2edbf40bd4539e3fb3a779373"
     },
     "@fartlabs/jsonx@0.0.11": {
       "integrity": "25e70bc64e680c90f0b91d2e639a04d3e8a7811809282a4b82a27e2862218438",
@@ -89,7 +89,8 @@
         "jsr:@cross/deepmerge",
         "jsr:@std/encoding@~0.220.1",
         "jsr:@std/fs@~0.220.1",
-        "jsr:@std/path@~0.220.1"
+        "jsr:@std/path@~0.220.1",
+        "npm:preact@^10.28.3"
       ]
     },
     "@fresh/build-id@1.0.1": {
@@ -742,7 +743,7 @@
     "@prefresh/utils@1.2.1": {
       "integrity": "sha512-vq/sIuN5nYfYzvyayXI4C2QkprfNaHUQ9ZX+3xLD8nL3rWyzpxOm1+K7RtMbhd+66QcaISViK7amjnheQ/4WZw=="
     },
-    "@prefresh/vite@2.4.11_preact@10.28.3_vite@7.3.1__picomatch@4.0.3": {
+    "@prefresh/vite@2.4.11_preact@10.28.3_vite@7.3.1": {
       "integrity": "sha512-/XjURQqdRiCG3NpMmWqE9kJwrg9IchIOWHzulCfqg2sRe/8oQ1g5De7xrk9lbqPIQLn7ntBkKdqWXIj4E9YXyg==",
       "dependencies": [
         "@babel/core",
@@ -1302,7 +1303,7 @@
   },
   "workspace": {
     "dependencies": [
-      "jsr:@fartlabs/go@^0.0.4",
+      "jsr:@fartlabs/go@^0.0.5",
       "jsr:@fartlabs/jsonx@^0.0.11",
       "jsr:@fresh/core@^2.2.0",
       "jsr:@fresh/plugin-vite@^1.0.8",
